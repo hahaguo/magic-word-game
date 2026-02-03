@@ -33,7 +33,7 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       
-      # 步骤3：登录GHCR（如需推送到GHCR则保留，否则注释/删除）
+      # 步骤4：登录GHCR（如需推送到GHCR则保留，否则注释/删除）
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -41,7 +41,7 @@ jobs:
           username: ${{ github.actor }} # 当前GitHub用户名
           password: ${{ secrets.GITHUB_TOKEN }} # GitHub自动生成的令牌
 
-      # 步骤4：提取镜像标签（根据触发条件自动生成标签，如latest、v1.0）
+      # 步骤5：提取镜像标签（根据触发条件自动生成标签，如latest、v1.0）
       - name: Extract metadata for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -56,7 +56,7 @@ jobs:
             type=ref,event=tag
             type=sha,format=short
 
-      # 步骤5：构建并推送镜像
+      # 步骤6：构建并推送镜像
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
