@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>iPad适配测试 - 墨墨的魔法单词王国</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .device-info {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            background: rgba(255,255,255,0.3);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .info-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .test-section {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .test-section h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+            padding-bottom: 10px;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .test-card {
+            background: white;
+            color: #2d3436;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .test-card:active {
+            transform: scale(0.98);
+        }
+
+        .test-emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .test-title {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            border-left: 4px solid #55efc4;
+        }
+
+        .features-list li::before {
+            content: "✓ ";
+            color: #55efc4;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #55efc4, #00b894);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 20px 10px;
+            box-shadow: 0 5px 15px rgba(0,184,148,0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,184,148,0.4);
+        }
+
+        .orientation-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (orientation: landscape) {
+            .orientation-indicator::after {
+                content: " 🌄 横屏";
+            }
+        }
+
+        @media (orientation: portrait) {
+            .orientation-indicator::after {
+                content: " 📱 竖屏";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="orientation-indicator">当前方向:</div>
+
+    <div class="container">
+        <h1>📱 iPad适配测试页面</h1>
+
+        <div class="device-info">
+            <h2>设备信息</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">屏幕宽度</div>
+                    <div class="info-value" id="screenWidth">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">屏幕高度</div>
+                    <div class="info-value" id="screenHeight">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">视口宽度</div>
+                    <div class="info-value" id="viewportWidth">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">设备像素比</div>
+                    <div class="info-value" id="pixelRatio">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">设备类型</div>
+                    <div class="info-value" id="deviceType">-</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">触摸支持</div>
+                    <div class="info-value" id="touchSupport">-</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🎮 触摸测试区</h2>
+            <div class="test-grid">
+                <div class="test-card" onclick="showToast('卡片1被点击')">
+                    <div class="test-emoji">🐱</div>
+                    <div class="test-title">Cat</div>
+                </div>
+                <div class="test-card" onclick="showToast('卡片2被点击')">
+                    <div class="test-emoji">🐶</div>
+                    <div class="test-title">Dog</div>
+                </div>
+                <div class="test-card" onclick="showToast('卡片3被点击')">
+                    <div class="test-emoji">🍎</div>
+                    <div class="test-title">Apple</div>
+                </div>
+                <div class="test-card" onclick="showToast('卡片4被点击')">
+                    <div class="test-emoji">🍌</div>
+                    <div class="test-title">Banana</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>✨ iPad优化特性</h2>
+            <ul class="features-list">
+                <li>竖屏模式：4列布局，适合单手操作</li>
+                <li>横屏模式：6列布局，充分利用宽屏</li>
+                <li>触摸目标：最小44×44px，符合Apple HIG</li>
+                <li>字体放大：比手机版大30-50%</li>
+                <li>触摸反馈：即时视觉反馈，无延迟</li>
+                <li>自动适配：旋转设备自动调整布局</li>
+                <li>弹窗优化：支持滚动，最大80vh高度</li>
+                <li>性能流畅：60fps动画，GPU加速</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="btn-primary">🎮 开始游戏</a>
+            <a href="#" class="btn-primary" onclick="testRotation(); return false;">🔄 测试旋转</a>
+        </div>
+    </div>
+
+    <div id="toast" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 15px 30px; border-radius: 25px; display: none; backdrop-filter: blur(10px);"></div>
+
+    <script>
+        // 更新设备信息
+        function updateDeviceInfo() {
+            document.getElementById('screenWidth').textContent = screen.width + 'px';
+            document.getElementById('screenHeight').textContent = screen.height + 'px';
+            document.getElementById('viewportWidth').textContent = window.innerWidth + 'px';
+            document.getElementById('pixelRatio').textContent = window.devicePixelRatio;
+
+            // 检测设备类型
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            let deviceType = 'Unknown';
+
+            if (width >= 1024 && width <= 1366) {
+                deviceType = 'iPad Pro';
+            } else if (width >= 768 && width <= 1024) {
+                deviceType = 'iPad';
+            } else if (width <= 768) {
+                deviceType = 'iPad mini / Phone';
+            }
+
+            if (window.orientation !== undefined || screen.orientation) {
+                deviceType += ' (支持旋转)';
+            }
+
+            document.getElementById('deviceType').textContent = deviceType;
+
+            // 触摸支持
+            const touchSupport = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            document.getElementById('touchSupport').textContent = touchSupport ? '✓ 支持' : '✗ 不支持';
+        }
+
+        // 显示提示
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 2000);
+        }
+
+        // 测试旋转
+        function testRotation() {
+            const orientation = window.orientation !== undefined ? window.orientation : (screen.orientation ? screen.orientation.angle : 0);
+            const orientationStr = Math.abs(orientation) === 90 ? '横屏' : '竖屏';
+            showToast('当前方向: ' + orientationStr + ' (' + orientation + '°)');
+        }
+
+        // 监听窗口大小变化（包括旋转）
+        window.addEventListener('resize', updateDeviceInfo);
+        window.addEventListener('orientationchange', () => {
+            setTimeout(updateDeviceInfo, 100);
+            showToast('设备已旋转');
+        });
+
+        // 初始化
+        updateDeviceInfo();
+
+        // 添加触摸测试
+        document.querySelectorAll('.test-card').forEach(card => {
+            card.addEventListener('touchstart', function() {
+                this.style.background = '#74b9ff';
+            });
+            card.addEventListener('touchend', function() {
+                setTimeout(() => {
+                    this.style.background = 'white';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

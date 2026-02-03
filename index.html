@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>墨墨的魔法单词王国 - 小学英语学习游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- 顶部信息栏 -->
+        <header class="header">
+            <div class="user-greeting">
+                <span class="greeting-text">👧 墨墨的学习之旅</span>
+            </div>
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="icon">⭐</span>
+                    <span class="score-value" id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="icon">🏆</span>
+                    <span class="score-value" id="level">1</span>
+                </div>
+            </div>
+            <h1 class="game-title">✨ 魔法单词王国 ✨</h1>
+        </header>
+
+        <!-- 欢迎页面 -->
+        <div class="welcome-screen" id="welcomeScreen">
+            <div class="welcome-content">
+                <h2 class="welcome-title">🌈 墨墨，欢迎回来！ 🌈</h2>
+                <p class="welcome-text">选择你喜欢的游戏模式，继续你的学习冒险吧～</p>
+
+                <!-- 学习进度和提醒 -->
+                <div class="learning-dashboard">
+                    <div class="today-progress" id="todayProgress">今日已学：0/20个单词</div>
+                    <div class="review-reminder" id="reviewReminder" style="display: none;">📚 有单词需要复习</div>
+                    <div class="quick-stats" id="quickStats">
+                        <span>📖 已学：0/220</span>
+                        <span>⭐ 精通：0</span>
+                        <span>🎯 正确率：0%</span>
+                    </div>
+                    <button class="stats-btn" id="statsBtn">📊 查看详细统计</button>
+                </div>
+
+                <div class="game-modes">
+                    <button class="mode-btn" data-mode="match">
+                        <span class="mode-icon">🎯</span>
+                        <span class="mode-name">配对游戏</span>
+                        <span class="mode-desc">找到单词和图片的正确配对</span>
+                    </button>
+                    <button class="mode-btn" data-mode="spelling">
+                        <span class="mode-icon">✏️</span>
+                        <span class="mode-name">拼写游戏</span>
+                        <span class="mode-desc">看图拼写正确的单词</span>
+                    </button>
+                    <button class="mode-btn" data-mode="choice">
+                        <span class="mode-icon">🎲</span>
+                        <span class="mode-name">选择题</span>
+                        <span class="mode-desc">选出正确的答案</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 游戏区域 -->
+        <div class="game-area" id="gameArea" style="display: none;">
+            <div class="game-header">
+                <button class="back-btn" id="backBtn">← 返回</button>
+                <h3 class="mode-title" id="modeTitle"></h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+
+            <!-- 配对游戏 -->
+            <div class="match-game game-mode" id="matchGame" style="display: none;">
+                <div class="match-grid" id="matchGrid"></div>
+            </div>
+
+            <!-- 拼写游戏 -->
+            <div class="spelling-game game-mode" id="spellingGame" style="display: none;">
+                <div class="word-prompt">
+                    <div class="word-image" id="spellingImage"></div>
+                    <div class="spelling-actions">
+                        <button class="speak-btn speak-btn-large" id="spellingSpeak">🔊 听发音</button>
+                        <button class="hint-btn" id="spellingHint">💡</button>
+                    </div>
+                    <div class="word-hint" id="spellingHintText"></div>
+                </div>
+                <div class="spelling-input-area">
+                    <input type="text" class="spelling-input" id="spellingInput" placeholder="输入单词...">
+                    <button class="submit-btn" id="submitSpelling">提交</button>
+                </div>
+            </div>
+
+            <!-- 选择题游戏 -->
+            <div class="choice-game game-mode" id="choiceGame" style="display: none;">
+                <div class="question-area">
+                    <div class="question-image" id="choiceImage"></div>
+                    <div class="choice-actions">
+                        <button class="speak-btn speak-btn-large" id="choiceSpeak">🔊 听发音</button>
+                        <button class="hint-btn" id="choiceHint">💡</button>
+                    </div>
+                    <div class="question-text" id="questionText"></div>
+                </div>
+                <div class="choices-grid" id="choicesGrid"></div>
+            </div>
+        </div>
+
+        <!-- 结果反馈弹窗 -->
+        <div class="feedback-popup" id="feedbackPopup">
+            <div class="feedback-content">
+                <div class="feedback-icon" id="feedbackIcon"></div>
+                <div class="feedback-message" id="feedbackMessage"></div>
+            </div>
+        </div>
+
+        <!-- 关卡完成弹窗 -->
+        <div class="level-complete-popup" id="levelCompletePopup" style="display: none;">
+            <div class="popup-content">
+                <h2>🎉 墨墨真棒！ 🎉</h2>
+                <p class="complete-message" id="completeMessage"></p>
+                <div class="stars" id="starsDisplay"></div>
+                <div class="encouragement" id="encouragement">继续加油，你会越来越棒！</div>
+                <button class="continue-btn" id="continueBtn">继续学习</button>
+                <button class="back-home-btn" id="backHomeBtn">返回首页</button>
+            </div>
+        </div>
+
+        <!-- 统计详情弹窗 -->
+        <div class="stats-popup" id="statsPopup" style="display: none;"></div>
+
+        <!-- 记忆辅助弹窗 -->
+        <div class="memory-popup" id="memoryPopup">
+            <div class="memory-popup-content" id="memoryContent"></div>
+        </div>
+    </div>
+
+    <script src="js/words.js"></script>
+    <script src="js/memory.js"></script>
+    <script src="js/speech.js"></script>
+    <script src="js/memory-helper.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
