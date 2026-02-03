@@ -54,7 +54,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=ref,event=tag
-            type=sha,format=short
+            # type=sha,format=short
 
       # 步骤6：构建并推送镜像
       - name: Build and push Docker image
