@@ -5,7 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: magic-word-game:v2.1
+    image: magic-word-game:v2.2
     container_name: magic-word-game
     ports:
       - "8080:80"
@@ -22,8 +22,8 @@ services:
       - TZ=Asia/Shanghai
     labels:
       - "com.word-game.description=墨墨的魔法单词王国"
-      - "com.word-game.version=2.1"
-      - "com.word-game.features=memory,speech,phonetic,helper,ipad"
+      - "com.word-game.version=2.2"
+      - "com.word-game.features=memory,speech,phonetic,helper,ipad,review"
 
 networks:
   word-game-network:
