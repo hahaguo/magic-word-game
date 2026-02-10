@@ -58,8 +58,15 @@ class WordGame {
         document.querySelectorAll('.mode-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const mode = e.currentTarget.dataset.mode;
-                this.startGame(mode);
+                if (mode) {
+                    this.startGame(mode);
+                }
             });
+        });
+
+        // 绑定复习按钮
+        document.getElementById('reviewBtn').addEventListener('click', () => {
+            this.startReviewMode();
         });
 
         document.getElementById('backBtn').addEventListener('click', () => {
@@ -91,6 +98,58 @@ class WordGame {
 
         // 显示学习提醒
         this.updateLearningReminder();
+    }
+
+    // 启动复习模式
+    startReviewMode() {
+        const reviewWords = this.memorySystem.getWordsToReview();
+
+        if (reviewWords.length === 0) {
+            this.showFeedback('🎉', '墨墨太棒了！暂时没有需要复习的单词哦～', 'correct');
+            return;
+        }
+
+        // 限制每次复习的单词数量
+        this.currentWords = reviewWords.slice(0, Math.min(reviewWords.length, 10));
+
+        // 随机选择一个游戏模式
+        const modes = ['match', 'spelling', 'choice'];
+        const randomMode = modes[Math.floor(Math.random() * modes.length)];
+
+        this.currentMode = randomMode;
+        this.currentQuestionIndex = 0;
+        this.matchedPairs = 0;
+        this.selectedCards = [];
+
+        // 显示游戏区域
+        document.getElementById('welcomeScreen').style.display = 'none';
+        document.getElementById('gameArea').style.display = 'block';
+
+        // 隐藏所有游戏模式
+        document.querySelectorAll('.game-mode').forEach(mode => {
+            mode.style.display = 'none';
+        });
+
+        // 显示当前模式
+        switch(randomMode) {
+            case 'match':
+                document.getElementById('modeTitle').textContent = '📚 复习 - 配对游戏';
+                document.getElementById('matchGame').style.display = 'block';
+                this.initMatchGame();
+                break;
+            case 'spelling':
+                document.getElementById('modeTitle').textContent = '📚 复习 - 拼写游戏';
+                document.getElementById('spellingGame').style.display = 'block';
+                this.initSpellingGame();
+                break;
+            case 'choice':
+                document.getElementById('modeTitle').textContent = '📚 复习 - 选择题';
+                document.getElementById('choiceGame').style.display = 'block';
+                this.initChoiceGame();
+                break;
+        }
+
+        this.updateProgress();
     }
 
     startGame(mode) {
@@ -548,6 +607,19 @@ class WordGame {
         const stats = this.memorySystem.getStatistics();
         const reviewWords = this.memorySystem.getWordsToReview();
         const todayProgress = this.memorySystem.getTodayProgress();
+
+        // 更新复习按钮描述
+        const reviewDesc = document.getElementById('reviewDesc');
+        if (reviewDesc) {
+            if (reviewWords.length > 0) {
+                reviewDesc.textContent = `有 ${reviewWords.length} 个单词需要复习`;
+                // 给复习按钮添加高亮样式
+                document.getElementById('reviewBtn')?.classList.add('has-review');
+            } else {
+                reviewDesc.textContent = '暂时没有需要复习的单词';
+                document.getElementById('reviewBtn')?.classList.remove('has-review');
+            }
+        }
 
         // 更新今日进度
         const progressEl = document.getElementById('todayProgress');
