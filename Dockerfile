@@ -4,7 +4,7 @@ FROM nginx:alpine
 # 维护者信息
 LABEL maintainer="word-game"
 LABEL description="Magic Word Kingdom - English Learning Game for Kids"
-LABEL version="2.2"
+LABEL version="2.3"
 
 # 删除nginx默认页面
 RUN rm -rf /usr/share/nginx/html/*
@@ -12,8 +12,11 @@ RUN rm -rf /usr/share/nginx/html/*
 # 复制网页文件到nginx目录
 COPY index.html /usr/share/nginx/html/
 COPY ipad-test.html /usr/share/nginx/html/
+COPY manifest.json /usr/share/nginx/html/
+COPY service-worker.js /usr/share/nginx/html/
 COPY css/ /usr/share/nginx/html/css/
 COPY js/ /usr/share/nginx/html/js/
+COPY icons/ /usr/share/nginx/html/icons/
 
 # 复制文档文件
 COPY README.md /usr/share/nginx/html/
