@@ -37,7 +37,7 @@ body::before {
     max-width: 1000px;
     background: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     z-index: 1;
@@ -46,24 +46,24 @@ body::before {
 /* 顶部信息栏 */
 .header {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     position: relative;
 }
 
 .user-greeting {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
 }
 
 .greeting-text {
     display: inline-block;
     background: linear-gradient(135deg, #fd79a8, #a29bfe);
     color: white;
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-size: 1.2em;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 1em;
     font-weight: bold;
-    box-shadow: 0 5px 15px rgba(162, 155, 254, 0.3);
+    box-shadow: 0 3px 10px rgba(162, 155, 254, 0.3);
     animation: gentlePulse 3s ease-in-out infinite;
 }
 
@@ -75,19 +75,19 @@ body::before {
 .score-board {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .score-item {
     background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
-    padding: 12px 25px;
-    border-radius: 20px;
+    padding: 8px 20px;
+    border-radius: 15px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    font-size: 1.3em;
+    gap: 8px;
+    font-size: 1.1em;
     font-weight: bold;
-    box-shadow: 0 5px 15px rgba(253, 203, 110, 0.4);
+    box-shadow: 0 3px 10px rgba(253, 203, 110, 0.4);
     transition: transform 0.3s;
 }
 
@@ -96,14 +96,15 @@ body::before {
 }
 
 .icon {
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .game-title {
     color: #6c5ce7;
-    font-size: 2.5em;
-    text-shadow: 3px 3px 6px rgba(108, 92, 231, 0.3);
+    font-size: 2em;
+    text-shadow: 2px 2px 4px rgba(108, 92, 231, 0.3);
     animation: titleFloat 3s ease-in-out infinite;
+    margin-bottom: 10px;
 }
 
 @keyframes titleFloat {
@@ -114,13 +115,13 @@ body::before {
 /* 欢迎页面 */
 .welcome-screen {
     text-align: center;
-    padding: 20px;
+    padding: 10px 20px;
 }
 
 .welcome-title {
     color: #a29bfe;
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 1.6em;
+    margin-bottom: 10px;
     animation: rainbow 3s ease-in-out infinite;
 }
 
@@ -131,16 +132,16 @@ body::before {
 }
 
 .welcome-text {
-    font-size: 1.3em;
+    font-size: 1.1em;
     color: #636e72;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .game-modes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 15px;
-    margin-top: 30px;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 .mode-btn {
@@ -1427,29 +1428,29 @@ body::before {
 /* 学习进度和统计样式 */
 .learning-dashboard {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    border-radius: 20px;
-    padding: 25px;
-    margin: 20px 0 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px 0 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .today-progress {
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
     color: #6c5ce7;
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .review-reminder {
     background: linear-gradient(135deg, #fd79a8, #ff7675);
     color: white;
-    padding: 12px 20px;
-    border-radius: 15px;
+    padding: 8px 15px;
+    border-radius: 12px;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 0.95em;
     font-weight: bold;
-    margin: 15px 0;
+    margin: 10px 0;
     animation: pulse 2s infinite;
 }
 
@@ -1461,33 +1462,33 @@ body::before {
 .quick-stats {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    margin: 12px 0;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
 }
 
 .quick-stats span {
     background: white;
-    padding: 10px 15px;
-    border-radius: 12px;
-    font-size: 1.05em;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-size: 0.9em;
     font-weight: bold;
     color: #2d3436;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stats-btn {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     background: linear-gradient(135deg, #a29bfe, #6c5ce7);
     color: white;
     border: none;
-    border-radius: 15px;
-    font-size: 1.2em;
+    border-radius: 12px;
+    font-size: 1em;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s;
-    box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
 }
 
 .stats-btn:hover {
