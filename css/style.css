@@ -1710,3 +1710,103 @@ body::before {
         gap: 10px;
     }
 }
+
+/* ==================== 数据备份与恢复样式 ==================== */
+
+.backup-section {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fd79a8 100%);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(253, 203, 110, 0.3);
+}
+
+.backup-section h3 {
+    color: #2d3436;
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.backup-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.backup-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 15px;
+    background: white;
+    border: 3px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1em;
+    font-weight: bold;
+    color: #2d3436;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.backup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-color: #6c5ce7;
+}
+
+.backup-btn.danger {
+    color: #d63031;
+}
+
+.backup-btn.danger:hover {
+    border-color: #d63031;
+    background: #ffe5e5;
+}
+
+.backup-btn .btn-icon {
+    font-size: 2em;
+}
+
+.backup-note {
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    font-size: 0.95em;
+    color: #636e72;
+    line-height: 1.6;
+    text-align: center;
+    border-left: 4px solid #fdcb6e;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+    .backup-section {
+        padding: 20px;
+    }
+
+    .backup-section h3 {
+        font-size: 1.3em;
+    }
+
+    .backup-buttons {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .backup-btn {
+        padding: 15px;
+    }
+
+    .backup-btn .btn-icon {
+        font-size: 1.8em;
+    }
+
+    .backup-note {
+        font-size: 0.9em;
+        padding: 12px;
+    }
+}

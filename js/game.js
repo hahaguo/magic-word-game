@@ -692,6 +692,29 @@ class WordGame {
                             ` : '<div class="no-data">墨墨还没有开始学习哦～</div>'}
                         </div>
                     </div>
+
+                    <!-- 数据备份和恢复区域 -->
+                    <div class="backup-section">
+                        <h3>💾 数据备份与恢复</h3>
+                        <div class="backup-buttons">
+                            <button class="backup-btn" onclick="game.exportData()">
+                                <span class="btn-icon">📥</span>
+                                <span>导出学习数据</span>
+                            </button>
+                            <button class="backup-btn" onclick="game.importData()">
+                                <span class="btn-icon">📤</span>
+                                <span>导入学习数据</span>
+                            </button>
+                            <button class="backup-btn danger" onclick="game.clearAllData()">
+                                <span class="btn-icon">🗑️</span>
+                                <span>清除所有数据</span>
+                            </button>
+                        </div>
+                        <div class="backup-note">
+                            💡 提示：定期备份数据，防止数据丢失。导出的数据可以在其他设备上导入恢复。
+                        </div>
+                    </div>
+
                     <button class="close-stats-btn" onclick="game.closeStats()">关闭</button>
                 </div>
             `;
@@ -705,6 +728,129 @@ class WordGame {
         const statsPopup = document.getElementById('statsPopup');
         if (statsPopup) {
             statsPopup.style.display = 'none';
+        }
+    }
+
+    // 导出学习数据
+    exportData() {
+        try {
+            const data = {
+                version: '2.2',
+                exportDate: new Date().toISOString(),
+                memoryData: this.memorySystem.memoryData,
+                totalWords: Object.keys(this.memorySystem.memoryData).length
+            };
+
+            const dataStr = JSON.stringify(data, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+
+            const fileName = `墨墨的学习数据_${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}.json`;
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+
+            this.showFeedback('✅', `数据导出成功！已学习 ${data.totalWords} 个单词`, 'correct');
+        } catch (error) {
+            console.error('导出失败:', error);
+            this.showFeedback('❌', '导出数据失败，请重试', 'wrong');
+        }
+    }
+
+    // 导入学习数据
+    importData() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+
+        input.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                try {
+                    const data = JSON.parse(event.target.result);
+
+                    // 验证数据格式
+                    if (!data.memoryData) {
+                        throw new Error('数据格式不正确');
+                    }
+
+                    // 询问用户是否覆盖现有数据
+                    const currentWords = Object.keys(this.memorySystem.memoryData).length;
+                    const importWords = Object.keys(data.memoryData).length;
+
+                    let message = `将要导入 ${importWords} 个单词的学习记录`;
+                    if (currentWords > 0) {
+                        message += `\n当前已有 ${currentWords} 个单词的学习记录`;
+                        message += '\n\n⚠️ 导入将会覆盖现有数据！';
+                        message += '\n建议先导出当前数据备份';
+                    }
+                    message += '\n\n是否继续导入？';
+
+                    if (confirm(message)) {
+                        this.memorySystem.memoryData = data.memoryData;
+                        this.memorySystem.saveData();
+
+                        this.showFeedback('✅', `成功导入 ${importWords} 个单词的学习记录！`, 'correct');
+
+                        // 刷新显示
+                        this.updateLearningReminder();
+                        this.closeStats();
+
+                        // 延迟后重新打开统计页面显示新数据
+                        setTimeout(() => {
+                            this.showStats();
+                        }, 2000);
+                    }
+                } catch (error) {
+                    console.error('导入失败:', error);
+                    this.showFeedback('❌', '导入数据失败，文件格式可能不正确', 'wrong');
+                }
+            };
+
+            reader.onerror = () => {
+                this.showFeedback('❌', '读取文件失败，请重试', 'wrong');
+            };
+
+            reader.readAsText(file);
+        };
+
+        input.click();
+    }
+
+    // 清除所有数据
+    clearAllData() {
+        const currentWords = Object.keys(this.memorySystem.memoryData).length;
+
+        if (currentWords === 0) {
+            this.showFeedback('💡', '当前没有学习数据', 'correct');
+            return;
+        }
+
+        const message = `⚠️ 警告：此操作将清除所有学习记录！\n\n` +
+                       `当前已学习 ${currentWords} 个单词\n` +
+                       `所有学习进度、复习记录都将被删除\n\n` +
+                       `建议先导出数据备份！\n\n` +
+                       `确定要清除所有数据吗？`;
+
+        if (confirm(message)) {
+            // 二次确认
+            if (confirm('真的要清除吗？此操作不可恢复！')) {
+                this.memorySystem.memoryData = {};
+                this.memorySystem.saveData();
+
+                this.showFeedback('✅', '所有学习数据已清除', 'correct');
+
+                // 刷新显示
+                this.updateLearningReminder();
+                this.closeStats();
+            }
         }
     }
 }
