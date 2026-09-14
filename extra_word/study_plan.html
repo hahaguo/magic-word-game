@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百词考试 · 背诵计划</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f5f0; color: #333; }
+
+  .header { background: #2c5f2e; color: white; padding: 24px 32px; }
+  .header h1 { font-size: 22px; font-weight: 700; }
+  .header p { margin-top: 6px; font-size: 14px; opacity: 0.8; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+
+  /* 艾宾浩斯复习计划表 */
+  .schedule-section { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .schedule-section h2 { font-size: 16px; color: #2c5f2e; margin-bottom: 14px; border-left: 4px solid #2c5f2e; padding-left: 10px; }
+  .schedule-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .sched-item { text-align: center; padding: 10px 4px; border-radius: 8px; font-size: 13px; }
+  .sched-item .day { font-size: 20px; font-weight: 700; }
+  .sched-item .label { font-size: 11px; margin-top: 4px; opacity: 0.8; }
+  .s1 { background: #e8f5e9; color: #2c5f2e; }
+  .s2 { background: #e3f2fd; color: #1565c0; }
+  .s3 { background: #fff8e1; color: #e65100; }
+  .s4 { background: #fce4ec; color: #880e4f; }
+  .s5 { background: #f3e5f5; color: #6a1b9a; }
+  .s6 { background: #e8eaf6; color: #283593; }
+
+  .tip { background: #fffde7; border-left: 4px solid #fbc02d; padding: 10px 14px; border-radius: 4px; margin-top: 12px; font-size: 13px; color: #555; line-height: 1.6; }
+
+  /* 每套词汇 */
+  .exam-card { background: white; border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .exam-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .exam-title { font-size: 16px; font-weight: 700; color: #2c5f2e; }
+  .exam-count { font-size: 13px; color: #888; background: #f0f0f0; padding: 3px 10px; border-radius: 12px; }
+
+  .category-block { margin-bottom: 14px; }
+  .cat-name { font-size: 12px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .word-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+  .word-chip { display: flex; align-items: center; gap: 5px; background: #f8f8f8; border: 1px solid #eee; border-radius: 20px; padding: 4px 12px; font-size: 13px; }
+  .word-chip .en { font-weight: 600; color: #222; }
+  .word-chip .zh { color: #666; font-size: 12px; }
+
+  /* 打印 */
+  @media print {
+    body { background: white; }
+    .container { padding: 0; }
+    .exam-card, .schedule-section { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>百词考试 · 背诵计划</h1>
+  <p>共 6 套 · 艾宾浩斯间隔复习法 · 适用于小学英语</p>
+</div>
+
+<div class="container">
+
+  <!-- 艾宾浩斯复习节点 -->
+  <div class="schedule-section">
+    <h2>艾宾浩斯复习节点</h2>
+    <div class="schedule-grid">
+      <div class="sched-item s1"><div class="day">第1天</div><div class="label">初次学习<br>（建立印象）</div></div>
+      <div class="sched-item s2"><div class="day">第3天</div><div class="label">第1次复习<br>（巩固记忆）</div></div>
+      <div class="sched-item s3"><div class="day">第7天</div><div class="label">第2次复习<br>（深化理解）</div></div>
+      <div class="sched-item s4"><div class="day">第15天</div><div class="label">第3次复习<br>（查漏补缺）</div></div>
+      <div class="sched-item s5"><div class="day">第30天</div><div class="label">第4次复习<br>（长期记忆）</div></div>
+      <div class="sched-item s6"><div class="day">考前</div><div class="label">快速过筛<br>（重点弱项）</div></div>
+    </div>
+    <div class="tip">
+      💡 <strong>建议节奏：</strong>每天专注 1 套词汇，6天完成全部。每套词先<strong>看中文说英文</strong>，再<strong>看英文说中文</strong>，最后<strong>默写</strong>错误词。
+      每次复习只需 10–15 分钟，重点放在上次默写错的词上。
+    </div>
+  </div>
+
+  <!-- 第一套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第一套 · 天气 · 季节 · 衣物 · 星期</div>
+      <div class="exam-count">约 40 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">天气 Weather</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">rainy</span><span class="zh">下雨的</span></div>
+        <div class="word-chip"><span class="en">snowy</span><span class="zh">下雪的</span></div>
+        <div class="word-chip"><span class="en">windy</span><span class="zh">有风的</span></div>
+        <div class="word-chip"><span class="en">sunny</span><span class="zh">晴朗的</span></div>
+        <div class="word-chip"><span class="en">cloudy</span><span class="zh">多云的</span></div>
+        <div class="word-chip"><span class="en">cold</span><span class="zh">冷的</span></div>
+        <div class="word-chip"><span class="en">hot</span><span class="zh">热的</span></div>
+        <div class="word-chip"><span class="en">warm</span><span class="zh">温暖的</span></div>
+        <div class="word-chip"><span class="en">cool</span><span class="zh">凉爽的</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">季节 Season</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">spring</span><span class="zh">春天</span></div>
+        <div class="word-chip"><span class="en">summer</span><span class="zh">夏天</span></div>
+        <div class="word-chip"><span class="en">autumn</span><span class="zh">秋天</span></div>
+        <div class="word-chip"><span class="en">winter</span><span class="zh">冬天</span></div>
+        <div class="word-chip"><span class="en">season</span><span class="zh">季节</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">衣物 Clothes</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">clothes</span><span class="zh">衣服</span></div>
+        <div class="word-chip"><span class="en">coat</span><span class="zh">外套</span></div>
+        <div class="word-chip"><span class="en">trousers</span><span class="zh">裤子</span></div>
+        <div class="word-chip"><span class="en">sock</span><span class="zh">短袜</span></div>
+        <div class="word-chip"><span class="en">sweater</span><span class="zh">毛衣</span></div>
+        <div class="word-chip"><span class="en">skirt</span><span class="zh">裙子</span></div>
+        <div class="word-chip"><span class="en">shirt</span><span class="zh">衬衫</span></div>
+        <div class="word-chip"><span class="en">umbrella</span><span class="zh">雨伞</span></div>
+        <div class="word-chip"><span class="en">cap</span><span class="zh">帽子</span></div>
+        <div class="word-chip"><span class="en">shorts</span><span class="zh">短裤</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">星期 Days</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">Monday</span><span class="zh">星期一</span></div>
+        <div class="word-chip"><span class="en">Tuesday</span><span class="zh">星期二</span></div>
+        <div class="word-chip"><span class="en">Wednesday</span><span class="zh">星期三</span></div>
+        <div class="word-chip"><span class="en">Thursday</span><span class="zh">星期四</span></div>
+        <div class="word-chip"><span class="en">Friday</span><span class="zh">星期五</span></div>
+        <div class="word-chip"><span class="en">Saturday</span><span class="zh">星期六</span></div>
+        <div class="word-chip"><span class="en">Sunday</span><span class="zh">星期日</span></div>
+        <div class="word-chip"><span class="en">week</span><span class="zh">星期</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">食物 Food</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">lunch</span><span class="zh">午餐</span></div>
+        <div class="word-chip"><span class="en">milk</span><span class="zh">牛奶</span></div>
+        <div class="word-chip"><span class="en">noodles</span><span class="zh">面条</span></div>
+        <div class="word-chip"><span class="en">meat</span><span class="zh">肉</span></div>
+        <div class="word-chip"><span class="en">juice</span><span class="zh">果汁</span></div>
+        <div class="word-chip"><span class="en">egg</span><span class="zh">鸡蛋</span></div>
+        <div class="word-chip"><span class="en">bread</span><span class="zh">面包</span></div>
+        <div class="word-chip"><span class="en">candy</span><span class="zh">糖果</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">动作 Actions · 物品 Things · 数字 Numbers</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">wear</span><span class="zh">穿/戴</span></div>
+        <div class="word-chip"><span class="en">walk</span><span class="zh">散步</span></div>
+        <div class="word-chip"><span class="en">wake</span><span class="zh">醒来</span></div>
+        <div class="word-chip"><span class="en">study</span><span class="zh">学习</span></div>
+        <div class="word-chip"><span class="en">swim</span><span class="zh">游泳</span></div>
+        <div class="word-chip"><span class="en">tidy</span><span class="zh">整理</span></div>
+        <div class="word-chip"><span class="en">sleep</span><span class="zh">睡觉</span></div>
+        <div class="word-chip"><span class="en">schoolbag</span><span class="zh">书包</span></div>
+        <div class="word-chip"><span class="en">ruler</span><span class="zh">尺子</span></div>
+        <div class="word-chip"><span class="en">kite</span><span class="zh">风筝</span></div>
+        <div class="word-chip"><span class="en">doll</span><span class="zh">玩偶</span></div>
+        <div class="word-chip"><span class="en">twenty</span><span class="zh">二十</span></div>
+        <div class="word-chip"><span class="en">thirty</span><span class="zh">三十</span></div>
+        <div class="word-chip"><span class="en">forty</span><span class="zh">四十</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第二套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第二套 · 情感 · 动物 · 方位 · 时间</div>
+      <div class="exam-count">约 38 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">情感 Feelings</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">worried</span><span class="zh">担心的</span></div>
+        <div class="word-chip"><span class="en">excited</span><span class="zh">兴奋的</span></div>
+        <div class="word-chip"><span class="en">sad</span><span class="zh">悲伤的</span></div>
+        <div class="word-chip"><span class="en">angry</span><span class="zh">生气的</span></div>
+        <div class="word-chip"><span class="en">happy</span><span class="zh">高兴的</span></div>
+        <div class="word-chip"><span class="en">hungry</span><span class="zh">饥饿的</span></div>
+        <div class="word-chip"><span class="en">thirsty</span><span class="zh">口渴的</span></div>
+        <div class="word-chip"><span class="en">favourite</span><span class="zh">最喜爱的</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">动物 Animals</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">mouse</span><span class="zh">老鼠</span></div>
+        <div class="word-chip"><span class="en">hen</span><span class="zh">母鸡</span></div>
+        <div class="word-chip"><span class="en">cow</span><span class="zh">奶牛</span></div>
+        <div class="word-chip"><span class="en">horse</span><span class="zh">马</span></div>
+        <div class="word-chip"><span class="en">sheep</span><span class="zh">绵羊</span></div>
+        <div class="word-chip"><span class="en">elephant</span><span class="zh">大象</span></div>
+        <div class="word-chip"><span class="en">lion</span><span class="zh">狮子</span></div>
+        <div class="word-chip"><span class="en">tiger</span><span class="zh">老虎</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">方位 Direction</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">where</span><span class="zh">哪里</span></div>
+        <div class="word-chip"><span class="en">in</span><span class="zh">在…内</span></div>
+        <div class="word-chip"><span class="en">on</span><span class="zh">在…上</span></div>
+        <div class="word-chip"><span class="en">under</span><span class="zh">在…之下</span></div>
+        <div class="word-chip"><span class="en">next to</span><span class="zh">旁边</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">动作 Actions · 时间 Time · 事物 Things</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">worry</span><span class="zh">担心</span></div>
+        <div class="word-chip"><span class="en">feel</span><span class="zh">感受</span></div>
+        <div class="word-chip"><span class="en">find</span><span class="zh">找到</span></div>
+        <div class="word-chip"><span class="en">cry</span><span class="zh">哭泣</span></div>
+        <div class="word-chip"><span class="en">fix</span><span class="zh">修理</span></div>
+        <div class="word-chip"><span class="en">calm down</span><span class="zh">冷静</span></div>
+        <div class="word-chip"><span class="en">wash</span><span class="zh">洗涤</span></div>
+        <div class="word-chip"><span class="en">sweep</span><span class="zh">打扫</span></div>
+        <div class="word-chip"><span class="en">often</span><span class="zh">常常</span></div>
+        <div class="word-chip"><span class="en">always</span><span class="zh">总是</span></div>
+        <div class="word-chip"><span class="en">today</span><span class="zh">今天</span></div>
+        <div class="word-chip"><span class="en">late</span><span class="zh">晚的</span></div>
+        <div class="word-chip"><span class="en">in time</span><span class="zh">及时</span></div>
+        <div class="word-chip"><span class="en">idea</span><span class="zh">主意</span></div>
+        <div class="word-chip"><span class="en">tail</span><span class="zh">尾巴</span></div>
+        <div class="word-chip"><span class="en">floor</span><span class="zh">地板</span></div>
+        <div class="word-chip"><span class="en">ice</span><span class="zh">冰</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第三套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第三套 · 形容词 · 地点 · 运动 · 身体</div>
+      <div class="exam-count">约 30 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">形容词 Adjectives</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">different</span><span class="zh">不同的</span></div>
+        <div class="word-chip"><span class="en">interesting</span><span class="zh">有趣的</span></div>
+        <div class="word-chip"><span class="en">hard</span><span class="zh">难的</span></div>
+        <div class="word-chip"><span class="en">best</span><span class="zh">最好的</span></div>
+        <div class="word-chip"><span class="en">ill</span><span class="zh">生病的</span></div>
+        <div class="word-chip"><span class="en">healthy</span><span class="zh">健康的</span></div>
+        <div class="word-chip"><span class="en">little</span><span class="zh">小的</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">地点 Places</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">library</span><span class="zh">图书馆</span></div>
+        <div class="word-chip"><span class="en">museum</span><span class="zh">博物馆</span></div>
+        <div class="word-chip"><span class="en">park</span><span class="zh">公园</span></div>
+        <div class="word-chip"><span class="en">pool</span><span class="zh">游泳池</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">运动 Sports</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">football</span><span class="zh">足球</span></div>
+        <div class="word-chip"><span class="en">basketball</span><span class="zh">篮球</span></div>
+        <div class="word-chip"><span class="en">volleyball</span><span class="zh">排球</span></div>
+        <div class="word-chip"><span class="en">badminton</span><span class="zh">羽毛球</span></div>
+        <div class="word-chip"><span class="en">ping-pong</span><span class="zh">乒乓球</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">身体部位 Body</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">mouth</span><span class="zh">嘴</span></div>
+        <div class="word-chip"><span class="en">tooth/teeth</span><span class="zh">牙齿</span></div>
+        <div class="word-chip"><span class="en">shoulder</span><span class="zh">肩膀</span></div>
+        <div class="word-chip"><span class="en">stomach</span><span class="zh">肚子</span></div>
+        <div class="word-chip"><span class="en">neck</span><span class="zh">脖子</span></div>
+        <div class="word-chip"><span class="en">knee</span><span class="zh">膝盖</span></div>
+        <div class="word-chip"><span class="en">finger</span><span class="zh">手指</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">情态动词 Modal Verbs · 动作 Actions</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">may</span><span class="zh">可能</span></div>
+        <div class="word-chip"><span class="en">should</span><span class="zh">应该</span></div>
+        <div class="word-chip"><span class="en">must</span><span class="zh">必须</span></div>
+        <div class="word-chip"><span class="en">wait</span><span class="zh">等待</span></div>
+        <div class="word-chip"><span class="en">share</span><span class="zh">分享</span></div>
+        <div class="word-chip"><span class="en">call</span><span class="zh">打电话</span></div>
+        <div class="word-chip"><span class="en">remember</span><span class="zh">记住</span></div>
+        <div class="word-chip"><span class="en">rest</span><span class="zh">休息</span></div>
+        <div class="word-chip"><span class="en">try</span><span class="zh">尝试</span></div>
+        <div class="word-chip"><span class="en">dance</span><span class="zh">跳舞</span></div>
+        <div class="word-chip"><span class="en">put</span><span class="zh">放置</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第四套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第四套 · 水果 · 动物 · 短语 · 感叹词</div>
+      <div class="exam-count">约 32 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">水果 Fruits</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">banana</span><span class="zh">香蕉</span></div>
+        <div class="word-chip"><span class="en">pear</span><span class="zh">梨</span></div>
+        <div class="word-chip"><span class="en">grape</span><span class="zh">葡萄</span></div>
+        <div class="word-chip"><span class="en">cherry</span><span class="zh">樱桃</span></div>
+        <div class="word-chip"><span class="en">watermelon</span><span class="zh">西瓜</span></div>
+        <div class="word-chip"><span class="en">strawberry</span><span class="zh">草莓</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">动物 Animals</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">monkey</span><span class="zh">猴子</span></div>
+        <div class="word-chip"><span class="en">hamster</span><span class="zh">仓鼠</span></div>
+        <div class="word-chip"><span class="en">squirrel</span><span class="zh">松鼠</span></div>
+        <div class="word-chip"><span class="en">spider</span><span class="zh">蜘蛛</span></div>
+        <div class="word-chip"><span class="en">goat</span><span class="zh">山羊</span></div>
+        <div class="word-chip"><span class="en">giraffe</span><span class="zh">长颈鹿</span></div>
+        <div class="word-chip"><span class="en">penguin</span><span class="zh">企鹅</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">情态动词 · 动作 Actions</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">would</span><span class="zh">将会</span></div>
+        <div class="word-chip"><span class="en">could</span><span class="zh">能够</span></div>
+        <div class="word-chip"><span class="en">climb</span><span class="zh">爬</span></div>
+        <div class="word-chip"><span class="en">open</span><span class="zh">打开</span></div>
+        <div class="word-chip"><span class="en">stand</span><span class="zh">站立</span></div>
+        <div class="word-chip"><span class="en">collect</span><span class="zh">收集</span></div>
+        <div class="word-chip"><span class="en">bat</span><span class="zh">球拍</span></div>
+        <div class="word-chip"><span class="en">garden</span><span class="zh">花园</span></div>
+        <div class="word-chip"><span class="en">problem</span><span class="zh">问题</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">常用短语 Phrases · 感叹词</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">in time</span><span class="zh">及时</span></div>
+        <div class="word-chip"><span class="en">on time</span><span class="zh">准时</span></div>
+        <div class="word-chip"><span class="en">look for</span><span class="zh">寻找</span></div>
+        <div class="word-chip"><span class="en">calm down</span><span class="zh">冷静</span></div>
+        <div class="word-chip"><span class="en">take a walk</span><span class="zh">散步</span></div>
+        <div class="word-chip"><span class="en">excuse me</span><span class="zh">打扰一下</span></div>
+        <div class="word-chip"><span class="en">hurry up</span><span class="zh">赶快</span></div>
+        <div class="word-chip"><span class="en">sorry</span><span class="zh">抱歉</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第五套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第五套 · 餐具 · 食物 · 职业 · 顺序副词</div>
+      <div class="exam-count">约 36 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">餐具 Tableware</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">chopsticks</span><span class="zh">筷子</span></div>
+        <div class="word-chip"><span class="en">plate</span><span class="zh">盘子</span></div>
+        <div class="word-chip"><span class="en">knife</span><span class="zh">刀</span></div>
+        <div class="word-chip"><span class="en">fork</span><span class="zh">叉</span></div>
+        <div class="word-chip"><span class="en">spoon</span><span class="zh">勺子</span></div>
+        <div class="word-chip"><span class="en">bowl</span><span class="zh">碗</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">食物 Food</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">sandwich</span><span class="zh">三明治</span></div>
+        <div class="word-chip"><span class="en">tomato</span><span class="zh">西红柿</span></div>
+        <div class="word-chip"><span class="en">potato</span><span class="zh">土豆</span></div>
+        <div class="word-chip"><span class="en">steak</span><span class="zh">牛排</span></div>
+        <div class="word-chip"><span class="en">meatball</span><span class="zh">肉丸子</span></div>
+        <div class="word-chip"><span class="en">soup</span><span class="zh">汤</span></div>
+        <div class="word-chip"><span class="en">dessert</span><span class="zh">甜点</span></div>
+        <div class="word-chip"><span class="en">cabbage</span><span class="zh">卷心菜</span></div>
+        <div class="word-chip"><span class="en">salad</span><span class="zh">沙拉</span></div>
+        <div class="word-chip"><span class="en">pizza</span><span class="zh">披萨</span></div>
+        <div class="word-chip"><span class="en">hot dog</span><span class="zh">热狗</span></div>
+        <div class="word-chip"><span class="en">ice cream</span><span class="zh">冰激凌</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">职业 Jobs</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">doctor</span><span class="zh">医生</span></div>
+        <div class="word-chip"><span class="en">nurse</span><span class="zh">护士</span></div>
+        <div class="word-chip"><span class="en">artist</span><span class="zh">画家</span></div>
+        <div class="word-chip"><span class="en">scientist</span><span class="zh">科学家</span></div>
+        <div class="word-chip"><span class="en">farmer</span><span class="zh">农民</span></div>
+        <div class="word-chip"><span class="en">driver</span><span class="zh">司机</span></div>
+        <div class="word-chip"><span class="en">writer</span><span class="zh">作家</span></div>
+        <div class="word-chip"><span class="en">cook</span><span class="zh">厨师</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">顺序副词 Adverbs · 方位</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">first</span><span class="zh">首先</span></div>
+        <div class="word-chip"><span class="en">next</span><span class="zh">接下来</span></div>
+        <div class="word-chip"><span class="en">then</span><span class="zh">然后</span></div>
+        <div class="word-chip"><span class="en">last</span><span class="zh">最后</span></div>
+        <div class="word-chip"><span class="en">finally</span><span class="zh">最终</span></div>
+        <div class="word-chip"><span class="en">right</span><span class="zh">右边</span></div>
+        <div class="word-chip"><span class="en">left</span><span class="zh">左边</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 第六套 -->
+  <div class="exam-card">
+    <div class="exam-header">
+      <div class="exam-title">第六套 · 感官 · 形容词 · 事物 · 数字</div>
+      <div class="exam-count">约 30 词</div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">感官 Senses</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">smell</span><span class="zh">闻/嗅</span></div>
+        <div class="word-chip"><span class="en">listen</span><span class="zh">听</span></div>
+        <div class="word-chip"><span class="en">hear</span><span class="zh">听到</span></div>
+        <div class="word-chip"><span class="en">taste</span><span class="zh">品尝</span></div>
+        <div class="word-chip"><span class="en">touch</span><span class="zh">触摸</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">形容词 Adjectives</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">polite</span><span class="zh">有礼貌的</span></div>
+        <div class="word-chip"><span class="en">friendly</span><span class="zh">友好的</span></div>
+        <div class="word-chip"><span class="en">naughty</span><span class="zh">淘气的</span></div>
+        <div class="word-chip"><span class="en">scared</span><span class="zh">害怕的</span></div>
+        <div class="word-chip"><span class="en">enough</span><span class="zh">足够的</span></div>
+        <div class="word-chip"><span class="en">bad</span><span class="zh">糟糕的</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">事物 Things</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">glass</span><span class="zh">玻璃</span></div>
+        <div class="word-chip"><span class="en">sun</span><span class="zh">太阳</span></div>
+        <div class="word-chip"><span class="en">Internet</span><span class="zh">互联网</span></div>
+        <div class="word-chip"><span class="en">forest</span><span class="zh">森林</span></div>
+        <div class="word-chip"><span class="en">air</span><span class="zh">空气</span></div>
+        <div class="word-chip"><span class="en">farm</span><span class="zh">农场</span></div>
+        <div class="word-chip"><span class="en">nature</span><span class="zh">自然</span></div>
+        <div class="word-chip"><span class="en">everything</span><span class="zh">一切</span></div>
+      </div>
+    </div>
+
+    <div class="category-block">
+      <div class="cat-name">动作 · 数字 Numbers</div>
+      <div class="word-grid">
+        <div class="word-chip"><span class="en">turn</span><span class="zh">转向</span></div>
+        <div class="word-chip"><span class="en">start</span><span class="zh">开始</span></div>
+        <div class="word-chip"><span class="en">feed</span><span class="zh">喂养</span></div>
+        <div class="word-chip"><span class="en">cross</span><span class="zh">穿过</span></div>
+        <div class="word-chip"><span class="en">twenty</span><span class="zh">二十</span></div>
+        <div class="word-chip"><span class="en">thirty</span><span class="zh">三十</span></div>
+        <div class="word-chip"><span class="en">forty</span><span class="zh">四十</span></div>
+        <div class="word-chip"><span class="en">fifty</span><span class="zh">五十</span></div>
+        <div class="word-chip"><span class="en">sixty</span><span class="zh">六十</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 每日建议 -->
+  <div class="schedule-section">
+    <h2>六天学习建议</h2>
+    <div class="schedule-grid">
+      <div class="sched-item s1"><div class="day">Day 1</div><div class="label">第一套<br>天气季节衣物</div></div>
+      <div class="sched-item s2"><div class="day">Day 2</div><div class="label">第二套<br>情感动物方位</div></div>
+      <div class="sched-item s3"><div class="day">Day 3</div><div class="label">第三套<br>地点运动身体<br>+ 复习Day1</div></div>
+      <div class="sched-item s4"><div class="day">Day 4</div><div class="label">第四套<br>水果动物短语<br>+ 复习Day2</div></div>
+      <div class="sched-item s5"><div class="day">Day 5</div><div class="label">第五套<br>餐具食物职业<br>+ 复习Day3</div></div>
+      <div class="sched-item s6"><div class="day">Day 6</div><div class="label">第六套<br>感官形容词<br>+ 复习Day4-5</div></div>
+    </div>
+    <div class="tip">
+      📝 <strong>默写检测法：</strong>遮住中文，看英文写中文；再遮住英文，看中文写英文。把写错的词圈出来，下次优先复习。<br><br>
+      🔁 <strong>第7天：</strong>全套过筛，只复习标记的弱项词。争取全部默写正确。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

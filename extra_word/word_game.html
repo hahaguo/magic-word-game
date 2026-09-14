@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>百词闯关</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f4f0; min-height: 100vh; overflow-x: hidden; }
+
+/* ── 通用 ── */
+.screen { display: none; min-height: 100vh; padding: 20px 16px; flex-direction: column; align-items: center; }
+.screen.active { display: flex; }
+.btn { border: none; border-radius: 12px; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform .1s, opacity .1s; user-select: none; }
+.btn:active { transform: scale(.95); }
+
+/* ── 首页 ── */
+#home { background: #f0f4f0; }
+.home-hero { text-align: center; padding: 28px 0 20px; }
+.home-hero h1 { font-size: 28px; color: #1a3d1c; }
+.home-hero p { font-size: 14px; color: #666; margin-top: 6px; }
+
+.set-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 400px; margin-bottom: 20px; }
+.set-card { background: white; border-radius: 14px; padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: all .15s; }
+.set-card:active { transform: scale(.95); }
+.set-card.selected { border-color: #2c7a30; background: #e8f5e9; }
+.set-card .num { font-size: 22px; font-weight: 700; color: #2c7a30; }
+.set-card .sub { font-size: 11px; color: #888; margin-top: 3px; line-height: 1.4; }
+.set-card.all-card .num { font-size: 16px; }
+
+.mode-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 400px; margin-bottom: 14px; }
+.mode-btn { background: white; padding: 16px 8px; border-radius: 14px; font-size: 15px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.06); border: 2px solid transparent; }
+.mode-btn.selected { border-color: #2c7a30; background: #e8f5e9; color: #1a3d1c; }
+
+.dir-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; max-width: 400px; margin-bottom: 20px; }
+.dir-btn { background: #eee; padding: 10px 8px; border-radius: 10px; font-size: 13px; color: #555; }
+.dir-btn.selected { background: #2c7a30; color: white; }
+
+.start-btn { background: #2c7a30; color: white; font-size: 18px; padding: 16px 0; width: 100%; max-width: 400px; border-radius: 16px; box-shadow: 0 4px 14px rgba(44,122,48,.3); }
+
+/* ── 进行中 header ── */
+.game-header { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 480px; margin-bottom: 14px; }
+.back-btn { background: none; border: none; font-size: 22px; cursor: pointer; padding: 4px 8px; }
+.progress-wrap { flex: 1; height: 8px; background: #ddd; border-radius: 4px; margin: 0 12px; }
+.progress-bar { height: 8px; background: #2c7a30; border-radius: 4px; transition: width .3s; }
+.score-badge { font-size: 14px; font-weight: 700; color: #2c7a30; min-width: 48px; text-align: right; }
+
+/* ── 闪卡 ── */
+#flashcard { background: #f0f4f0; }
+.card-wrap { perspective: 800px; width: 100%; max-width: 400px; margin: 12px 0 24px; }
+.card { width: 100%; height: 200px; border-radius: 20px; transform-style: preserve-3d; transition: transform .45s; cursor: pointer; position: relative; }
+.card.flipped { transform: rotateY(180deg); }
+.card-face { position: absolute; inset: 0; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+.card-front { background: white; }
+.card-back { background: #2c7a30; transform: rotateY(180deg); }
+.card-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; margin-bottom: 12px; opacity: .6; }
+.card-front .card-label { color: #999; }
+.card-back .card-label { color: rgba(255,255,255,.7); }
+.card-word { font-size: 28px; font-weight: 700; text-align: center; }
+.card-front .card-word { color: #1a1a1a; }
+.card-back .card-word { color: white; }
+.card-hint { font-size: 13px; color: #aaa; margin-top: 8px; }
+.card-back .card-hint { color: rgba(255,255,255,.6); }
+
+.fc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 400px; }
+.fc-btn { padding: 16px 0; font-size: 16px; border-radius: 14px; }
+.fc-no { background: #fce4ec; color: #c62828; }
+.fc-yes { background: #e8f5e9; color: #2e7d32; }
+
+.fc-tap-hint { font-size: 13px; color: #aaa; margin-bottom: 8px; }
+
+/* ── 选择题 ── */
+#quiz { background: #f0f4f0; }
+.question-card { background: white; border-radius: 20px; padding: 28px 20px; width: 100%; max-width: 480px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.07); margin-bottom: 20px; }
+.question-label { font-size: 11px; color: #aaa; letter-spacing: 1px; margin-bottom: 10px; }
+.question-word { font-size: 30px; font-weight: 700; color: #1a1a1a; }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 480px; }
+.opt-btn { background: white; padding: 16px 10px; border-radius: 14px; font-size: 15px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.06); border: 2px solid transparent; line-height: 1.4; min-height: 60px; }
+.opt-btn.correct { background: #e8f5e9; border-color: #2e7d32; color: #1a3d1c; }
+.opt-btn.wrong { background: #fce4ec; border-color: #c62828; color: #8b0000; }
+.opt-btn:disabled { cursor: default; }
+
+/* ── 结果页 ── */
+#result { background: #f0f4f0; }
+.result-hero { text-align: center; padding: 28px 0 16px; }
+.result-stars { font-size: 40px; letter-spacing: 4px; margin-bottom: 8px; }
+.result-score { font-size: 48px; font-weight: 800; color: #2c7a30; }
+.result-total { font-size: 16px; color: #888; margin-top: 4px; }
+
+.weak-section { width: 100%; max-width: 480px; background: white; border-radius: 16px; padding: 16px 20px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+.weak-title { font-size: 14px; font-weight: 700; color: #c62828; margin-bottom: 12px; }
+.weak-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.weak-chip { background: #fce4ec; border-radius: 20px; padding: 5px 12px; font-size: 13px; color: #b71c1c; }
+.weak-chip span { color: #888; }
+
+.result-btns { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 480px; margin-top: 8px; }
+.retry-weak-btn { background: #c62828; color: white; padding: 15px 0; font-size: 16px; border-radius: 14px; }
+.retry-btn { background: #2c7a30; color: white; padding: 15px 0; font-size: 16px; border-radius: 14px; }
+.home-ret-btn { background: white; color: #555; padding: 15px 0; font-size: 16px; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+
+/* 动画 */
+@keyframes pop-in { from { transform: scale(.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.pop { animation: pop-in .2s ease; }
+</style>
+</head>
+<body>
+
+<!-- ===== 首页 ===== -->
+<div id="home" class="screen active">
+  <div class="home-hero">
+    <h1>百词闯关</h1>
+    <p>选择套数 · 开始挑战</p>
+  </div>
+
+  <div class="set-grid" id="setGrid">
+    <div class="set-card" data-set="1"><div class="num">第一套</div><div class="sub">天气·季节·衣物·星期</div></div>
+    <div class="set-card" data-set="2"><div class="num">第二套</div><div class="sub">情感·动物·方位·时间</div></div>
+    <div class="set-card" data-set="3"><div class="num">第三套</div><div class="sub">地点·运动·身体</div></div>
+    <div class="set-card" data-set="4"><div class="num">第四套</div><div class="sub">水果·动物·短语</div></div>
+    <div class="set-card" data-set="5"><div class="num">第五套</div><div class="sub">餐具·食物·职业</div></div>
+    <div class="set-card" data-set="6"><div class="num">第六套</div><div class="sub">感官·形容词·事物</div></div>
+    <div class="set-card all-card" data-set="0"><div class="num">全部</div><div class="sub">六套混合</div></div>
+  </div>
+
+  <div class="mode-row">
+    <button class="btn mode-btn selected" data-mode="quiz">✏️ 选择题</button>
+    <button class="btn mode-btn" data-mode="flash">🃏 闪卡</button>
+  </div>
+
+  <div class="dir-row" id="dirRow">
+    <button class="btn dir-btn selected" data-dir="en2zh">英 → 中</button>
+    <button class="btn dir-btn" data-dir="zh2en">中 → 英</button>
+  </div>
+
+  <button class="btn start-btn" id="startBtn">开始</button>
+</div>
+
+<!-- ===== 闪卡 ===== -->
+<div id="flashcard" class="screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div class="progress-wrap"><div class="progress-bar" id="fcProgress"></div></div>
+    <div class="score-badge" id="fcScore">0/0</div>
+  </div>
+  <div class="fc-tap-hint">点击卡片翻面</div>
+  <div class="card-wrap">
+    <div class="card" id="mainCard" onclick="flipCard()">
+      <div class="card-face card-front">
+        <div class="card-label" id="fcFrontLabel">ENGLISH</div>
+        <div class="card-word" id="fcFrontWord"></div>
+        <div class="card-hint">点击查看答案</div>
+      </div>
+      <div class="card-face card-back">
+        <div class="card-label" id="fcBackLabel">中文</div>
+        <div class="card-word" id="fcBackWord"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fc-row">
+    <button class="btn fc-btn fc-no" onclick="fcAnswer(false)">✗ 不会</button>
+    <button class="btn fc-btn fc-yes" onclick="fcAnswer(true)">✓ 会了</button>
+  </div>
+</div>
+
+<!-- ===== 选择题 ===== -->
+<div id="quiz" class="screen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()">←</button>
+    <div class="progress-wrap"><div class="progress-bar" id="qProgress"></div></div>
+    <div class="score-badge" id="qScore">0/0</div>
+  </div>
+  <div class="question-card">
+    <div class="question-label" id="qLabel">英文 → 中文</div>
+    <div class="question-word" id="qWord"></div>
+  </div>
+  <div class="options-grid" id="optionsGrid"></div>
+</div>
+
+<!-- ===== 结果 ===== -->
+<div id="result" class="screen">
+  <div class="result-hero">
+    <div class="result-stars" id="resultStars"></div>
+    <div class="result-score" id="resultScore"></div>
+    <div class="result-total" id="resultTotal"></div>
+  </div>
+  <div class="weak-section" id="weakSection" style="display:none">
+    <div class="weak-title">需要加强的词</div>
+    <div class="weak-list" id="weakList"></div>
+  </div>
+  <div class="result-btns">
+    <button class="btn retry-weak-btn" id="retryWeakBtn" style="display:none" onclick="retryWeak()">重练错词</button>
+    <button class="btn retry-btn" onclick="retryAll()">再来一次</button>
+    <button class="btn home-ret-btn" onclick="goHome()">返回首页</button>
+  </div>
+</div>
+
+<script>
+// ──────────────────────────────────────────
+// 词汇数据
+// ──────────────────────────────────────────
+const SETS = [
+  { id: 1, title: "第一套", words: [
+    {en:"rainy",zh:"下雨的"},{en:"snowy",zh:"下雪的"},{en:"windy",zh:"有风的"},
+    {en:"sunny",zh:"晴朗的"},{en:"cloudy",zh:"多云的"},{en:"cold",zh:"冷的"},
+    {en:"hot",zh:"热的"},{en:"warm",zh:"温暖的"},{en:"cool",zh:"凉爽的"},
+    {en:"spring",zh:"春天"},{en:"summer",zh:"夏天"},{en:"autumn",zh:"秋天"},
+    {en:"winter",zh:"冬天"},{en:"season",zh:"季节"},
+    {en:"clothes",zh:"衣服"},{en:"coat",zh:"外套"},{en:"trousers",zh:"裤子"},
+    {en:"sock",zh:"短袜"},{en:"sweater",zh:"毛衣"},{en:"skirt",zh:"裙子"},
+    {en:"shirt",zh:"衬衫"},{en:"umbrella",zh:"雨伞"},{en:"cap",zh:"帽子"},{en:"shorts",zh:"短裤"},
+    {en:"Monday",zh:"星期一"},{en:"Tuesday",zh:"星期二"},{en:"Wednesday",zh:"星期三"},
+    {en:"Thursday",zh:"星期四"},{en:"Friday",zh:"星期五"},{en:"Saturday",zh:"星期六"},
+    {en:"Sunday",zh:"星期日"},{en:"week",zh:"星期"},
+    {en:"lunch",zh:"午餐"},{en:"milk",zh:"牛奶"},{en:"noodles",zh:"面条"},
+    {en:"meat",zh:"肉"},{en:"juice",zh:"果汁"},{en:"egg",zh:"鸡蛋"},
+    {en:"bread",zh:"面包"},{en:"candy",zh:"糖果"},
+    {en:"wear",zh:"穿/戴"},{en:"walk",zh:"散步"},{en:"wake",zh:"醒来"},
+    {en:"study",zh:"学习"},{en:"swim",zh:"游泳"},{en:"tidy",zh:"整理"},{en:"sleep",zh:"睡觉"},
+    {en:"schoolbag",zh:"书包"},{en:"ruler",zh:"尺子"},{en:"kite",zh:"风筝"},{en:"doll",zh:"玩偶"},
+    {en:"twenty",zh:"二十"},{en:"thirty",zh:"三十"},{en:"forty",zh:"四十"}
+  ]},
+  { id: 2, title: "第二套", words: [
+    {en:"worried",zh:"担心的"},{en:"excited",zh:"兴奋的"},{en:"sad",zh:"悲伤的"},
+    {en:"angry",zh:"生气的"},{en:"happy",zh:"高兴的"},{en:"hungry",zh:"饥饿的"},
+    {en:"thirsty",zh:"口渴的"},{en:"favourite",zh:"最喜爱的"},
+    {en:"mouse",zh:"老鼠"},{en:"hen",zh:"母鸡"},{en:"cow",zh:"奶牛"},
+    {en:"horse",zh:"马"},{en:"sheep",zh:"绵羊"},{en:"elephant",zh:"大象"},
+    {en:"lion",zh:"狮子"},{en:"tiger",zh:"老虎"},
+    {en:"where",zh:"哪里"},{en:"under",zh:"在…下面"},{en:"next to",zh:"旁边"},
+    {en:"worry",zh:"担心"},{en:"feel",zh:"感受"},{en:"find",zh:"找到"},
+    {en:"cry",zh:"哭泣"},{en:"fix",zh:"修理"},{en:"calm down",zh:"冷静"},
+    {en:"wash",zh:"洗涤"},{en:"sweep",zh:"打扫"},
+    {en:"often",zh:"常常"},{en:"always",zh:"总是"},{en:"today",zh:"今天"},
+    {en:"late",zh:"晚的"},{en:"in time",zh:"及时"},
+    {en:"idea",zh:"主意"},{en:"tail",zh:"尾巴"},{en:"floor",zh:"地板"},{en:"ice",zh:"冰"}
+  ]},
+  { id: 3, title: "第三套", words: [
+    {en:"different",zh:"不同的"},{en:"interesting",zh:"有趣的"},{en:"hard",zh:"难的"},
+    {en:"best",zh:"最好的"},{en:"ill",zh:"生病的"},{en:"healthy",zh:"健康的"},{en:"little",zh:"小的"},
+    {en:"library",zh:"图书馆"},{en:"museum",zh:"博物馆"},{en:"park",zh:"公园"},{en:"pool",zh:"游泳池"},
+    {en:"football",zh:"足球"},{en:"basketball",zh:"篮球"},{en:"volleyball",zh:"排球"},
+    {en:"badminton",zh:"羽毛球"},{en:"ping-pong",zh:"乒乓球"},
+    {en:"mouth",zh:"嘴"},{en:"tooth",zh:"牙齿"},{en:"shoulder",zh:"肩膀"},
+    {en:"stomach",zh:"肚子"},{en:"neck",zh:"脖子"},{en:"knee",zh:"膝盖"},{en:"finger",zh:"手指"},
+    {en:"may",zh:"可能/也许"},{en:"should",zh:"应该"},{en:"must",zh:"必须"},
+    {en:"wait",zh:"等待"},{en:"share",zh:"分享"},{en:"call",zh:"打电话"},
+    {en:"remember",zh:"记住"},{en:"rest",zh:"休息"},{en:"try",zh:"尝试"},
+    {en:"dance",zh:"跳舞"},{en:"put",zh:"放置"}
+  ]},
+  { id: 4, title: "第四套", words: [
+    {en:"banana",zh:"香蕉"},{en:"pear",zh:"梨"},{en:"grape",zh:"葡萄"},
+    {en:"cherry",zh:"樱桃"},{en:"watermelon",zh:"西瓜"},{en:"strawberry",zh:"草莓"},
+    {en:"monkey",zh:"猴子"},{en:"hamster",zh:"仓鼠"},{en:"squirrel",zh:"松鼠"},
+    {en:"spider",zh:"蜘蛛"},{en:"goat",zh:"山羊"},{en:"giraffe",zh:"长颈鹿"},{en:"penguin",zh:"企鹅"},
+    {en:"would",zh:"将会"},{en:"could",zh:"能够"},
+    {en:"climb",zh:"爬"},{en:"open",zh:"打开"},{en:"stand",zh:"站立"},{en:"collect",zh:"收集"},
+    {en:"bat",zh:"球拍"},{en:"garden",zh:"花园"},{en:"problem",zh:"问题"},
+    {en:"on time",zh:"准时"},{en:"look for",zh:"寻找"},{en:"take a walk",zh:"散步"},
+    {en:"excuse me",zh:"打扰一下"},{en:"hurry up",zh:"赶快"},{en:"sorry",zh:"抱歉"}
+  ]},
+  { id: 5, title: "第五套", words: [
+    {en:"chopsticks",zh:"筷子"},{en:"plate",zh:"盘子"},{en:"knife",zh:"刀"},
+    {en:"fork",zh:"叉"},{en:"spoon",zh:"勺子"},{en:"bowl",zh:"碗"},
+    {en:"sandwich",zh:"三明治"},{en:"tomato",zh:"西红柿"},{en:"potato",zh:"土豆"},
+    {en:"steak",zh:"牛排"},{en:"meatball",zh:"肉丸子"},{en:"soup",zh:"汤"},
+    {en:"dessert",zh:"甜点"},{en:"cabbage",zh:"卷心菜"},{en:"salad",zh:"沙拉"},
+    {en:"pizza",zh:"披萨"},{en:"hot dog",zh:"热狗"},{en:"ice cream",zh:"冰激凌"},
+    {en:"doctor",zh:"医生"},{en:"nurse",zh:"护士"},{en:"artist",zh:"画家"},
+    {en:"scientist",zh:"科学家"},{en:"farmer",zh:"农民"},{en:"driver",zh:"司机"},
+    {en:"writer",zh:"作家"},{en:"cook",zh:"厨师"},
+    {en:"first",zh:"首先"},{en:"next",zh:"接下来"},{en:"then",zh:"然后"},
+    {en:"last",zh:"最后"},{en:"finally",zh:"最终"},{en:"right",zh:"右边"},{en:"left",zh:"左边"}
+  ]},
+  { id: 6, title: "第六套", words: [
+    {en:"smell",zh:"闻/嗅"},{en:"listen",zh:"听"},{en:"hear",zh:"听到"},
+    {en:"taste",zh:"品尝"},{en:"touch",zh:"触摸"},
+    {en:"polite",zh:"有礼貌的"},{en:"friendly",zh:"友好的"},{en:"naughty",zh:"淘气的"},
+    {en:"scared",zh:"害怕的"},{en:"enough",zh:"足够的"},{en:"bad",zh:"糟糕的"},
+    {en:"glass",zh:"玻璃"},{en:"sun",zh:"太阳"},{en:"Internet",zh:"互联网"},
+    {en:"forest",zh:"森林"},{en:"air",zh:"空气"},{en:"farm",zh:"农场"},
+    {en:"nature",zh:"自然"},{en:"everything",zh:"一切"},
+    {en:"turn",zh:"转向"},{en:"start",zh:"开始"},{en:"feed",zh:"喂养"},{en:"cross",zh:"穿过"},
+    {en:"twenty",zh:"二十"},{en:"thirty",zh:"三十"},{en:"forty",zh:"四十"},
+    {en:"fifty",zh:"五十"},{en:"sixty",zh:"六十"}
+  ]}
+];
+
+// 所有词合并（去重）
+const ALL_WORDS = (() => {
+  const seen = new Set();
+  return SETS.flatMap(s => s.words).filter(w => {
+    if (seen.has(w.en)) return false;
+    seen.add(w.en); return true;
+  });
+})();
+
+// ──────────────────────────────────────────
+// 状态
+// ──────────────────────────────────────────
+let state = {
+  mode: 'quiz',       // 'quiz' | 'flash'
+  dir: 'en2zh',       // 'en2zh' | 'zh2en'
+  setId: 1,
+  deck: [],           // 本局词卡（shuffled）
+  idx: 0,
+  correct: 0,
+  wrong: [],          // 错误词
+  isWeak: false,      // 是否在练错词
+  flipped: false
+};
+
+// ──────────────────────────────────────────
+// 首页交互
+// ──────────────────────────────────────────
+document.querySelectorAll('.set-card').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.set-card').forEach(x => x.classList.remove('selected'));
+    c.classList.add('selected');
+    state.setId = +c.dataset.set;
+  });
+});
+document.querySelectorAll('.mode-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+    state.mode = b.dataset.mode;
+  });
+});
+document.querySelectorAll('.dir-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.dir-btn').forEach(x => x.classList.remove('selected'));
+    b.classList.add('selected');
+    state.dir = b.dataset.dir;
+  });
+});
+// 默认选中第一套
+document.querySelector('[data-set="1"]').classList.add('selected');
+
+document.getElementById('startBtn').addEventListener('click', startGame);
+
+// ──────────────────────────────────────────
+// 启动
+// ──────────────────────────────────────────
+function buildDeck(words) {
+  const a = [...words];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startGame(isWeak = false) {
+  const words = isWeak ? state.wrong : (state.setId === 0 ? ALL_WORDS : SETS.find(s => s.id === state.setId).words);
+  state.deck = buildDeck(words);
+  state.idx = 0;
+  state.correct = 0;
+  if (!isWeak) state.wrong = [];
+  state.isWeak = isWeak;
+
+  if (state.mode === 'flash') startFlash();
+  else startQuiz();
+}
+
+function retryAll() { startGame(false); }
+function retryWeak() { startGame(true); }
+
+// ──────────────────────────────────────────
+// 闪卡模式
+// ──────────────────────────────────────────
+function startFlash() {
+  showScreen('flashcard');
+  renderFlash();
+}
+
+function renderFlash() {
+  const w = state.deck[state.idx];
+  state.flipped = false;
+  document.getElementById('mainCard').classList.remove('flipped');
+  const en2zh = state.dir === 'en2zh';
+  document.getElementById('fcFrontLabel').textContent = en2zh ? 'ENGLISH' : '中文';
+  document.getElementById('fcFrontWord').textContent = en2zh ? w.en : w.zh;
+  document.getElementById('fcBackLabel').textContent = en2zh ? '中文' : 'ENGLISH';
+  document.getElementById('fcBackWord').textContent = en2zh ? w.zh : w.en;
+  updateFcHeader();
+}
+
+function flipCard() {
+  state.flipped = !state.flipped;
+  document.getElementById('mainCard').classList.toggle('flipped', state.flipped);
+}
+
+function fcAnswer(correct) {
+  if (!state.flipped) { flipCard(); return; }
+  const w = state.deck[state.idx];
+  if (correct) state.correct++;
+  else if (!state.wrong.find(x => x.en === w.en)) state.wrong.push(w);
+  state.idx++;
+  if (state.idx >= state.deck.length) { showResult(); return; }
+  renderFlash();
+}
+
+function updateFcHeader() {
+  const total = state.deck.length;
+  document.getElementById('fcProgress').style.width = (state.idx / total * 100) + '%';
+  document.getElementById('fcScore').textContent = state.idx + '/' + total;
+}
+
+// ──────────────────────────────────────────
+// 选择题模式
+// ──────────────────────────────────────────
+function startQuiz() {
+  showScreen('quiz');
+  document.getElementById('qLabel').textContent = state.dir === 'en2zh' ? '英文 → 中文' : '中文 → 英文';
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const w = state.deck[state.idx];
+  const total = state.deck.length;
+  const en2zh = state.dir === 'en2zh';
+
+  document.getElementById('qProgress').style.width = (state.idx / total * 100) + '%';
+  document.getElementById('qScore').textContent = state.correct + '/' + state.idx;
+  document.getElementById('qWord').textContent = en2zh ? w.en : w.zh;
+  document.getElementById('qWord').classList.add('pop');
+  setTimeout(() => document.getElementById('qWord').classList.remove('pop'), 200);
+
+  // 生成4个选项（1正确 + 3随机）
+  const pool = ALL_WORDS.filter(x => x.en !== w.en);
+  const distractors = buildDeck(pool).slice(0, 3);
+  const choices = buildDeck([w, ...distractors]);
+
+  const grid = document.getElementById('optionsGrid');
+  grid.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'btn opt-btn';
+    btn.textContent = en2zh ? c.zh : c.en;
+    btn.onclick = () => answerQuiz(btn, c, w);
+    grid.appendChild(btn);
+  });
+}
+
+function answerQuiz(btn, chosen, correct) {
+  document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
+  const isCorrect = chosen.en === correct.en;
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (isCorrect) {
+    state.correct++;
+  } else {
+    if (!state.wrong.find(x => x.en === correct.en)) state.wrong.push(correct);
+    // 高亮正确答案
+    const en2zh = state.dir === 'en2zh';
+    document.querySelectorAll('.opt-btn').forEach(b => {
+      if (b.textContent === (en2zh ? correct.zh : correct.en)) b.classList.add('correct');
+    });
+  }
+  setTimeout(() => {
+    state.idx++;
+    if (state.idx >= state.deck.length) showResult();
+    else renderQuiz();
+  }, 900);
+}
+
+// ──────────────────────────────────────────
+// 结果页
+// ──────────────────────────────────────────
+function showResult() {
+  showScreen('result');
+  const total = state.deck.length;
+  const pct = total ? state.correct / total : 1;
+  const stars = pct >= .9 ? '⭐⭐⭐' : pct >= .7 ? '⭐⭐' : '⭐';
+  document.getElementById('resultStars').textContent = stars;
+  document.getElementById('resultScore').textContent = state.correct;
+  document.getElementById('resultTotal').textContent = '共 ' + total + ' 题';
+
+  const weakSec = document.getElementById('weakSection');
+  const weakBtn = document.getElementById('retryWeakBtn');
+  if (state.wrong.length > 0) {
+    weakSec.style.display = 'block';
+    weakBtn.style.display = 'block';
+    const list = document.getElementById('weakList');
+    list.innerHTML = state.wrong.map(w =>
+      `<div class="weak-chip">${w.en} <span>${w.zh}</span></div>`
+    ).join('');
+  } else {
+    weakSec.style.display = 'none';
+    weakBtn.style.display = 'none';
+  }
+}
+
+// ──────────────────────────────────────────
+// 工具
+// ──────────────────────────────────────────
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goHome() {
+  showScreen('home');
+}
+</script>
+</body>
+</html>
