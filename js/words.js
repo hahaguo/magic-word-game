@@ -438,6 +438,346 @@ const wordBank = [
     { english: "bowl", chinese: "碗", emoji: "🥣", category: "things", phonetic: "/boʊl/", mnemonic: "bowl碗bo波，wl我乐，波我乐碗装饭", example: { en: "I eat from a bowl.", zh: "我用碗吃饭。" }, wordStructure: "bo(波) + wl(我乐)" },
     { english: "spoon", chinese: "勺子", emoji: "🥄", category: "things", phonetic: "/spuːn/", mnemonic: "spoon勺子spo思泼，on昂，思泼昂勺子舀汤", example: { en: "I use a spoon to eat soup.", zh: "我用勺子喝汤。" }, wordStructure: "spo(思泼) + on(昂)" },
     { english: "knife", chinese: "刀", emoji: "🔪", category: "things", phonetic: "/naɪf/", mnemonic: "knife刀kni奈，fe飞，奈飞刀切东西", example: { en: "I use a knife to cut food.", zh: "我用刀切食物。" }, wordStructure: "kni(奈) + fe(飞)" },
+
+    // === 额外词汇（来自百词考试复习） ===
+
+    // 星期和日期
+    { english: "Monday", chinese: "星期一", emoji: "📅", category: "time", phonetic: "/ˈmʌndeɪ/", mnemonic: "Monday星期一Mon月亮，day天，月亮天就是星期一", example: { en: "Monday is the first school day.", zh: "星期一是第一天上学。" }, wordStructure: "Mon(月亮) + day(天)" },
+    { english: "Tuesday", chinese: "星期二", emoji: "📅", category: "time", phonetic: "/ˈtjuːzdeɪ/", mnemonic: "Tuesday星期二Tue图，day天，图天就是星期二", example: { en: "We have PE on Tuesday.", zh: "我们星期二上体育课。" }, wordStructure: "Tue(图) + s + day(天)" },
+    { english: "Wednesday", chinese: "星期三", emoji: "📅", category: "time", phonetic: "/ˈwenzdeɪ/", mnemonic: "Wednesday星期三Wed威得，nes嗯斯，day天，威得嗯斯天是星期三", example: { en: "See you on Wednesday.", zh: "星期三见。" }, wordStructure: "Wednes(威嗯斯) + day(天)" },
+    { english: "Thursday", chinese: "星期四", emoji: "📅", category: "time", phonetic: "/ˈθɜːrzdeɪ/", mnemonic: "Thursday星期四Thurs瑟斯，day天，瑟斯天就是星期四", example: { en: "Thursday is my favorite day.", zh: "星期四是我最喜欢的一天。" }, wordStructure: "Thurs(瑟斯) + day(天)" },
+    { english: "Friday", chinese: "星期五", emoji: "📅", category: "time", phonetic: "/ˈfraɪdeɪ/", mnemonic: "Friday星期五Fri飞儿，day天，飞儿天是星期五，周末快来了", example: { en: "Friday is the last school day.", zh: "星期五是最后一天上学。" }, wordStructure: "Fri(飞儿) + day(天)" },
+    { english: "Saturday", chinese: "星期六", emoji: "📅", category: "time", phonetic: "/ˈsætərdeɪ/", mnemonic: "Saturday星期六Satur赛特儿，day天，赛特儿天是星期六", example: { en: "I play football on Saturday.", zh: "星期六我踢足球。" }, wordStructure: "Satur(赛特儿) + day(天)" },
+    { english: "Sunday", chinese: "星期日", emoji: "📅", category: "time", phonetic: "/ˈsʌndeɪ/", mnemonic: "Sunday星期日Sun太阳，day天，太阳天就是星期日", example: { en: "Sunday is a day off.", zh: "星期日是休息日。" }, wordStructure: "Sun(太阳) + day(天)" },
+    { english: "week", chinese: "星期；周", emoji: "🗓️", category: "time", phonetic: "/wiːk/", mnemonic: "week星期we我，ek客，我客一周七天", example: { en: "There are seven days in a week.", zh: "一周有七天。" }, wordStructure: "we(我) + ek(客)" },
+    { english: "today", chinese: "今天", emoji: "📆", category: "time", phonetic: "/təˈdeɪ/", mnemonic: "today今天to讨，day天，讨天就是今天", example: { en: "Today is a sunny day.", zh: "今天是个晴天。" }, wordStructure: "to(讨) + day(天)" },
+    { english: "season", chinese: "季节", emoji: "🍂", category: "time", phonetic: "/ˈsiːzən/", mnemonic: "season季节sea海，son孙，海孙四季更替", example: { en: "My favourite season is spring.", zh: "我最喜欢的季节是春天。" }, wordStructure: "sea(海) + son(孙)" },
+    { english: "often", chinese: "常常，时常", emoji: "🔄", category: "time", phonetic: "/ˈɔːfən/", mnemonic: "often常常of哦佛，ten十，哦佛十次很常常", example: { en: "I often eat apples.", zh: "我常常吃苹果。" }, wordStructure: "of(哦佛) + ten(十)" },
+    { english: "always", chinese: "总是，一直", emoji: "♾️", category: "time", phonetic: "/ˈɔːlweɪz/", mnemonic: "always总是all所有，ways路，所有路都总是走", example: { en: "I always brush my teeth.", zh: "我总是刷牙。" }, wordStructure: "all(所有) + ways(路)" },
+    { english: "late", chinese: "迟到的；晚的", emoji: "⏰", category: "time", phonetic: "/leɪt/", mnemonic: "late迟到la啦，te题，啦题迟到了", example: { en: "Don't be late for school.", zh: "上学不要迟到。" }, wordStructure: "la(啦) + te(题)" },
+    { english: "just", chinese: "正好；刚好", emoji: "✅", category: "time", phonetic: "/dʒʌst/", mnemonic: "just正好ju俱，st思特，俱思特正好来了", example: { en: "I just arrived.", zh: "我刚到。" }, wordStructure: "ju(俱) + st(思特)" },
+    { english: "then", chinese: "然后，接着", emoji: "➡️", category: "time", phonetic: "/ðen/", mnemonic: "then然后the那，n嗯，那嗯然后再来", example: { en: "First eat, then play.", zh: "先吃饭，然后玩。" }, wordStructure: "the(那) + n(嗯)" },
+    { english: "next", chinese: "接下来；下一个", emoji: "⏭️", category: "time", phonetic: "/nekst/", mnemonic: "next接下来ne呢，xt克斯特，呢克斯特接下来轮到你", example: { en: "Next, we will play games.", zh: "接下来，我们玩游戏。" }, wordStructure: "ne(呢) + xt(克斯特)" },
+    { english: "finally", chinese: "最终；最后", emoji: "🏁", category: "time", phonetic: "/ˈfaɪnəli/", mnemonic: "finally最终fin菲，ally啊利，菲啊利最终到了", example: { en: "Finally, we won the game.", zh: "最终，我们赢得了比赛。" }, wordStructure: "fin(菲) + ally(啊利)" },
+
+    // 天气形容词扩展
+    { english: "warm", chinese: "温暖的", emoji: "🌤️", category: "nature", phonetic: "/wɔːrm/", mnemonic: "warm温暖wa哇，rm儿蜜，哇儿蜜阳光温暖", example: { en: "It is warm in spring.", zh: "春天很温暖。" }, wordStructure: "wa(哇) + rm(儿蜜)" },
+    { english: "cool", chinese: "凉爽的", emoji: "🍃", category: "nature", phonetic: "/kuːl/", mnemonic: "cool凉爽co考，ol哦乐，考哦乐秋天很凉爽", example: { en: "The weather is cool in autumn.", zh: "秋天天气凉爽。" }, wordStructure: "co(考) + ol(哦乐)" },
+
+    // 衣服扩展
+    { english: "clothes", chinese: "衣服，衣物", emoji: "👕", category: "clothes", phonetic: "/kloʊðz/", mnemonic: "clothes衣服clo克罗，thes色斯，克罗色斯穿衣服", example: { en: "I wear clean clothes.", zh: "我穿干净的衣服。" }, wordStructure: "clo(克罗) + thes(色斯)" },
+    { english: "trousers", chinese: "裤子，长裤", emoji: "👖", category: "clothes", phonetic: "/ˈtraʊzərz/", mnemonic: "trousers长裤trou讨儿，sers色思，讨儿色思穿长裤", example: { en: "I wear black trousers.", zh: "我穿黑色长裤。" }, wordStructure: "trou(讨儿) + sers(色思)" },
+    { english: "sweater", chinese: "毛衣", emoji: "🧥", category: "clothes", phonetic: "/ˈswetər/", mnemonic: "sweater毛衣sweat汗，er儿，流汗儿穿毛衣真暖和", example: { en: "I wear a sweater in winter.", zh: "我冬天穿毛衣。" }, wordStructure: "sweat(汗) + er(儿)" },
+    { english: "skirt", chinese: "裙子", emoji: "👗", category: "clothes", phonetic: "/skɜːrt/", mnemonic: "skirt裙子ski思客，rt儿特，思客儿特穿裙子真漂亮", example: { en: "The girl wears a pink skirt.", zh: "女孩穿粉红色裙子。" }, wordStructure: "ski(思客) + rt(儿特)" },
+    { english: "cap", chinese: "帽子（鸭舌帽）", emoji: "🧢", category: "clothes", phonetic: "/kæp/", mnemonic: "cap帽子ca卡，p婆，卡婆戴帽子遮太阳", example: { en: "I wear a cap in summer.", zh: "夏天我戴帽子。" }, wordStructure: "ca(卡) + p(婆)" },
+    { english: "shorts", chinese: "短裤", emoji: "🩳", category: "clothes", phonetic: "/ʃɔːrts/", mnemonic: "shorts短裤short短，s思，短思夏天穿短裤", example: { en: "I wear shorts in summer.", zh: "我夏天穿短裤。" }, wordStructure: "short(短) + s(思)" },
+
+    // 学习用品扩展
+    { english: "schoolbag", chinese: "书包", emoji: "🎒", category: "school", phonetic: "/ˈskuːlbæɡ/", mnemonic: "schoolbag书包school学校，bag包，学校的包是书包", example: { en: "My schoolbag is heavy.", zh: "我的书包很重。" }, wordStructure: "school(学校) + bag(包)" },
+
+    // 食物扩展
+    { english: "lunch", chinese: "午餐", emoji: "🍱", category: "food", phonetic: "/lʌntʃ/", mnemonic: "lunch午餐lu乐，nch嗯吃，乐嗯吃午餐好香", example: { en: "I eat lunch at noon.", zh: "我在中午吃午餐。" }, wordStructure: "lu(乐) + nch(嗯吃)" },
+    { english: "steak", chinese: "牛排", emoji: "🥩", category: "food", phonetic: "/steɪk/", mnemonic: "steak牛排ste思特，ak阿克，思特阿克牛排很香", example: { en: "I like to eat steak.", zh: "我喜欢吃牛排。" }, wordStructure: "ste(思特) + ak(阿克)" },
+    { english: "meatball", chinese: "肉丸子", emoji: "🍡", category: "food", phonetic: "/ˈmiːtbɔːl/", mnemonic: "meatball肉丸子meat肉，ball球，肉做成球就是肉丸", example: { en: "I like meatball soup.", zh: "我喜欢肉丸汤。" }, wordStructure: "meat(肉) + ball(球)" },
+    { english: "dessert", chinese: "甜点", emoji: "🍮", category: "food", phonetic: "/dɪˈzɜːrt/", mnemonic: "dessert甜点de德，ssert思特儿，德思特儿甜点真好吃", example: { en: "I like dessert after dinner.", zh: "晚饭后我喜欢吃甜点。" }, wordStructure: "de(德) + ssert(思特儿)" },
+    { english: "cabbage", chinese: "卷心菜", emoji: "🥬", category: "food", phonetic: "/ˈkæbɪdʒ/", mnemonic: "cabbage卷心菜cab出租，bage包，出租包菜就是卷心菜", example: { en: "Cabbage is a healthy vegetable.", zh: "卷心菜是健康蔬菜。" }, wordStructure: "cab(出租) + bage(包)" },
+
+    // 餐具扩展
+    { english: "fork", chinese: "叉子", emoji: "🍴", category: "things", phonetic: "/fɔːrk/", mnemonic: "fork叉子fo佛，rk儿克，佛儿克叉子叉食物", example: { en: "I use a fork to eat.", zh: "我用叉子吃饭。" }, wordStructure: "fo(佛) + rk(儿克)" },
+    { english: "chopsticks", chinese: "筷子", emoji: "🥢", category: "things", phonetic: "/ˈtʃɑːpstɪks/", mnemonic: "chopsticks筷子chop切，sticks棍，切棍就是筷子", example: { en: "Chinese people use chopsticks.", zh: "中国人用筷子。" }, wordStructure: "chop(切) + sticks(棍)" },
+
+    // 体育运动
+    { english: "football", chinese: "足球", emoji: "⚽", category: "sports", phonetic: "/ˈfʊtbɔːl/", mnemonic: "football足球foot脚，ball球，脚踢球是足球", example: { en: "I play football after school.", zh: "放学后我踢足球。" }, wordStructure: "foot(脚) + ball(球)" },
+    { english: "basketball", chinese: "篮球", emoji: "🏀", category: "sports", phonetic: "/ˈbæskɪtbɔːl/", mnemonic: "basketball篮球basket篮筐，ball球，投进篮筐的球", example: { en: "I like to play basketball.", zh: "我喜欢打篮球。" }, wordStructure: "basket(篮筐) + ball(球)" },
+    { english: "volleyball", chinese: "排球", emoji: "🏐", category: "sports", phonetic: "/ˈvɑːlibɔːl/", mnemonic: "volleyball排球volley飞，ball球，飞来飞去的球", example: { en: "We play volleyball at school.", zh: "我们在学校打排球。" }, wordStructure: "volley(飞) + ball(球)" },
+    { english: "badminton", chinese: "羽毛球", emoji: "🏸", category: "sports", phonetic: "/ˈbædmɪntən/", mnemonic: "badminton羽毛球bad坏，minton明顿，坏明顿打羽毛球有趣", example: { en: "I play badminton on weekends.", zh: "我周末打羽毛球。" }, wordStructure: "bad(坏) + minton(明顿)" },
+    { english: "ping-pong", chinese: "乒乓球", emoji: "🏓", category: "sports", phonetic: "/ˈpɪŋpɒŋ/", mnemonic: "ping-pong乒乓球ping乒，pong乓，球打来打去乒乓响", example: { en: "Ping-pong is a popular sport.", zh: "乒乓球是受欢迎的运动。" }, wordStructure: "ping(乒) + pong(乓)" },
+
+    // 地点扩展
+    { english: "pool", chinese: "游泳池", emoji: "🏊", category: "places", phonetic: "/puːl/", mnemonic: "pool游泳池po婆，ol哦乐，婆哦乐游泳池很清凉", example: { en: "I swim in the pool.", zh: "我在游泳池里游泳。" }, wordStructure: "po(婆) + ol(哦乐)" },
+
+    // 身体部位扩展
+    { english: "tooth", chinese: "牙齿（单数）", emoji: "🦷", category: "body", phonetic: "/tuːθ/", mnemonic: "tooth牙齿too太，th色，太色一颗白牙", example: { en: "I brush my teeth every day.", zh: "我每天刷牙。" }, wordStructure: "too(太) + th(色)" },
+    { english: "shoulder", chinese: "肩膀", emoji: "🧍", category: "body", phonetic: "/ˈʃoʊldər/", mnemonic: "shoulder肩膀shou摄，lder得儿，摄得儿肩膀扛东西", example: { en: "I carry my bag on my shoulder.", zh: "我把包背在肩上。" }, wordStructure: "shou(摄) + lder(得儿)" },
+    { english: "stomach", chinese: "肚子，胃", emoji: "🫃", category: "body", phonetic: "/ˈstʌmək/", mnemonic: "stomach肚子sto思讨，mach蚊啊，思讨蚊啊肚子饿了", example: { en: "My stomach hurts.", zh: "我肚子疼。" }, wordStructure: "sto(思讨) + mach(蚊啊)" },
+    { english: "neck", chinese: "脖子", emoji: "🦒", category: "body", phonetic: "/nek/", mnemonic: "neck脖子ne呢，ck克，呢克脖子细细长", example: { en: "The giraffe has a long neck.", zh: "长颈鹿有一个长脖子。" }, wordStructure: "ne(呢) + ck(克)" },
+    { english: "knee", chinese: "膝盖", emoji: "🦵", category: "body", phonetic: "/niː/", mnemonic: "knee膝盖k沉默，nee鹅，沉默的鹅膝盖弯曲", example: { en: "My knee hurts when I run.", zh: "跑步时我的膝盖疼。" }, wordStructure: "kn(沉默k) + ee(鹅)" },
+
+    // 动物扩展
+    { english: "hen", chinese: "母鸡", emoji: "🐓", category: "animals", phonetic: "/hen/", mnemonic: "hen母鸡he呃，n嗯，呃嗯母鸡咯咯叫", example: { en: "The hen lays eggs.", zh: "母鸡下蛋。" }, wordStructure: "he(呃) + n(嗯)" },
+    { english: "hamster", chinese: "仓鼠", emoji: "🐹", category: "animals", phonetic: "/ˈhæmstər/", mnemonic: "hamster仓鼠ham火腿，ster思特，火腿思特仓鼠圆圆的", example: { en: "I have a pet hamster.", zh: "我有一只宠物仓鼠。" }, wordStructure: "ham(火腿) + ster(思特)" },
+    { english: "goat", chinese: "山羊", emoji: "🐐", category: "animals", phonetic: "/ɡoʊt/", mnemonic: "goat山羊go哥，at啊讨，哥啊讨山羊爬山", example: { en: "The goat climbs on the mountain.", zh: "山羊在山上爬。" }, wordStructure: "go(哥) + at(啊讨)" },
+
+    // 事物扩展
+    { english: "idea", chinese: "主意；想法", emoji: "💡", category: "things", phonetic: "/aɪˈdɪə/", mnemonic: "idea主意i爱，dea地啊，爱地啊有好主意", example: { en: "I have a good idea.", zh: "我有个好主意。" }, wordStructure: "i(爱) + dea(地啊)" },
+    { english: "matter", chinese: "问题；事情", emoji: "❓", category: "things", phonetic: "/ˈmætər/", mnemonic: "matter问题mat地垫，ter特儿，地垫特儿出了什么问题", example: { en: "What is the matter?", zh: "怎么了？" }, wordStructure: "mat(地垫) + ter(特儿)" },
+    { english: "tail", chinese: "尾巴", emoji: "🦊", category: "things", phonetic: "/teɪl/", mnemonic: "tail尾巴ta讨，il一乐，讨一乐尾巴摇啊摇", example: { en: "The dog wags its tail.", zh: "狗摇着尾巴。" }, wordStructure: "ta(讨) + il(一乐)" },
+    { english: "model", chinese: "模型；模特", emoji: "✈️", category: "things", phonetic: "/ˈmɑːdl/", mnemonic: "model模型mo某，del德乐，某德乐做飞机模型", example: { en: "I make a model plane.", zh: "我做一个飞机模型。" }, wordStructure: "mo(某) + del(德乐)" },
+    { english: "floor", chinese: "地板；地面", emoji: "🏠", category: "house", phonetic: "/flɔːr/", mnemonic: "floor地板fl飞啦，or哦儿，飞啦哦儿地板很滑", example: { en: "The floor is clean.", zh: "地板很干净。" }, wordStructure: "fl(飞啦) + or(哦儿)" },
+    { english: "ice", chinese: "冰", emoji: "🧊", category: "nature", phonetic: "/aɪs/", mnemonic: "ice冰i爱，ce色，爱色冰冰凉凉的", example: { en: "Ice is very cold.", zh: "冰很冷。" }, wordStructure: "i(爱) + ce(色)" },
+    { english: "bat", chinese: "球拍", emoji: "🏏", category: "sports", phonetic: "/bæt/", mnemonic: "bat球拍ba爸，t题，爸题用球拍打球", example: { en: "I hit the ball with a bat.", zh: "我用球拍打球。" }, wordStructure: "ba(爸) + t(题)" },
+    { english: "problem", chinese: "问题", emoji: "🤔", category: "things", phonetic: "/ˈprɑːbləm/", mnemonic: "problem问题pro扑罗，blem不乐蒙，扑罗不乐蒙遇到问题", example: { en: "I have a problem.", zh: "我有一个问题。" }, wordStructure: "pro(扑罗) + blem(不乐蒙)" },
+    { english: "glass", chinese: "玻璃；玻璃杯", emoji: "🥂", category: "things", phonetic: "/ɡlæs/", mnemonic: "glass玻璃gla哥啦，ss斯思，哥啦斯思玻璃杯", example: { en: "Be careful with glass.", zh: "小心玻璃。" }, wordStructure: "gla(哥啦) + ss(斯思)" },
+    { english: "forest", chinese: "森林", emoji: "🌲", category: "nature", phonetic: "/ˈfɔːrɪst/", mnemonic: "forest森林for佛儿，est呃思特，佛儿呃思特大森林", example: { en: "Many animals live in the forest.", zh: "很多动物住在森林里。" }, wordStructure: "for(佛儿) + est(呃思特)" },
+    { english: "air", chinese: "空气", emoji: "💨", category: "nature", phonetic: "/er/", mnemonic: "air空气ai爱，r儿，爱儿新鲜空气真好", example: { en: "The air is fresh in the forest.", zh: "森林里空气很新鲜。" }, wordStructure: "ai(爱) + r(儿)" },
+    { english: "nature", chinese: "自然", emoji: "🌿", category: "nature", phonetic: "/ˈneɪtʃər/", mnemonic: "nature自然na拿，ture图儿，拿图儿自然很美", example: { en: "I love nature.", zh: "我热爱自然。" }, wordStructure: "na(拿) + ture(图儿)" },
+    { english: "everything", chinese: "一切；每件事", emoji: "🌍", category: "things", phonetic: "/ˈevriθɪŋ/", mnemonic: "everything一切every每个，thing事物，每个事物就是一切", example: { en: "Everything is fine.", zh: "一切都好。" }, wordStructure: "every(每个) + thing(事物)" },
+
+    // 职业扩展
+    { english: "writer", chinese: "作家；写作者", emoji: "✍️", category: "jobs", phonetic: "/ˈraɪtər/", mnemonic: "writer作家write写，er人，写作的人是作家", example: { en: "The writer writes books.", zh: "作家写书。" }, wordStructure: "write(写) + er(人)" },
+
+    // 数字扩展
+    { english: "sixty", chinese: "六十", emoji: "6️⃣0️⃣", category: "numbers", phonetic: "/ˈsɪksti/", mnemonic: "sixty六十six六，ty十，六十", example: { en: "There are sixty minutes in an hour.", zh: "一小时有六十分钟。" }, wordStructure: "six(六) + ty(十)" },
+
+    // 动作扩展（考试词汇）
+    { english: "wear", chinese: "穿；戴", emoji: "👔", category: "actions", phonetic: "/wer/", mnemonic: "wear穿we我，ar啊儿，我啊儿穿衣服", example: { en: "I wear a coat in winter.", zh: "我冬天穿外套。" }, wordStructure: "we(我) + ar(啊儿)" },
+    { english: "wake", chinese: "醒来；唤醒", emoji: "⏰", category: "actions", phonetic: "/weɪk/", mnemonic: "wake醒来wa哇，ke客，哇客醒来了", example: { en: "I wake up at 7am.", zh: "我早上7点醒来。" }, wordStructure: "wa(哇) + ke(客)" },
+    { english: "study", chinese: "学习；研究", emoji: "📚", category: "actions", phonetic: "/ˈstʌdi/", mnemonic: "study学习stu思图，dy地，思图地努力学习", example: { en: "I study English every day.", zh: "我每天学习英语。" }, wordStructure: "stu(思图) + dy(地)" },
+    { english: "tidy", chinese: "整理；收拾", emoji: "🧹", category: "actions", phonetic: "/ˈtaɪdi/", mnemonic: "tidy整理ti题，dy地，题地整理干净", example: { en: "I tidy my room.", zh: "我整理房间。" }, wordStructure: "ti(题) + dy(地)" },
+    { english: "feel", chinese: "感受；感觉", emoji: "💭", category: "actions", phonetic: "/fiːl/", mnemonic: "feel感受fe飞，el儿，飞儿感受风的力量", example: { en: "I feel happy today.", zh: "我今天感觉很开心。" }, wordStructure: "fe(飞) + el(儿)" },
+    { english: "come", chinese: "来；过来", emoji: "🚶", category: "actions", phonetic: "/kʌm/", mnemonic: "come来co考，me蜜，考蜜快来", example: { en: "Come here, please.", zh: "请过来。" }, wordStructure: "co(考) + me(蜜)" },
+    { english: "have", chinese: "有；拥有", emoji: "✋", category: "actions", phonetic: "/hæv/", mnemonic: "have有ha哈，ve娃，哈娃我有好东西", example: { en: "I have a book.", zh: "我有一本书。" }, wordStructure: "ha(哈) + ve(娃)" },
+    { english: "stop", chinese: "停止；停下", emoji: "🛑", category: "actions", phonetic: "/stɑːp/", mnemonic: "stop停止st思特，op哦婆，思特哦婆停下来", example: { en: "Stop running!", zh: "停止跑步！" }, wordStructure: "st(思特) + op(哦婆)" },
+    { english: "find", chinese: "找到；发现", emoji: "🔍", category: "actions", phonetic: "/faɪnd/", mnemonic: "find找到fi飞，nd嗯德，飞嗯德找到了", example: { en: "I find my key.", zh: "我找到了钥匙。" }, wordStructure: "fi(飞) + nd(嗯德)" },
+    { english: "fix", chinese: "修理；修复", emoji: "🔧", category: "actions", phonetic: "/fɪks/", mnemonic: "fix修理fi飞，x叉，飞叉修理东西", example: { en: "Dad fixes the car.", zh: "爸爸修理汽车。" }, wordStructure: "fi(飞) + x(叉)" },
+    { english: "sweep", chinese: "打扫；扫地", emoji: "🧹", category: "actions", phonetic: "/swiːp/", mnemonic: "sweep打扫swe思威，ep呃婆，思威呃婆扫地真干净", example: { en: "I sweep the floor.", zh: "我扫地。" }, wordStructure: "swe(思威) + ep(呃婆)" },
+    { english: "worry", chinese: "担心；发愁", emoji: "😟", category: "actions", phonetic: "/ˈwɜːri/", mnemonic: "worry担心wor我儿，ry让你，我儿让你担心", example: { en: "Don't worry.", zh: "不要担心。" }, wordStructure: "wor(我儿) + ry(让你)" },
+    { english: "wait", chinese: "等待；等候", emoji: "⏳", category: "actions", phonetic: "/weɪt/", mnemonic: "wait等待wa哇，it一特，哇一特等一等", example: { en: "Wait for me, please.", zh: "请等我。" }, wordStructure: "wa(哇) + it(一特)" },
+    { english: "share", chinese: "分享；共享", emoji: "🤝", category: "actions", phonetic: "/ʃer/", mnemonic: "share分享sha纱，re热，纱热分享快乐", example: { en: "I share my food.", zh: "我分享食物。" }, wordStructure: "sha(纱) + re(热)" },
+    { english: "call", chinese: "打电话；叫", emoji: "📞", category: "actions", phonetic: "/kɔːl/", mnemonic: "call打电话ca卡，ll乐乐，卡乐乐打电话", example: { en: "I call my mom.", zh: "我给妈妈打电话。" }, wordStructure: "ca(卡) + ll(乐乐)" },
+    { english: "remember", chinese: "记住；记得", emoji: "🧠", category: "actions", phonetic: "/rɪˈmembər/", mnemonic: "remember记住re日，member成员，日成员要记住", example: { en: "Remember to do homework.", zh: "记得做作业。" }, wordStructure: "re(日) + member(成员)" },
+    { english: "rest", chinese: "休息；放松", emoji: "😴", category: "actions", phonetic: "/rest/", mnemonic: "rest休息re热，st思特，热思特休息一下", example: { en: "I need to rest.", zh: "我需要休息。" }, wordStructure: "re(热) + st(思特)" },
+    { english: "try", chinese: "尝试；试试", emoji: "💪", category: "actions", phonetic: "/traɪ/", mnemonic: "try尝试tr特儿，y要，特儿要尝试", example: { en: "Try your best!", zh: "尽力尝试！" }, wordStructure: "tr(特儿) + y(要)" },
+    { english: "put", chinese: "放；放置", emoji: "📦", category: "actions", phonetic: "/pʊt/", mnemonic: "put放pu扑，t题，扑题放下来", example: { en: "Put the book on the table.", zh: "把书放在桌子上。" }, wordStructure: "pu(扑) + t(题)" },
+    { english: "use", chinese: "使用；用", emoji: "🔧", category: "actions", phonetic: "/juːz/", mnemonic: "use使用u优，se色，优色使用工具", example: { en: "I use a pencil.", zh: "我使用铅笔。" }, wordStructure: "u(优) + se(色)" },
+    { english: "get", chinese: "得到；获得", emoji: "🎁", category: "actions", phonetic: "/ɡet/", mnemonic: "get得到ge哥，t题，哥题得到奖励", example: { en: "I get a gift.", zh: "我得到一份礼物。" }, wordStructure: "ge(哥) + t(题)" },
+    { english: "collect", chinese: "收集；采集", emoji: "🗃️", category: "actions", phonetic: "/kəˈlekt/", mnemonic: "collect收集col考乐，lect乐客特，考乐乐客特收集东西", example: { en: "I collect stamps.", zh: "我收集邮票。" }, wordStructure: "col(考乐) + lect(乐客特)" },
+    { english: "cut", chinese: "切；剪", emoji: "✂️", category: "actions", phonetic: "/kʌt/", mnemonic: "cut切cu苦，t题，苦题切东西", example: { en: "I cut the paper.", zh: "我剪纸。" }, wordStructure: "cu(苦) + t(题)" },
+    { english: "welcome", chinese: "欢迎", emoji: "🎉", category: "actions", phonetic: "/ˈwelkəm/", mnemonic: "welcome欢迎wel我乐，come来，我乐来欢迎你", example: { en: "Welcome to our school.", zh: "欢迎来到我们的学校。" }, wordStructure: "wel(我乐) + come(来)" },
+    { english: "smell", chinese: "闻；嗅", emoji: "👃", category: "actions", phonetic: "/smel/", mnemonic: "smell闻sme思蜜，ll乐乐，思蜜乐乐闻花香", example: { en: "I smell the flower.", zh: "我闻花香。" }, wordStructure: "sme(思蜜) + ll(乐乐)" },
+    { english: "hear", chinese: "听到；听见", emoji: "👂", category: "actions", phonetic: "/hɪr/", mnemonic: "hear听到he呃，ar啊儿，呃啊儿听到声音", example: { en: "I hear music.", zh: "我听到音乐。" }, wordStructure: "he(呃) + ar(啊儿)" },
+    { english: "taste", chinese: "尝；品尝", emoji: "😋", category: "actions", phonetic: "/teɪst/", mnemonic: "taste品尝ta讨，ste思特，讨思特尝一口", example: { en: "Taste the soup.", zh: "尝尝汤。" }, wordStructure: "ta(讨) + ste(思特)" },
+    { english: "touch", chinese: "触摸；接触", emoji: "🤚", category: "actions", phonetic: "/tʌtʃ/", mnemonic: "touch触摸to讨，uch吃，讨吃触摸感受", example: { en: "Don't touch the painting.", zh: "不要触摸油画。" }, wordStructure: "to(讨) + uch(吃)" },
+    { english: "turn", chinese: "转；转向", emoji: "↩️", category: "actions", phonetic: "/tɜːrn/", mnemonic: "turn转tu图，rn儿嗯，图儿嗯转个弯", example: { en: "Turn left at the corner.", zh: "在拐角处左转。" }, wordStructure: "tu(图) + rn(儿嗯)" },
+    { english: "start", chinese: "开始", emoji: "▶️", category: "actions", phonetic: "/stɑːrt/", mnemonic: "start开始st诗特，art艺术，诗特艺术开始创作", example: { en: "Let's start the game.", zh: "让我们开始游戏。" }, wordStructure: "st(诗特) + art(艺术)" },
+    { english: "feed", chinese: "喂养；饲养", emoji: "🥣", category: "actions", phonetic: "/fiːd/", mnemonic: "feed喂养fe飞，ed儿得，飞儿得喂小动物", example: { en: "I feed my cat.", zh: "我喂我的猫。" }, wordStructure: "fe(飞) + ed(儿得)" },
+    { english: "cross", chinese: "穿过；越过", emoji: "🚦", category: "actions", phonetic: "/krɔːs/", mnemonic: "cross穿过cro克罗，ss斯斯，克罗斯斯穿过马路", example: { en: "Cross the street carefully.", zh: "小心穿越街道。" }, wordStructure: "cro(克罗) + ss(斯斯)" },
+
+    // 形容词扩展（考试词汇）
+    { english: "worried", chinese: "担心的；烦恼的", emoji: "😟", category: "feelings", phonetic: "/ˈwɜːrid/", mnemonic: "worried担心的wor我儿，ried让儿德，我儿让儿德很担心", example: { en: "I am worried about the exam.", zh: "我很担心考试。" }, wordStructure: "wor(我儿) + ried(让儿德)" },
+    { english: "favourite", chinese: "最喜爱的", emoji: "❤️", category: "feelings", phonetic: "/ˈfeɪvərɪt/", mnemonic: "favourite最喜爱fav发，our哦儿，ite一特，发哦儿一特最喜爱", example: { en: "What is your favourite colour?", zh: "你最喜爱的颜色是什么？" }, wordStructure: "fav(发) + our(哦儿) + ite(一特)" },
+    { english: "different", chinese: "不同的；各种的", emoji: "🔄", category: "adjectives", phonetic: "/ˈdɪfrənt/", mnemonic: "different不同的diff迪佛，erent额仁特，迪佛额仁特不一样", example: { en: "We are all different.", zh: "我们都是不同的。" }, wordStructure: "diff(迪佛) + erent(额仁特)" },
+    { english: "little", chinese: "小的；少的", emoji: "🐭", category: "adjectives", phonetic: "/ˈlɪtl/", mnemonic: "little小的li里，tle特乐，里特乐小小的", example: { en: "I have a little cat.", zh: "我有一只小猫。" }, wordStructure: "li(里) + tle(特乐)" },
+    { english: "interesting", chinese: "有趣的；有意思的", emoji: "😲", category: "adjectives", phonetic: "/ˈɪntrɪstɪŋ/", mnemonic: "interesting有趣的inter嗯特，esting呃思丁，嗯特呃思丁很有趣", example: { en: "The book is very interesting.", zh: "这本书很有趣。" }, wordStructure: "inter(嗯特) + esting(呃思丁)" },
+    { english: "hard", chinese: "难的；努力地", emoji: "💪", category: "adjectives", phonetic: "/hɑːrd/", mnemonic: "hard难的ha哈，rd儿得，哈儿得这道题很难", example: { en: "Math is hard for me.", zh: "数学对我来说很难。" }, wordStructure: "ha(哈) + rd(儿得)" },
+    { english: "best", chinese: "最好的", emoji: "🥇", category: "adjectives", phonetic: "/best/", mnemonic: "best最好的be比，st思特，比思特最好的", example: { en: "You are the best!", zh: "你是最好的！" }, wordStructure: "be(比) + st(思特)" },
+    { english: "ill", chinese: "生病的；不舒服", emoji: "🤒", category: "adjectives", phonetic: "/ɪl/", mnemonic: "ill生病的i爱，ll乐乐，爱乐乐生病了", example: { en: "I am ill today.", zh: "我今天生病了。" }, wordStructure: "i(爱) + ll(乐乐)" },
+    { english: "right", chinese: "右边的；正确的", emoji: "👉", category: "adjectives", phonetic: "/raɪt/", mnemonic: "right右边的ri日，ght哥讨，日哥讨转右边", example: { en: "Turn right at the corner.", zh: "在拐角处向右转。" }, wordStructure: "ri(日) + ght(哥讨)" },
+    { english: "left", chinese: "左边的；左边", emoji: "👈", category: "adjectives", phonetic: "/left/", mnemonic: "left左边le乐，ft佛讨，乐佛讨向左转", example: { en: "Turn left at the lights.", zh: "在红绿灯处左转。" }, wordStructure: "le(乐) + ft(佛讨)" },
+    { english: "polite", chinese: "有礼貌的", emoji: "🎩", category: "adjectives", phonetic: "/pəˈlaɪt/", mnemonic: "polite有礼貌的po婆，lite光，婆光很有礼貌", example: { en: "She is a polite girl.", zh: "她是一个有礼貌的女孩。" }, wordStructure: "po(婆) + lite(光)" },
+    { english: "enough", chinese: "足够的；充分的", emoji: "✅", category: "adjectives", phonetic: "/ɪˈnʌf/", mnemonic: "enough足够的e呃，nough奴，呃奴够了够了", example: { en: "I have enough food.", zh: "我有足够的食物。" }, wordStructure: "e(呃) + nough(奴)" },
+    { english: "naughty", chinese: "淘气的；顽皮的", emoji: "😈", category: "adjectives", phonetic: "/ˈnɔːti/", mnemonic: "naughty淘气的naugh奴，ty题，奴题小孩很淘气", example: { en: "The naughty boy runs in class.", zh: "淘气的男孩在课堂上跑。" }, wordStructure: "naugh(奴) + ty(题)" },
+    { english: "sorry", chinese: "对不起；抱歉", emoji: "😔", category: "feelings", phonetic: "/ˈsɑːri/", mnemonic: "sorry对不起sor思哦儿，ry让你，思哦儿让你对不起", example: { en: "I am sorry.", zh: "对不起。" }, wordStructure: "sor(思哦儿) + ry(让你)" },
+    { english: "please", chinese: "请；请你", emoji: "🙏", category: "feelings", phonetic: "/pliːz/", mnemonic: "please请pl扑啦，ease舒适，扑啦舒适请你", example: { en: "Please sit down.", zh: "请坐下。" }, wordStructure: "pl(扑啦) + ease(舒适)" },
+
+    // 情态动词
+    { english: "may", chinese: "可能；也许；可以", emoji: "🤔", category: "adjectives", phonetic: "/meɪ/", mnemonic: "may可能ma妈，y要，妈要可能来", example: { en: "It may rain tomorrow.", zh: "明天可能下雨。" }, wordStructure: "ma(妈) + y(要)" },
+    { english: "should", chinese: "应该；应当", emoji: "✅", category: "adjectives", phonetic: "/ʃʊd/", mnemonic: "should应该sho摄，uld乌德，摄乌德应该做", example: { en: "You should eat vegetables.", zh: "你应该吃蔬菜。" }, wordStructure: "sho(摄) + uld(乌德)" },
+    { english: "must", chinese: "必须；一定", emoji: "❗", category: "adjectives", phonetic: "/mʌst/", mnemonic: "must必须mu某，st思特，某思特必须做", example: { en: "You must do your homework.", zh: "你必须做作业。" }, wordStructure: "mu(某) + st(思特)" },
+    { english: "would", chinese: "将会；愿意", emoji: "🔮", category: "adjectives", phonetic: "/wʊd/", mnemonic: "would将会w我，ould哦乌德，我哦乌德将来会", example: { en: "I would like some water.", zh: "我想要一些水。" }, wordStructure: "w(我) + ould(哦乌德)" },
+    { english: "could", chinese: "能够；可以（礼貌）", emoji: "💪", category: "adjectives", phonetic: "/kʊd/", mnemonic: "could能够co考，uld乌德，考乌德能够做到", example: { en: "Could you help me?", zh: "你能帮助我吗？" }, wordStructure: "co(考) + uld(乌德)" },
+
+    // 方位和基本词
+    { english: "where", chinese: "哪里；在哪里", emoji: "❓", category: "adjectives", phonetic: "/wer/", mnemonic: "where哪里whe威，re热，威热在哪里", example: { en: "Where are you?", zh: "你在哪里？" }, wordStructure: "whe(威) + re(热)" },
+    { english: "under", chinese: "在...之下；在...底下", emoji: "⬇️", category: "adjectives", phonetic: "/ˈʌndər/", mnemonic: "under在下面un按，der地儿，按地儿在下面", example: { en: "The cat is under the table.", zh: "猫在桌子下面。" }, wordStructure: "un(按) + der(地儿)" },
+
+    // ====== 五六年级新增词汇 ======
+
+    // 地点/建筑扩展
+    { english: "bookstore", chinese: "书店", emoji: "📚", category: "places", phonetic: "/ˈbʊkstɔːr/", mnemonic: "bookstore书店book书，store商店，卖书的商店", example: { en: "I buy books at the bookstore.", zh: "我在书店买书。" }, wordStructure: "book(书) + store(商店)" },
+    { english: "post office", chinese: "邮局", emoji: "📮", category: "places", phonetic: "/ˈpoʊst ˈɑːfɪs/", mnemonic: "post office邮局post邮件，office办公室，处理邮件的办公室", example: { en: "I send letters at the post office.", zh: "我在邮局寄信。" }, wordStructure: "post(邮件) + office(办公室)" },
+    { english: "hotel", chinese: "旅馆；酒店", emoji: "🏨", category: "places", phonetic: "/hoʊˈtel/", mnemonic: "hotel旅馆ho呵，tel特乐，呵特乐旅馆住一晚", example: { en: "We stay at a hotel.", zh: "我们住在旅馆里。" }, wordStructure: "ho(呵) + tel(特乐)" },
+    { english: "factory", chinese: "工厂", emoji: "🏭", category: "places", phonetic: "/ˈfæktri/", mnemonic: "factory工厂fac发客，tory讨儿，发客讨儿工厂生产东西", example: { en: "My dad works in a factory.", zh: "我爸爸在工厂工作。" }, wordStructure: "fac(发客) + tory(讨儿)" },
+    { english: "gym", chinese: "体育馆；健身房", emoji: "🏋️", category: "places", phonetic: "/dʒɪm/", mnemonic: "gym体育馆g哥，ym蚊蜜，哥蚊蜜在体育馆锻炼", example: { en: "I exercise in the gym.", zh: "我在体育馆锻炼。" }, wordStructure: "g(哥) + ym(蚊蜜)" },
+    { english: "university", chinese: "大学", emoji: "🎓", category: "places", phonetic: "/ˌjuːnɪˈvɜːrsɪti/", mnemonic: "university大学uni一，vers万，ity城，一万城大学知识多", example: { en: "I want to go to university.", zh: "我想上大学。" }, wordStructure: "uni(一) + vers(万) + ity(城)" },
+    { english: "crossing", chinese: "十字路口", emoji: "🚦", category: "places", phonetic: "/ˈkrɔːsɪŋ/", mnemonic: "crossing十字路口cross穿过，ing进行，穿过路口", example: { en: "Stop at the crossing.", zh: "在十字路口停下。" }, wordStructure: "cross(穿过) + ing(进行)" },
+    { english: "village", chinese: "村庄；乡村", emoji: "🏡", category: "places", phonetic: "/ˈvɪlɪdʒ/", mnemonic: "village村庄vil维，lage啦格，维啦格小村庄好宁静", example: { en: "I live in a village.", zh: "我住在村庄里。" }, wordStructure: "vil(维) + lage(啦格)" },
+    { english: "countryside", chinese: "乡村；农村", emoji: "🌾", category: "places", phonetic: "/ˈkʌntrisaɪd/", mnemonic: "countryside乡村country国家，side一侧，国家一侧的乡村", example: { en: "I love the countryside.", zh: "我喜欢乡村。" }, wordStructure: "country(国家) + side(一侧)" },
+    { english: "building", chinese: "建筑物；大楼", emoji: "🏢", category: "places", phonetic: "/ˈbɪldɪŋ/", mnemonic: "building建筑build建造，ing进行，正在建造的大楼", example: { en: "The building is very tall.", zh: "这栋大楼很高。" }, wordStructure: "build(建造) + ing(进行)" },
+    { english: "hall", chinese: "大厅；礼堂", emoji: "🏛️", category: "places", phonetic: "/hɔːl/", mnemonic: "hall大厅ha哈，ll乐乐，哈乐乐在大厅里", example: { en: "We have a meeting in the hall.", zh: "我们在大厅开会。" }, wordStructure: "ha(哈) + ll(乐乐)" },
+    { english: "street", chinese: "街道；大街", emoji: "🛣️", category: "places", phonetic: "/striːt/", mnemonic: "street街道str思特儿，eet诶特，思特儿诶特走在街道上", example: { en: "I walk along the street.", zh: "我沿着街道走。" }, wordStructure: "str(思特儿) + eet(诶特)" },
+    { english: "lake", chinese: "湖泊；湖", emoji: "🏞️", category: "nature", phonetic: "/leɪk/", mnemonic: "lake湖泊la啦，ke客，啦客湖水清清", example: { en: "There are fish in the lake.", zh: "湖里有鱼。" }, wordStructure: "la(啦) + ke(客)" },
+    { english: "island", chinese: "岛屿；岛", emoji: "🏝️", category: "nature", phonetic: "/ˈaɪlənd/", mnemonic: "island岛屿is爱斯，land陆地，爱斯陆地孤岛", example: { en: "The island is beautiful.", zh: "这座岛屿很漂亮。" }, wordStructure: "is(爱斯) + land(陆地)" },
+    { english: "hill", chinese: "小山；山丘", emoji: "⛰️", category: "nature", phonetic: "/hɪl/", mnemonic: "hill小山hi嘿，ll乐乐，嘿乐乐爬小山丘", example: { en: "I climb the hill.", zh: "我爬小山。" }, wordStructure: "hi(嘿) + ll(乐乐)" },
+    { english: "cave", chinese: "洞穴；山洞", emoji: "🕳️", category: "nature", phonetic: "/keɪv/", mnemonic: "cave洞穴ca卡，ve娃，卡娃探索洞穴", example: { en: "Bats live in a cave.", zh: "蝙蝠住在洞穴里。" }, wordStructure: "ca(卡) + ve(娃)" },
+
+    // 职业扩展
+    { english: "engineer", chinese: "工程师", emoji: "👷", category: "jobs", phonetic: "/ˌendʒɪˈnɪr/", mnemonic: "engineer工程师engi引擎，neer嗯儿，引擎嗯儿工程师修引擎", example: { en: "The engineer designs bridges.", zh: "工程师设计桥梁。" }, wordStructure: "engi(引擎) + neer(嗯儿)" },
+    { english: "reporter", chinese: "记者", emoji: "🎙️", category: "jobs", phonetic: "/rɪˈpɔːrtər/", mnemonic: "reporter记者report报告，er人，报告人就是记者", example: { en: "The reporter writes news.", zh: "记者写新闻。" }, wordStructure: "report(报告) + er(人)" },
+    { english: "businessman", chinese: "商人；生意人", emoji: "💼", category: "jobs", phonetic: "/ˈbɪznɪsmæn/", mnemonic: "businessman商人business生意，man人，做生意的人", example: { en: "He is a businessman.", zh: "他是一位商人。" }, wordStructure: "business(生意) + man(人)" },
+    { english: "fisherman", chinese: "渔民；渔夫", emoji: "🎣", category: "jobs", phonetic: "/ˈfɪʃərmən/", mnemonic: "fisherman渔夫fisher捕鱼，man人，捕鱼的人是渔夫", example: { en: "The fisherman catches fish.", zh: "渔夫捕鱼。" }, wordStructure: "fisher(捕鱼) + man(人)" },
+    { english: "principal", chinese: "校长", emoji: "🏫", category: "jobs", phonetic: "/ˈprɪnsɪpl/", mnemonic: "principal校长princ王子，ipal一婆，王子一婆就是校长", example: { en: "Our principal is very kind.", zh: "我们的校长很和蔼。" }, wordStructure: "princ(王子) + ipal(一婆)" },
+    { english: "coach", chinese: "教练", emoji: "🏅", category: "jobs", phonetic: "/koʊtʃ/", mnemonic: "coach教练co考，ach啊吃，考啊吃教练训练我们", example: { en: "Our coach is very strict.", zh: "我们的教练很严格。" }, wordStructure: "co(考) + ach(啊吃)" },
+    { english: "actor", chinese: "演员（男）", emoji: "🎭", category: "jobs", phonetic: "/ˈæktər/", mnemonic: "actor演员act表演，or人，表演的人是演员", example: { en: "He is a famous actor.", zh: "他是一位著名演员。" }, wordStructure: "act(表演) + or(人)" },
+    { english: "cleaner", chinese: "清洁工", emoji: "🧹", category: "jobs", phonetic: "/ˈkliːnər/", mnemonic: "cleaner清洁工clean清洁，er人，清洁的人是清洁工", example: { en: "The cleaner sweeps the floor.", zh: "清洁工扫地。" }, wordStructure: "clean(清洁) + er(人)" },
+
+    // 自然/环境扩展
+    { english: "space", chinese: "太空；宇宙", emoji: "🚀", category: "nature", phonetic: "/speɪs/", mnemonic: "space太空spa思潘，ce色，思潘色太空好神秘", example: { en: "Astronauts travel in space.", zh: "宇航员在太空旅行。" }, wordStructure: "spa(思潘) + ce(色)" },
+    { english: "soil", chinese: "土壤；泥土", emoji: "🌱", category: "nature", phonetic: "/sɔɪl/", mnemonic: "soil土壤so思哦，il一乐，思哦一乐土壤种庄稼", example: { en: "Plants grow in the soil.", zh: "植物在土壤中生长。" }, wordStructure: "so(思哦) + il(一乐)" },
+    { english: "seed", chinese: "种子", emoji: "🌱", category: "nature", phonetic: "/siːd/", mnemonic: "seed种子se色，ed儿得，色儿得一颗种子", example: { en: "I plant a seed in the soil.", zh: "我把种子种进土壤。" }, wordStructure: "se(色) + ed(儿得)" },
+    { english: "root", chinese: "根；根部", emoji: "🌳", category: "nature", phonetic: "/ruːt/", mnemonic: "root根ru入，ot讨特，入讨特树根很深", example: { en: "The tree has deep roots.", zh: "这棵树有很深的根。" }, wordStructure: "ro(入) + ot(讨特)" },
+    { english: "waterfall", chinese: "瀑布", emoji: "💦", category: "nature", phonetic: "/ˈwɔːtərfɔːl/", mnemonic: "waterfall瀑布water水，fall落下，水落下就是瀑布", example: { en: "The waterfall is beautiful.", zh: "瀑布很美丽。" }, wordStructure: "water(水) + fall(落下)" },
+    { english: "stream", chinese: "溪流；小河", emoji: "🏞️", category: "nature", phonetic: "/striːm/", mnemonic: "stream溪流str思特儿，eam诶嗯，思特儿诶嗯溪水流淌", example: { en: "The stream is cool and clear.", zh: "溪水清凉清澈。" }, wordStructure: "str(思特儿) + eam(诶嗯)" },
+    { english: "sand", chinese: "沙子；沙滩", emoji: "🏖️", category: "nature", phonetic: "/sænd/", mnemonic: "sand沙子sa杀，nd嗯德，杀嗯德沙子细细的", example: { en: "I play in the sand.", zh: "我在沙子里玩。" }, wordStructure: "sa(杀) + nd(嗯德)" },
+    { english: "earth", chinese: "地球；大地", emoji: "🌍", category: "nature", phonetic: "/ɜːrθ/", mnemonic: "earth地球ear耳，th色，耳色地球是我们的家", example: { en: "We must protect the Earth.", zh: "我们必须保护地球。" }, wordStructure: "ear(耳) + th(色)" },
+    { english: "environment", chinese: "环境", emoji: "🌿", category: "nature", phonetic: "/ɪnˈvaɪrənmənt/", mnemonic: "environment环境en嗯，viron维罗嗯，ment蚊特，嗯维罗嗯蚊特保护环境", example: { en: "We should protect the environment.", zh: "我们应该保护环境。" }, wordStructure: "en(嗯) + viron(维罗嗯) + ment(蚊特)" },
+
+    // 节日/文化
+    { english: "festival", chinese: "节日；节", emoji: "🎉", category: "time", phonetic: "/ˈfestɪvl/", mnemonic: "festival节日fest飞思特，val娃乐，飞思特娃乐节日庆典", example: { en: "The Spring Festival is important.", zh: "春节很重要。" }, wordStructure: "fest(飞思特) + val(娃乐)" },
+    { english: "Christmas", chinese: "圣诞节", emoji: "🎄", category: "time", phonetic: "/ˈkrɪsməs/", mnemonic: "Christmas圣诞节Chris克里斯，mas蚊斯，克里斯蚊斯圣诞快乐", example: { en: "We celebrate Christmas in December.", zh: "我们在十二月庆祝圣诞节。" }, wordStructure: "Chris(克里斯) + mas(蚊斯)" },
+    { english: "holiday", chinese: "节假日；假期", emoji: "🏖️", category: "time", phonetic: "/ˈhɑːlɪdeɪ/", mnemonic: "holiday假期holi哦乐，day天，哦乐天就是节假日", example: { en: "I go travelling on holiday.", zh: "我在假期去旅行。" }, wordStructure: "holi(哦乐) + day(天)" },
+    { english: "vacation", chinese: "假期；度假", emoji: "✈️", category: "time", phonetic: "/veɪˈkeɪʃn/", mnemonic: "vacation假期vac娃克，ation行动，娃克行动去度假", example: { en: "I am on summer vacation.", zh: "我在暑假。" }, wordStructure: "vac(娃克) + ation(行动)" },
+    { english: "hobby", chinese: "爱好；兴趣", emoji: "🎨", category: "things", phonetic: "/ˈhɑːbi/", mnemonic: "hobby爱好hob哦不，by不，哦不不爱好太多啦", example: { en: "My hobby is reading.", zh: "我的爱好是阅读。" }, wordStructure: "hob(哦不) + by(不)" },
+    { english: "culture", chinese: "文化；文明", emoji: "🏛️", category: "things", phonetic: "/ˈkʌltʃər/", mnemonic: "culture文化cul考乐，ture图儿，考乐图儿中国文化博大精深", example: { en: "China has a rich culture.", zh: "中国有丰富的文化。" }, wordStructure: "cul(考乐) + ture(图儿)" },
+    { english: "country", chinese: "国家；乡村", emoji: "🌏", category: "things", phonetic: "/ˈkʌntri/", mnemonic: "country国家coun考嗯，try讨儿，考嗯讨儿为国家努力", example: { en: "China is a great country.", zh: "中国是一个伟大的国家。" }, wordStructure: "coun(考嗯) + try(讨儿)" },
+    { english: "world", chinese: "世界", emoji: "🌍", category: "things", phonetic: "/wɜːrld/", mnemonic: "world世界wor我儿，ld乐得，我儿乐得看世界", example: { en: "The world is beautiful.", zh: "这个世界很美丽。" }, wordStructure: "wor(我儿) + ld(乐得)" },
+    { english: "penpal", chinese: "笔友", emoji: "✉️", category: "things", phonetic: "/ˈpenpæl/", mnemonic: "penpal笔友pen笔，pal朋友，用笔写信的朋友", example: { en: "I have a penpal in Canada.", zh: "我在加拿大有一个笔友。" }, wordStructure: "pen(笔) + pal(朋友)" },
+
+    // 形容词扩展（五六年级）
+    { english: "strict", chinese: "严格的；严厉的", emoji: "😤", category: "adjectives", phonetic: "/strɪkt/", mnemonic: "strict严格的str思特儿，ict一克特，思特儿一克特老师很严格", example: { en: "Our teacher is strict but fair.", zh: "我们老师很严格但公平。" }, wordStructure: "str(思特儿) + ict(一克特)" },
+    { english: "shy", chinese: "害羞的；腼腆的", emoji: "😳", category: "feelings", phonetic: "/ʃaɪ/", mnemonic: "shy害羞的sh摄，y要，摄要害羞不敢说话", example: { en: "She is very shy.", zh: "她很害羞。" }, wordStructure: "sh(摄) + y(要)" },
+    { english: "helpful", chinese: "乐于助人的；有帮助的", emoji: "🤝", category: "adjectives", phonetic: "/ˈhelpfl/", mnemonic: "helpful乐于助人help帮助，ful富，帮助富人助人", example: { en: "She is very helpful.", zh: "她很乐于助人。" }, wordStructure: "help(帮助) + ful(富)" },
+    { english: "active", chinese: "积极的；活跃的", emoji: "🏃", category: "adjectives", phonetic: "/ˈæktɪv/", mnemonic: "active积极的act行动，ive爱娃，行动爱娃积极活跃", example: { en: "She is an active student.", zh: "她是一个积极的学生。" }, wordStructure: "act(行动) + ive(爱娃)" },
+    { english: "lovely", chinese: "可爱的；美好的", emoji: "💕", category: "adjectives", phonetic: "/ˈlʌvli/", mnemonic: "lovely可爱的love爱，ly利，爱利的人真可爱", example: { en: "What a lovely day!", zh: "多么美好的一天！" }, wordStructure: "love(爱) + ly(利)" },
+    { english: "proud", chinese: "骄傲的；自豪的", emoji: "😊", category: "feelings", phonetic: "/praʊd/", mnemonic: "proud骄傲pro扑罗，ud乌得，扑罗乌得感到自豪", example: { en: "I am proud of you.", zh: "我为你感到自豪。" }, wordStructure: "pro(扑罗) + ud(乌得)" },
+    { english: "bored", chinese: "无聊的；厌倦的", emoji: "😑", category: "feelings", phonetic: "/bɔːrd/", mnemonic: "bored无聊的bo波，red热得，波热得无聊了", example: { en: "I feel bored at home.", zh: "我在家感到无聊。" }, wordStructure: "bo(波) + red(热得)" },
+    { english: "delicious", chinese: "美味的；好吃的", emoji: "😋", category: "adjectives", phonetic: "/dɪˈlɪʃəs/", mnemonic: "delicious美味的deli德利，cious色斯，德利色斯食物美味", example: { en: "The food is delicious.", zh: "食物很美味。" }, wordStructure: "deli(德利) + cious(色斯)" },
+    { english: "fresh", chinese: "新鲜的；清新的", emoji: "🥬", category: "adjectives", phonetic: "/freʃ/", mnemonic: "fresh新鲜的fre飞热，sh摄，飞热摄新鲜空气", example: { en: "The fruit is fresh.", zh: "水果很新鲜。" }, wordStructure: "fre(飞热) + sh(摄)" },
+    { english: "tasty", chinese: "好吃的；美味的", emoji: "😋", category: "adjectives", phonetic: "/ˈteɪsti/", mnemonic: "tasty好吃的tast品尝，y要，品尝要食物好吃", example: { en: "The cake is very tasty.", zh: "蛋糕非常好吃。" }, wordStructure: "tast(品尝) + y(要)" },
+    { english: "salty", chinese: "咸的", emoji: "🧂", category: "adjectives", phonetic: "/ˈsɔːlti/", mnemonic: "salty咸的salt盐，y要，盐要咸咸的", example: { en: "This soup is too salty.", zh: "这汤太咸了。" }, wordStructure: "salt(盐) + y(要)" },
+    { english: "sour", chinese: "酸的", emoji: "🍋", category: "adjectives", phonetic: "/ˈsaʊər/", mnemonic: "sour酸的so思哦，ur我儿，思哦我儿柠檬酸酸的", example: { en: "Lemons are sour.", zh: "柠檬是酸的。" }, wordStructure: "so(思哦) + ur(我儿)" },
+    { english: "important", chinese: "重要的", emoji: "❗", category: "adjectives", phonetic: "/ɪmˈpɔːrtnt/", mnemonic: "important重要的im嗯，port港口，ant蚂蚁，嗯港口蚂蚁很重要", example: { en: "Health is important.", zh: "健康很重要。" }, wordStructure: "im(嗯) + port(港口) + ant(蚂蚁)" },
+    { english: "special", chinese: "特别的；特殊的", emoji: "⭐", category: "adjectives", phonetic: "/ˈspeʃl/", mnemonic: "special特别的spec思配客，ial一啊乐，思配客一啊乐特别棒", example: { en: "Today is a special day.", zh: "今天是特别的一天。" }, wordStructure: "spec(思配客) + ial(一啊乐)" },
+    { english: "easy", chinese: "容易的；简单的", emoji: "😊", category: "adjectives", phonetic: "/ˈiːzi/", mnemonic: "easy容易的ea哦，sy思，哦思这道题容易", example: { en: "This question is easy.", zh: "这个问题很容易。" }, wordStructure: "ea(哦) + sy(思)" },
+    { english: "wrong", chinese: "错误的；不对的", emoji: "❌", category: "adjectives", phonetic: "/rɔːŋ/", mnemonic: "wrong错误的wr瑞，ong昂哥，瑞昂哥答案错了", example: { en: "The answer is wrong.", zh: "答案是错误的。" }, wordStructure: "wr(瑞) + ong(昂哥)" },
+    { english: "wonderful", chinese: "极好的；精彩的", emoji: "🌟", category: "adjectives", phonetic: "/ˈwʌndərfl/", mnemonic: "wonderful极好的wonder奇妙，ful富，奇妙富足太精彩", example: { en: "The show is wonderful.", zh: "表演非常精彩。" }, wordStructure: "wonder(奇妙) + ful(富)" },
+    { english: "colourful", chinese: "色彩丰富的；五彩的", emoji: "🌈", category: "adjectives", phonetic: "/ˈkʌlərfl/", mnemonic: "colourful五彩的colour颜色，ful富，颜色富足很五彩", example: { en: "The flowers are colourful.", zh: "花朵是五彩缤纷的。" }, wordStructure: "colour(颜色) + ful(富)" },
+    { english: "cheap", chinese: "便宜的；廉价的", emoji: "💰", category: "adjectives", phonetic: "/tʃiːp/", mnemonic: "cheap便宜的che吃，ap啊婆，吃啊婆便宜买东西", example: { en: "This shirt is cheap.", zh: "这件衬衫很便宜。" }, wordStructure: "che(吃) + ap(啊婆)" },
+    { english: "expensive", chinese: "昂贵的；贵的", emoji: "💎", category: "adjectives", phonetic: "/ɪkˈspensɪv/", mnemonic: "expensive昂贵的ex克斯，pens盆思，ive爱娃，克斯盆思爱娃太贵了", example: { en: "The diamond ring is expensive.", zh: "钻戒很贵。" }, wordStructure: "ex(克斯) + pens(盆思) + ive(爱娃)" },
+    { english: "afraid", chinese: "害怕的；恐惧的", emoji: "😨", category: "feelings", phonetic: "/əˈfreɪd/", mnemonic: "afraid害怕的a啊，fraid飞热得，啊飞热得好害怕", example: { en: "I am afraid of the dark.", zh: "我害怕黑暗。" }, wordStructure: "a(啊) + fraid(飞热得)" },
+
+    // 动词扩展（五六年级）
+    { english: "speak", chinese: "说（语言）；讲话", emoji: "🗣️", category: "actions", phonetic: "/spiːk/", mnemonic: "speak说话spe思配，ak阿克，思配阿克用英语说话", example: { en: "I speak English.", zh: "我说英语。" }, wordStructure: "spe(思配) + ak(阿克)" },
+    { english: "finish", chinese: "完成；结束", emoji: "✅", category: "actions", phonetic: "/ˈfɪnɪʃ/", mnemonic: "finish完成fi飞，nish你摄，飞你摄完成任务", example: { en: "I finish my homework.", zh: "我完成了作业。" }, wordStructure: "fi(飞) + nish(你摄)" },
+    { english: "agree", chinese: "同意；赞成", emoji: "👍", category: "actions", phonetic: "/əˈɡriː/", mnemonic: "agree同意a啊，gree哥热，啊哥热我同意你", example: { en: "I agree with you.", zh: "我同意你的意见。" }, wordStructure: "a(啊) + gree(哥热)" },
+    { english: "prefer", chinese: "更喜欢；宁愿", emoji: "❤️", category: "actions", phonetic: "/prɪˈfɜːr/", mnemonic: "prefer更喜欢pre扑热，fer飞儿，扑热飞儿更喜欢这个", example: { en: "I prefer swimming to running.", zh: "我更喜欢游泳而不是跑步。" }, wordStructure: "pre(扑热) + fer(飞儿)" },
+    { english: "visit", chinese: "拜访；参观", emoji: "🤝", category: "actions", phonetic: "/ˈvɪzɪt/", mnemonic: "visit参观vi威，sit坐，威坐参观来拜访", example: { en: "I visit my grandma on Sunday.", zh: "我星期天去看望奶奶。" }, wordStructure: "vi(威) + sit(坐)" },
+    { english: "travel", chinese: "旅行；旅游", emoji: "✈️", category: "actions", phonetic: "/ˈtrævl/", mnemonic: "travel旅行tra特啦，vel娃乐，特啦娃乐旅行真开心", example: { en: "I like to travel.", zh: "我喜欢旅行。" }, wordStructure: "tra(特啦) + vel(娃乐)" },
+    { english: "plant", chinese: "种植；栽培", emoji: "🌱", category: "actions", phonetic: "/plænt/", mnemonic: "plant种植pl扑啦，ant蚂蚁，扑啦蚂蚁在种植", example: { en: "I plant flowers in the garden.", zh: "我在花园种花。" }, wordStructure: "pl(扑啦) + ant(蚂蚁)" },
+    { english: "keep", chinese: "保持；保留", emoji: "🔒", category: "actions", phonetic: "/kiːp/", mnemonic: "keep保持ke客，ep呃婆，客呃婆保持干净", example: { en: "Keep the classroom clean.", zh: "保持教室干净。" }, wordStructure: "ke(客) + ep(呃婆)" },
+    { english: "become", chinese: "变成；成为", emoji: "🦋", category: "actions", phonetic: "/bɪˈkʌm/", mnemonic: "become成为be比，come来，比来来变成了", example: { en: "I want to become a doctor.", zh: "我想成为一名医生。" }, wordStructure: "be(比) + come(来)" },
+    { english: "move", chinese: "移动；搬动", emoji: "➡️", category: "actions", phonetic: "/muːv/", mnemonic: "move移动mo某，ve娃，某娃快移动", example: { en: "Move the table to the corner.", zh: "把桌子移到角落。" }, wordStructure: "mo(某) + ve(娃)" },
+    { english: "need", chinese: "需要；必须", emoji: "📋", category: "actions", phonetic: "/niːd/", mnemonic: "need需要ne呢，ed儿得，呢儿得我需要帮助", example: { en: "I need your help.", zh: "我需要你的帮助。" }, wordStructure: "ne(呢) + ed(儿得)" },
+    { english: "win", chinese: "赢得；获胜", emoji: "🏆", category: "actions", phonetic: "/wɪn/", mnemonic: "win赢得wi我，n嗯，我嗯赢得比赛", example: { en: "Our team wins the game.", zh: "我们队赢得了比赛。" }, wordStructure: "wi(我) + n(嗯)" },
+    { english: "count", chinese: "数；计算", emoji: "🔢", category: "actions", phonetic: "/kaʊnt/", mnemonic: "count数数co考，unt嗯特，考嗯特数数", example: { en: "Count from 1 to 10.", zh: "从1数到10。" }, wordStructure: "co(考) + unt(嗯特)" },
+    { english: "hurt", chinese: "受伤；疼痛", emoji: "🤕", category: "actions", phonetic: "/hɜːrt/", mnemonic: "hurt受伤hu呼，rt儿天，呼儿天受伤了哭", example: { en: "My knee hurts.", zh: "我的膝盖疼。" }, wordStructure: "hu(呼) + rt(儿天)" },
+    { english: "stay", chinese: "停留；留下", emoji: "🏠", category: "actions", phonetic: "/steɪ/", mnemonic: "stay停留st思特，ay爱，思特爱停留在这里", example: { en: "Stay at home today.", zh: "今天待在家里。" }, wordStructure: "st(思特) + ay(爱)" },
+    { english: "protect", chinese: "保护；保卫", emoji: "🛡️", category: "actions", phonetic: "/prəˈtekt/", mnemonic: "protect保护pro扑罗，tect特克特，扑罗特克特保护地球", example: { en: "We must protect nature.", zh: "我们必须保护自然。" }, wordStructure: "pro(扑罗) + tect(特克特)" },
+    { english: "introduce", chinese: "介绍；引进", emoji: "👋", category: "actions", phonetic: "/ˌɪntrəˈdjuːs/", mnemonic: "introduce介绍intro嗯特罗，duce德色，嗯特罗德色介绍自己", example: { en: "Let me introduce myself.", zh: "让我介绍一下自己。" }, wordStructure: "intro(嗯特罗) + duce(德色)" },
+    { english: "practice", chinese: "练习；实践", emoji: "📝", category: "actions", phonetic: "/ˈpræktɪs/", mnemonic: "practice练习prac扑啦克，tice题色，扑啦克题色练习英语", example: { en: "I practice English every day.", zh: "我每天练习英语。" }, wordStructure: "prac(扑啦克) + tice(题色)" },
+    { english: "recycle", chinese: "回收；循环利用", emoji: "♻️", category: "actions", phonetic: "/ˌriːˈsaɪkl/", mnemonic: "recycle回收re再，cycle循环，再循环就是回收", example: { en: "We recycle paper and plastic.", zh: "我们回收纸张和塑料。" }, wordStructure: "re(再) + cycle(循环)" },
+    { english: "solve", chinese: "解决；解答", emoji: "💡", category: "actions", phonetic: "/sɑːlv/", mnemonic: "solve解决sol思哦乐，ve娃，思哦乐娃解决问题", example: { en: "I solve the math problem.", zh: "我解决了数学题。" }, wordStructure: "sol(思哦乐) + ve(娃)" },
+
+    // 副词/连词扩展
+    { english: "usually", chinese: "通常；一般", emoji: "🔄", category: "time", phonetic: "/ˈjuːʒuəli/", mnemonic: "usually通常usu优思，ally啊利，优思啊利通常如此", example: { en: "I usually wake up at 7.", zh: "我通常七点起床。" }, wordStructure: "usu(优思) + ally(啊利)" },
+    { english: "sometimes", chinese: "有时候；偶尔", emoji: "🔄", category: "time", phonetic: "/ˈsʌmtaɪmz/", mnemonic: "sometimes有时候some一些，times次数，一些次数有时候", example: { en: "I sometimes eat pizza.", zh: "我有时候吃披萨。" }, wordStructure: "some(一些) + times(次数)" },
+    { english: "never", chinese: "从不；绝不", emoji: "🚫", category: "time", phonetic: "/ˈnevər/", mnemonic: "never从不ne呢，ver娃儿，呢娃儿从不迟到", example: { en: "I never eat junk food.", zh: "我从不吃垃圾食品。" }, wordStructure: "ne(呢) + ver(娃儿)" },
+    { english: "also", chinese: "也；还；同样", emoji: "➕", category: "adjectives", phonetic: "/ˈɔːlsoʊ/", mnemonic: "also也al啊乐，so思哦，啊乐思哦我也来了", example: { en: "I also like swimming.", zh: "我也喜欢游泳。" }, wordStructure: "al(啊乐) + so(思哦)" },
+    { english: "still", chinese: "仍然；还是", emoji: "⏳", category: "adjectives", phonetic: "/stɪl/", mnemonic: "still仍然st思特，ill一乐，思特一乐仍然在这里", example: { en: "It is still raining.", zh: "仍然在下雨。" }, wordStructure: "st(思特) + ill(一乐)" },
+    { english: "quickly", chinese: "快速地；迅速地", emoji: "⚡", category: "adjectives", phonetic: "/ˈkwɪkli/", mnemonic: "quickly快速地quick快，ly利，快利地跑", example: { en: "Run quickly!", zh: "快速跑！" }, wordStructure: "quick(快) + ly(利)" },
+    { english: "quietly", chinese: "安静地；悄悄地", emoji: "🤫", category: "adjectives", phonetic: "/ˈkwaɪətli/", mnemonic: "quietly安静地quiet安静，ly利，安静利地说话", example: { en: "Walk quietly in the library.", zh: "在图书馆里安静地走。" }, wordStructure: "quiet(安静) + ly(利)" },
+    { english: "because", chinese: "因为；由于", emoji: "❓", category: "adjectives", phonetic: "/bɪˈkɔːz/", mnemonic: "because因为be比，cause原因，比原因就是因为", example: { en: "I am happy because it is sunny.", zh: "我很开心因为天气晴朗。" }, wordStructure: "be(比) + cause(原因)" },
+    { english: "before", chinese: "在...之前；以前", emoji: "⬅️", category: "time", phonetic: "/bɪˈfɔːr/", mnemonic: "before之前be比，fore佛热，比佛热之前", example: { en: "Wash hands before eating.", zh: "饭前洗手。" }, wordStructure: "be(比) + fore(佛热)" },
+    { english: "after", chinese: "在...之后；以后", emoji: "➡️", category: "time", phonetic: "/ˈæftər/", mnemonic: "after之后af啊佛，ter天儿，啊佛天儿之后", example: { en: "Play after school.", zh: "放学后玩耍。" }, wordStructure: "af(啊佛) + ter(天儿)" },
+
+    // 时间扩展
+    { english: "noon", chinese: "中午；正午", emoji: "☀️", category: "time", phonetic: "/nuːn/", mnemonic: "noon中午no不，on上面，不上面太阳正中午", example: { en: "I eat lunch at noon.", zh: "我中午吃午饭。" }, wordStructure: "no(不) + on(上面)" },
+    { english: "evening", chinese: "傍晚；晚上", emoji: "🌆", category: "time", phonetic: "/ˈiːvnɪŋ/", mnemonic: "evening傍晚eve夏娃，ning嗯哥，夏娃嗯哥傍晚回家", example: { en: "Good evening!", zh: "晚上好！" }, wordStructure: "eve(夏娃) + ning(嗯哥)" },
+    { english: "weekend", chinese: "周末", emoji: "🎉", category: "time", phonetic: "/ˈwiːkend/", mnemonic: "weekend周末week周，end结束，周结束就是周末", example: { en: "I rest on weekends.", zh: "我周末休息。" }, wordStructure: "week(周) + end(结束)" },
+    { english: "ago", chinese: "以前；...前", emoji: "⬅️", category: "time", phonetic: "/əˈɡoʊ/", mnemonic: "ago以前a啊，go走，啊走很久以前", example: { en: "I was there two years ago.", zh: "我两年前去过那里。" }, wordStructure: "a(啊) + go(走)" },
+    { english: "early", chinese: "早的；提早地", emoji: "🌅", category: "time", phonetic: "/ˈɜːrli/", mnemonic: "early早的ear耳，ly利，耳利早起听鸟叫", example: { en: "I wake up early.", zh: "我起得很早。" }, wordStructure: "ear(耳) + ly(利)" },
+    { english: "yesterday", chinese: "昨天", emoji: "📅", category: "time", phonetic: "/ˈjestərdeɪ/", mnemonic: "yesterday昨天yester诶思特，day天，诶思特天就是昨天", example: { en: "I went to school yesterday.", zh: "我昨天去了学校。" }, wordStructure: "yester(诶思特) + day(天)" },
+    { english: "tonight", chinese: "今晚；今夜", emoji: "🌙", category: "time", phonetic: "/təˈnaɪt/", mnemonic: "tonight今晚to讨，night夜晚，讨夜晚就是今晚", example: { en: "I will watch TV tonight.", zh: "我今晚会看电视。" }, wordStructure: "to(讨) + night(夜晚)" },
+
+    // 学科/教育扩展
+    { english: "history", chinese: "历史", emoji: "📜", category: "subjects", phonetic: "/ˈhɪstri/", mnemonic: "history历史his他的，tory讨儿，他的讨儿历史故事", example: { en: "I like history class.", zh: "我喜欢历史课。" }, wordStructure: "his(他的) + tory(讨儿)" },
+    { english: "geography", chinese: "地理", emoji: "🗺️", category: "subjects", phonetic: "/dʒiˈɑːɡrəfi/", mnemonic: "geography地理geo地球，graphy写，写地球就是地理", example: { en: "Geography is interesting.", zh: "地理很有趣。" }, wordStructure: "geo(地球) + graphy(写)" },
+    { english: "grade", chinese: "年级；成绩", emoji: "📊", category: "subjects", phonetic: "/ɡreɪd/", mnemonic: "grade年级gr哥儿，ade爱得，哥儿爱得好成绩", example: { en: "I am in Grade 5.", zh: "我在五年级。" }, wordStructure: "gr(哥儿) + ade(爱得)" },
+    { english: "score", chinese: "分数；得分", emoji: "🎯", category: "subjects", phonetic: "/skɔːr/", mnemonic: "score分数sco思考，re热，思考热得高分", example: { en: "My score is 100.", zh: "我的分数是100分。" }, wordStructure: "sco(思考) + re(热)" },
+    { english: "mistake", chinese: "错误；失误", emoji: "❌", category: "subjects", phonetic: "/mɪˈsteɪk/", mnemonic: "mistake错误mis蜜思，take拿，蜜思拿错了就是失误", example: { en: "Don't make mistakes.", zh: "不要犯错误。" }, wordStructure: "mis(蜜思) + take(拿)" },
+    { english: "exercise", chinese: "练习；锻炼", emoji: "📝", category: "subjects", phonetic: "/ˈeksərsaɪz/", mnemonic: "exercise练习exer一克斯儿，cise赛丝，一克斯儿赛丝做练习", example: { en: "Do the exercise on page 5.", zh: "做第5页的练习。" }, wordStructure: "exer(一克斯儿) + cise(赛丝)" },
+    { english: "sentence", chinese: "句子", emoji: "📝", category: "subjects", phonetic: "/ˈsentəns/", mnemonic: "sentence句子sen思嗯，tence天斯，思嗯天斯写一个句子", example: { en: "Write a sentence.", zh: "写一个句子。" }, wordStructure: "sen(思嗯) + tence(天斯)" },
+    { english: "dictionary", chinese: "词典；字典", emoji: "📖", category: "subjects", phonetic: "/ˈdɪkʃəneri/", mnemonic: "dictionary词典dict迪克特，ionary一哦纳儿，迪克特一哦纳儿翻字典", example: { en: "Look up the word in the dictionary.", zh: "在字典里查这个词。" }, wordStructure: "dict(迪克特) + ionary(一哦纳儿)" },
+    { english: "contest", chinese: "比赛；竞赛", emoji: "🏆", category: "subjects", phonetic: "/ˈkɑːntest/", mnemonic: "contest比赛con考嗯，test测试，考嗯测试参加比赛", example: { en: "I join the singing contest.", zh: "我参加歌唱比赛。" }, wordStructure: "con(考嗯) + test(测试)" },
+
+    // 健康/身体扩展
+    { english: "throat", chinese: "喉咙；咽喉", emoji: "🗣️", category: "body", phonetic: "/θroʊt/", mnemonic: "throat喉咙thr瑟儿，oat哦特，瑟儿哦特喉咙痛", example: { en: "My throat hurts.", zh: "我的喉咙疼。" }, wordStructure: "thr(瑟儿) + oat(哦特)" },
+    { english: "back", chinese: "背部；背后", emoji: "🧍", category: "body", phonetic: "/bæk/", mnemonic: "back背部ba爸，ck克，爸克背部很痛", example: { en: "My back hurts.", zh: "我的背部疼。" }, wordStructure: "ba(爸) + ck(克)" },
+    { english: "health", chinese: "健康；健康状况", emoji: "💚", category: "things", phonetic: "/helθ/", mnemonic: "health健康he呃，alth啊乐色，呃啊乐色保持健康", example: { en: "Health is the most important.", zh: "健康是最重要的。" }, wordStructure: "he(呃) + alth(啊乐色)" },
+    { english: "fever", chinese: "发烧；发热", emoji: "🤒", category: "things", phonetic: "/ˈfiːvər/", mnemonic: "fever发烧fe飞，ver娃儿，飞娃儿发烧了很难受", example: { en: "I have a fever.", zh: "我发烧了。" }, wordStructure: "fe(飞) + ver(娃儿)" },
+    { english: "headache", chinese: "头痛；头疼", emoji: "🤕", category: "things", phonetic: "/ˈhedeɪk/", mnemonic: "headache头痛head头，ache疼痛，头疼痛就是头痛", example: { en: "I have a headache.", zh: "我头疼。" }, wordStructure: "head(头) + ache(疼痛)" },
+    { english: "toothache", chinese: "牙痛；牙疼", emoji: "🦷", category: "things", phonetic: "/ˈtuːθeɪk/", mnemonic: "toothache牙痛tooth牙齿，ache疼痛，牙齿疼痛", example: { en: "I have a toothache.", zh: "我牙疼。" }, wordStructure: "tooth(牙齿) + ache(疼痛)" },
+    { english: "sore", chinese: "疼痛的；酸痛的", emoji: "🤕", category: "adjectives", phonetic: "/sɔːr/", mnemonic: "sore疼痛so思哦，re热，思哦热嗓子酸痛", example: { en: "I have a sore throat.", zh: "我嗓子疼。" }, wordStructure: "so(思哦) + re(热)" },
+    { english: "habit", chinese: "习惯；惯例", emoji: "🔄", category: "things", phonetic: "/ˈhæbɪt/", mnemonic: "habit习惯ha哈，bit小咬，哈小咬每天咬苹果是习惯", example: { en: "Brushing teeth is a good habit.", zh: "刷牙是个好习惯。" }, wordStructure: "ha(哈) + bit(小咬)" },
+    { english: "twice", chinese: "两次；两倍", emoji: "2️⃣", category: "time", phonetic: "/twaɪs/", mnemonic: "twice两次tw图文，ice冰，图文冰刷牙两次", example: { en: "Brush your teeth twice a day.", zh: "每天刷牙两次。" }, wordStructure: "tw(图文) + ice(冰)" },
+
+    // 旅行/交通扩展
+    { english: "traffic", chinese: "交通；车流", emoji: "🚗", category: "transport", phonetic: "/ˈtræfɪk/", mnemonic: "traffic交通tra特啦，ffic飞客，特啦飞客道路交通", example: { en: "The traffic is busy.", zh: "交通很繁忙。" }, wordStructure: "tra(特啦) + ffic(飞客)" },
+    { english: "trip", chinese: "旅行；短途旅游", emoji: "🌏", category: "transport", phonetic: "/trɪp/", mnemonic: "trip旅行tr特儿，ip一婆，特儿一婆去旅行", example: { en: "I go on a trip.", zh: "我去旅行。" }, wordStructure: "tr(特儿) + ip(一婆)" },
+    { english: "ticket", chinese: "票；入场券", emoji: "🎫", category: "transport", phonetic: "/ˈtɪkɪt/", mnemonic: "ticket票ti题，cket克特，题克特买票", example: { en: "I buy a train ticket.", zh: "我买火车票。" }, wordStructure: "ti(题) + cket(克特)" },
+    { english: "passenger", chinese: "乘客；旅客", emoji: "🚌", category: "transport", phonetic: "/ˈpæsɪndʒər/", mnemonic: "passenger乘客pass通行，enger嗯哥，通行嗯哥乘客上车", example: { en: "The passenger waits for the bus.", zh: "乘客等公交车。" }, wordStructure: "pass(通行) + enger(嗯哥)" },
+    { english: "arrive", chinese: "到达；抵达", emoji: "🏁", category: "actions", phonetic: "/əˈraɪv/", mnemonic: "arrive到达ar啊儿，rive热娃，啊儿热娃到达目的地", example: { en: "We arrive at school at 8.", zh: "我们8点到达学校。" }, wordStructure: "ar(啊儿) + rive(热娃)" },
+    { english: "map", chinese: "地图", emoji: "🗺️", category: "things", phonetic: "/mæp/", mnemonic: "map地图ma妈，p婆，妈婆看地图找路", example: { en: "I use a map to find the way.", zh: "我用地图找路。" }, wordStructure: "ma(妈) + p(婆)" },
+
+    // 购物/经济
+    { english: "price", chinese: "价格；价钱", emoji: "💰", category: "things", phonetic: "/praɪs/", mnemonic: "price价格pri扑瑞，ce色，扑瑞色看价格", example: { en: "What is the price?", zh: "价格是多少？" }, wordStructure: "pri(扑瑞) + ce(色)" },
+    { english: "sell", chinese: "卖；出售", emoji: "🏪", category: "actions", phonetic: "/sel/", mnemonic: "sell卖se色，ll乐乐，色乐乐卖东西", example: { en: "They sell fruit here.", zh: "他们在这里卖水果。" }, wordStructure: "se(色) + ll(乐乐)" },
+    { english: "pay", chinese: "付钱；支付", emoji: "💳", category: "actions", phonetic: "/peɪ/", mnemonic: "pay付钱pa趴，y要，趴要付钱", example: { en: "I pay for the book.", zh: "我为书付钱。" }, wordStructure: "pa(趴) + y(要)" },
+    { english: "size", chinese: "大小；尺码", emoji: "📏", category: "things", phonetic: "/saɪz/", mnemonic: "size大小si系，ze色，系色看尺码", example: { en: "What size do you wear?", zh: "你穿几码？" }, wordStructure: "si(系) + ze(色)" },
+    { english: "postcard", chinese: "明信片", emoji: "📬", category: "things", phonetic: "/ˈpoʊstkɑːrd/", mnemonic: "postcard明信片post邮件，card卡片，邮件卡片是明信片", example: { en: "I send a postcard to my friend.", zh: "我给朋友寄明信片。" }, wordStructure: "post(邮件) + card(卡片)" },
+    { english: "newspaper", chinese: "报纸", emoji: "📰", category: "things", phonetic: "/ˈnjuːzpeɪpər/", mnemonic: "newspaper报纸news新闻，paper纸，新闻纸就是报纸", example: { en: "Dad reads the newspaper.", zh: "爸爸读报纸。" }, wordStructure: "news(新闻) + paper(纸)" },
+    { english: "magazine", chinese: "杂志", emoji: "📓", category: "things", phonetic: "/ˌmæɡəˈziːn/", mnemonic: "magazine杂志maga妈嘎，zine赞嗯，妈嘎赞嗯看杂志", example: { en: "I read a magazine.", zh: "我读杂志。" }, wordStructure: "maga(妈嘎) + zine(赞嗯)" },
+
+    // 体育/娱乐扩展
+    { english: "tennis", chinese: "网球", emoji: "🎾", category: "sports", phonetic: "/ˈtenɪs/", mnemonic: "tennis网球ten十，nis嗯斯，十嗯斯网球来回打", example: { en: "I play tennis on Saturday.", zh: "我周六打网球。" }, wordStructure: "ten(十) + nis(嗯斯)" },
+    { english: "chess", chinese: "象棋；国际象棋", emoji: "♟️", category: "sports", phonetic: "/tʃes/", mnemonic: "chess象棋che吃，ss斯斯，吃斯斯下象棋", example: { en: "I like to play chess.", zh: "我喜欢下象棋。" }, wordStructure: "che(吃) + ss(斯斯)" },
+    { english: "skate", chinese: "滑冰；溜冰", emoji: "⛸️", category: "sports", phonetic: "/skeɪt/", mnemonic: "skate滑冰ska思卡，te题，思卡题滑冰真好玩", example: { en: "I skate in winter.", zh: "我冬天溜冰。" }, wordStructure: "ska(思卡) + te(题)" },
+    { english: "hiking", chinese: "远足；徒步旅行", emoji: "🥾", category: "sports", phonetic: "/ˈhaɪkɪŋ/", mnemonic: "hiking远足hi嘿，king王，嘿王远足爬山", example: { en: "I go hiking on Sunday.", zh: "我周日去远足。" }, wordStructure: "hi(嘿) + king(王)" },
+    { english: "race", chinese: "比赛；赛跑", emoji: "🏃", category: "sports", phonetic: "/reɪs/", mnemonic: "race比赛ra啦，ce色，啦色参加比赛跑步", example: { en: "I win the race.", zh: "我赢得了比赛。" }, wordStructure: "ra(啦) + ce(色)" },
+    { english: "picnic", chinese: "野餐", emoji: "🧺", category: "sports", phonetic: "/ˈpɪknɪk/", mnemonic: "picnic野餐pic皮克，nic嗯客，皮克嗯客一起野餐", example: { en: "We have a picnic in the park.", zh: "我们在公园野餐。" }, wordStructure: "pic(皮克) + nic(嗯客)" },
+    { english: "camp", chinese: "野营；露营", emoji: "⛺", category: "sports", phonetic: "/kæmp/", mnemonic: "camp野营ca卡，mp姆屁，卡姆屁搭帐篷野营", example: { en: "We camp in the forest.", zh: "我们在森林里野营。" }, wordStructure: "ca(卡) + mp(姆屁)" },
+    { english: "team", chinese: "队；团队", emoji: "👥", category: "sports", phonetic: "/tiːm/", mnemonic: "team队te题，am安蜜，题安蜜一起组成队伍", example: { en: "Our team is great.", zh: "我们的队伍很棒。" }, wordStructure: "te(题) + am(安蜜)" },
+
+    // 方向/位置扩展
+    { english: "between", chinese: "在...之间", emoji: "↔️", category: "adjectives", phonetic: "/bɪˈtwiːn/", mnemonic: "between在之间be比，tween双胞胎，比双胞胎中间", example: { en: "Sit between Tom and Amy.", zh: "坐在汤姆和艾米中间。" }, wordStructure: "be(比) + tween(双胞胎)" },
+    { english: "beside", chinese: "在...旁边", emoji: "↔️", category: "adjectives", phonetic: "/bɪˈsaɪd/", mnemonic: "beside旁边be比，side一侧，比一侧就是旁边", example: { en: "Sit beside me.", zh: "坐在我旁边。" }, wordStructure: "be(比) + side(一侧)" },
+    { english: "above", chinese: "在...上面；以上", emoji: "⬆️", category: "adjectives", phonetic: "/əˈbʌv/", mnemonic: "above上面a啊，bove波娃，啊波娃在上面", example: { en: "The bird flies above the tree.", zh: "鸟在树上方飞。" }, wordStructure: "a(啊) + bove(波娃)" },
+    { english: "below", chinese: "在...下面；以下", emoji: "⬇️", category: "adjectives", phonetic: "/bɪˈloʊ/", mnemonic: "below下面be比，low低，比低在下面", example: { en: "The fish swims below the water.", zh: "鱼在水下游。" }, wordStructure: "be(比) + low(低)" },
+    { english: "far", chinese: "远的；遥远的", emoji: "🔭", category: "adjectives", phonetic: "/fɑːr/", mnemonic: "far远的fa发，r儿，发儿走很远", example: { en: "The school is not far.", zh: "学校不远。" }, wordStructure: "fa(发) + r(儿)" },
+    { english: "across", chinese: "穿过；在对面", emoji: "↔️", category: "adjectives", phonetic: "/əˈkrɔːs/", mnemonic: "across穿过a啊，cross穿过，啊穿过马路", example: { en: "The shop is across the street.", zh: "商店在街的对面。" }, wordStructure: "a(啊) + cross(穿过)" },
+    { english: "through", chinese: "通过；穿过", emoji: "🚪", category: "adjectives", phonetic: "/θruː/", mnemonic: "through通过thro索儿，ugh呃哥，索儿呃哥穿越通道", example: { en: "Walk through the door.", zh: "穿过门走过去。" }, wordStructure: "thr(索儿) + ough(呃哥)" },
+    { english: "around", chinese: "围绕；四周", emoji: "🔄", category: "adjectives", phonetic: "/əˈraʊnd/", mnemonic: "around围绕a啊，round圆，啊圆圆的围绕一圈", example: { en: "Trees grow around the lake.", zh: "树木围绕湖泊生长。" }, wordStructure: "a(啊) + round(圆)" },
+    { english: "straight", chinese: "直的；笔直地", emoji: "➡️", category: "adjectives", phonetic: "/streɪt/", mnemonic: "straight笔直str思特儿，aight爱特，思特儿爱特走直线", example: { en: "Go straight ahead.", zh: "直走向前。" }, wordStructure: "str(思特儿) + aight(爱特)" },
+
+    // 通讯/信息
+    { english: "email", chinese: "电子邮件", emoji: "📧", category: "things", phonetic: "/ˈiːmeɪl/", mnemonic: "email电子邮件e电子，mail邮件，电子邮件发送快", example: { en: "I send an email to my teacher.", zh: "我给老师发电子邮件。" }, wordStructure: "e(电子) + mail(邮件)" },
+    { english: "message", chinese: "消息；信息", emoji: "💬", category: "things", phonetic: "/ˈmesɪdʒ/", mnemonic: "message消息mes蜜思，sage圣贤，蜜思圣贤传递消息", example: { en: "I get a message from my friend.", zh: "我收到朋友的消息。" }, wordStructure: "mes(蜜思) + sage(圣贤)" },
+    { english: "pollution", chinese: "污染；污浊", emoji: "🏭", category: "nature", phonetic: "/pəˈluːʃn/", mnemonic: "pollution污染pol婆乐，lution鲁顺，婆乐鲁顺空气污染严重", example: { en: "Pollution is bad for health.", zh: "污染对健康有害。" }, wordStructure: "pol(婆乐) + lution(鲁顺)" },
+    { english: "rule", chinese: "规则；规定", emoji: "📋", category: "things", phonetic: "/ruːl/", mnemonic: "rule规则ru入，le乐，入乐遵守规则很重要", example: { en: "Follow the traffic rules.", zh: "遵守交通规则。" }, wordStructure: "ru(入) + le(乐)" },
+    { english: "dream", chinese: "梦想；梦", emoji: "💭", category: "things", phonetic: "/driːm/", mnemonic: "dream梦想dr德儿，eam诶嗯，德儿诶嗯追逐梦想", example: { en: "My dream is to be a doctor.", zh: "我的梦想是成为一名医生。" }, wordStructure: "dr(德儿) + eam(诶嗯)" },
+    { english: "goal", chinese: "目标；进球", emoji: "🎯", category: "things", phonetic: "/ɡoʊl/", mnemonic: "goal目标go哥，al啊乐，哥啊乐达成目标", example: { en: "Set a goal for yourself.", zh: "为自己设定一个目标。" }, wordStructure: "go(哥) + al(啊乐)" },
+    { english: "advice", chinese: "建议；劝告", emoji: "💡", category: "things", phonetic: "/ədˈvaɪs/", mnemonic: "advice建议ad啊得，vice威客，啊得威客给建议", example: { en: "Give me some advice.", zh: "给我一些建议。" }, wordStructure: "ad(啊得) + vice(威客)" },
+    { english: "plan", chinese: "计划；打算", emoji: "📋", category: "things", phonetic: "/plæn/", mnemonic: "plan计划pl扑啦，an安，扑啦安制定计划", example: { en: "I have a plan.", zh: "我有一个计划。" }, wordStructure: "pl(扑啦) + an(安)" },
 ];
 
 // 获取随机单词
