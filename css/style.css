@@ -186,6 +186,11 @@ body::before {
     position: relative;
 }
 
+/* 百词闯关按钮 */
+.mode-btn-exam {
+    background: linear-gradient(135deg, #a8edea 0%, #4db8a0 100%);
+}
+
 .mode-btn-review.has-review {
     background: linear-gradient(135deg, #ff7675 0%, #fd79a8 100%);
     animation: reviewPulse 2s ease-in-out infinite;
