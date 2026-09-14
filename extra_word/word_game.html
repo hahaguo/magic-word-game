@@ -2,286 +2,433 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>百词闯关</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>百词闯关 · 魔法王国</title>
 <style>
+/* ══ 基础 ══════════════════════════════════════════ */
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f0f4f0; min-height: 100vh; overflow-x: hidden; }
-
-/* ── 通用 ── */
-.screen { display: none; min-height: 100vh; padding: 20px 16px; flex-direction: column; align-items: center; }
-.screen.active { display: flex; }
-.btn { border: none; border-radius: 12px; cursor: pointer; font-family: inherit; font-weight: 600; transition: transform .1s, opacity .1s; user-select: none; }
-.btn:active { transform: scale(.95); }
-
-/* ── 首页 ── */
-#home { background: #f0f4f0; }
-.home-hero { text-align: center; padding: 28px 0 20px; }
-.home-hero h1 { font-size: 28px; color: #1a3d1c; }
-.home-hero p { font-size: 14px; color: #666; margin-top: 6px; }
-
-.set-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 400px; margin-bottom: 20px; }
-.set-card { background: white; border-radius: 14px; padding: 14px 8px; text-align: center; cursor: pointer; border: 2px solid transparent; box-shadow: 0 2px 8px rgba(0,0,0,.06); transition: all .15s; }
-.set-card:active { transform: scale(.95); }
-.set-card.selected { border-color: #2c7a30; background: #e8f5e9; }
-.set-card .num { font-size: 22px; font-weight: 700; color: #2c7a30; }
-.set-card .sub { font-size: 11px; color: #888; margin-top: 3px; line-height: 1.4; }
-.set-card.all-card .num { font-size: 16px; }
-
-.mode-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 400px; margin-bottom: 14px; }
-.mode-btn { background: white; padding: 16px 8px; border-radius: 14px; font-size: 15px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.06); border: 2px solid transparent; }
-.mode-btn.selected { border-color: #2c7a30; background: #e8f5e9; color: #1a3d1c; }
-
-.dir-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; max-width: 400px; margin-bottom: 20px; }
-.dir-btn { background: #eee; padding: 10px 8px; border-radius: 10px; font-size: 13px; color: #555; }
-.dir-btn.selected { background: #2c7a30; color: white; }
-
-.start-btn { background: #2c7a30; color: white; font-size: 18px; padding: 16px 0; width: 100%; max-width: 400px; border-radius: 16px; box-shadow: 0 4px 14px rgba(44,122,48,.3); }
-
-/* ── 进行中 header ── */
-.game-header { display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 480px; margin-bottom: 14px; }
-.back-btn { background: none; border: none; font-size: 22px; cursor: pointer; padding: 4px 8px; }
-.progress-wrap { flex: 1; height: 8px; background: #ddd; border-radius: 4px; margin: 0 12px; }
-.progress-bar { height: 8px; background: #2c7a30; border-radius: 4px; transition: width .3s; }
-.score-badge { font-size: 14px; font-weight: 700; color: #2c7a30; min-width: 48px; text-align: right; }
-
-/* ── 闪卡 ── */
-#flashcard { background: #f0f4f0; }
-.card-wrap { perspective: 800px; width: 100%; max-width: 400px; margin: 12px 0 24px; }
-.card { width: 100%; height: 200px; border-radius: 20px; transform-style: preserve-3d; transition: transform .45s; cursor: pointer; position: relative; }
-.card.flipped { transform: rotateY(180deg); }
-.card-face { position: absolute; inset: 0; border-radius: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,.1); }
-.card-front { background: white; }
-.card-back { background: #2c7a30; transform: rotateY(180deg); }
-.card-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; margin-bottom: 12px; opacity: .6; }
-.card-front .card-label { color: #999; }
-.card-back .card-label { color: rgba(255,255,255,.7); }
-.card-word { font-size: 28px; font-weight: 700; text-align: center; }
-.card-front .card-word { color: #1a1a1a; }
-.card-back .card-word { color: white; }
-.card-hint { font-size: 13px; color: #aaa; margin-top: 8px; }
-.card-back .card-hint { color: rgba(255,255,255,.6); }
-
-.fc-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 400px; }
-.fc-btn { padding: 16px 0; font-size: 16px; border-radius: 14px; }
-.fc-no { background: #fce4ec; color: #c62828; }
-.fc-yes { background: #e8f5e9; color: #2e7d32; }
-
-.fc-tap-hint { font-size: 13px; color: #aaa; margin-bottom: 8px; }
-
-/* ── 选择题 ── */
-#quiz { background: #f0f4f0; }
-.question-card { background: white; border-radius: 20px; padding: 28px 20px; width: 100%; max-width: 480px; text-align: center; box-shadow: 0 4px 16px rgba(0,0,0,.07); margin-bottom: 20px; }
-.question-label { font-size: 11px; color: #aaa; letter-spacing: 1px; margin-bottom: 10px; }
-.question-word { font-size: 30px; font-weight: 700; color: #1a1a1a; }
-
-.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 480px; }
-.opt-btn { background: white; padding: 16px 10px; border-radius: 14px; font-size: 15px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.06); border: 2px solid transparent; line-height: 1.4; min-height: 60px; }
-.opt-btn.correct { background: #e8f5e9; border-color: #2e7d32; color: #1a3d1c; }
-.opt-btn.wrong { background: #fce4ec; border-color: #c62828; color: #8b0000; }
-.opt-btn:disabled { cursor: default; }
-
-/* ── 结果页 ── */
-#result { background: #f0f4f0; }
-.result-hero { text-align: center; padding: 28px 0 16px; }
-.result-stars { font-size: 40px; letter-spacing: 4px; margin-bottom: 8px; }
-.result-score { font-size: 48px; font-weight: 800; color: #2c7a30; }
-.result-total { font-size: 16px; color: #888; margin-top: 4px; }
-
-.weak-section { width: 100%; max-width: 480px; background: white; border-radius: 16px; padding: 16px 20px; margin: 16px 0; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-.weak-title { font-size: 14px; font-weight: 700; color: #c62828; margin-bottom: 12px; }
-.weak-list { display: flex; flex-wrap: wrap; gap: 8px; }
-.weak-chip { background: #fce4ec; border-radius: 20px; padding: 5px 12px; font-size: 13px; color: #b71c1c; }
-.weak-chip span { color: #888; }
-
-.result-btns { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 480px; margin-top: 8px; }
-.retry-weak-btn { background: #c62828; color: white; padding: 15px 0; font-size: 16px; border-radius: 14px; }
-.retry-btn { background: #2c7a30; color: white; padding: 15px 0; font-size: 16px; border-radius: 14px; }
-.home-ret-btn { background: white; color: #555; padding: 15px 0; font-size: 16px; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
-
-/* 动画 */
-@keyframes pop-in { from { transform: scale(.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-.pop { animation: pop-in .2s ease; }
-
-/* ── iPad 标准 (768-1024px) ── */
-@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
-  .screen { padding: 32px 40px; }
-  .home-hero h1 { font-size: 36px; }
-  .home-hero p { font-size: 16px; }
-
-  .set-grid { grid-template-columns: repeat(4, 1fr); max-width: 640px; gap: 12px; }
-  .set-card { padding: 18px 10px; }
-  .set-card .num { font-size: 16px; }
-  .set-card .sub { font-size: 12px; }
-
-  .mode-row, .dir-row { max-width: 560px; gap: 14px; }
-  .mode-btn { padding: 20px 12px; font-size: 17px; }
-  .dir-btn { padding: 12px 10px; font-size: 15px; }
-  .start-btn { max-width: 560px; font-size: 20px; padding: 18px 0; }
-
-  .game-header { max-width: 680px; margin-bottom: 20px; }
-  .back-btn { font-size: 26px; }
-  .progress-wrap { height: 10px; }
-  .score-badge { font-size: 17px; min-width: 60px; }
-
-  .card-wrap { max-width: 580px; margin: 16px 0 28px; }
-  .card { height: 240px; }
-  .card-word { font-size: 36px; }
-  .card-label { font-size: 13px; }
-  .card-hint { font-size: 15px; }
-  .fc-row { max-width: 580px; gap: 16px; }
-  .fc-btn { padding: 20px 0; font-size: 18px; border-radius: 16px; }
-  .fc-tap-hint { font-size: 15px; }
-
-  .question-card { max-width: 680px; padding: 36px 28px; margin-bottom: 24px; }
-  .question-word { font-size: 38px; }
-  .question-label { font-size: 13px; }
-  .options-grid { max-width: 680px; gap: 14px; }
-  .opt-btn { font-size: 18px; min-height: 80px; padding: 20px 14px; border-radius: 16px; }
-
-  .weak-section, .result-btns { max-width: 680px; }
-  .result-score { font-size: 60px; }
-  .result-stars { font-size: 50px; }
-  .result-total { font-size: 18px; }
-  .weak-chip { font-size: 15px; padding: 7px 16px; }
-  .retry-weak-btn, .retry-btn, .home-ret-btn { font-size: 18px; padding: 18px 0; border-radius: 16px; }
-
-  .btn { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  min-height: 100vh; overflow-x: hidden;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255,255,255,.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255,182,193,.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 20%, rgba(173,216,230,.15) 0%, transparent 50%);
 }
 
-/* ── iPad Pro / 横屏大屏 (min-width: 1024px) ── */
-@media only screen and (min-width: 1024px) {
-  .screen { padding: 40px 60px; }
-  .home-hero h1 { font-size: 42px; }
-  .home-hero p { font-size: 17px; }
+.screen { display: none; min-height: 100vh; padding: 20px 16px; flex-direction: column; align-items: center; }
+.screen.active { display: flex; }
 
-  .set-grid { grid-template-columns: repeat(7, 1fr); max-width: 900px; gap: 12px; }
-  .set-card { padding: 16px 8px; }
-  .set-card .num { font-size: 14px; }
-  .set-card .sub { font-size: 11px; }
-  .set-card.all-card .num { font-size: 14px; }
+.panel {
+  width: 100%; max-width: 860px; background: rgba(255,255,255,.95);
+  border-radius: 24px; padding: 24px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  backdrop-filter: blur(10px);
+}
 
-  .mode-row, .dir-row { max-width: 680px; gap: 16px; }
-  .mode-btn { padding: 22px 14px; font-size: 18px; }
-  .dir-btn { padding: 14px 12px; font-size: 16px; }
-  .start-btn { max-width: 680px; font-size: 22px; padding: 20px 0; }
+/* ══ 首页 ══════════════════════════════════════════ */
+#home { padding-top: 24px; }
+.back-link {
+  align-self: flex-start; color: rgba(255,255,255,.85); text-decoration: none;
+  font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+}
+.back-link:hover { color: white; }
+.brand { text-align: center; margin-bottom: 20px; }
+.brand h1 { font-size: 28px; font-weight: 800; color: white;
+  text-shadow: 0 2px 12px rgba(0,0,0,.3); }
+.brand p { color: rgba(255,255,255,.85); font-size: 14px; margin-top: 6px; }
 
-  .game-header { max-width: 800px; }
-  .card-wrap { max-width: 680px; }
-  .card { height: 260px; }
-  .card-word { font-size: 40px; }
-  .fc-row { max-width: 680px; }
-  .fc-btn { padding: 22px 0; font-size: 20px; }
+/* 套数选择 */
+.set-label { font-size: 13px; font-weight: 700; color: #764ba2; margin-bottom: 10px; letter-spacing: .5px; }
+.set-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; width: 100%; margin-bottom: 6px; }
+.set-card {
+  background: #f5f0ff; border-radius: 12px; padding: 12px 6px; text-align: center;
+  cursor: pointer; border: 2px solid transparent; transition: all .15s;
+}
+.set-card:active { transform: scale(.95); }
+.set-card.sel { border-color: #764ba2; background: #ede0ff; }
+.set-card .sn { font-size: 13px; font-weight: 700; color: #764ba2; }
+.set-card .st { font-size: 10px; color: #9b72cf; margin-top: 3px; line-height: 1.3; }
+.set-all { grid-column: span 4; background: #f0f8ff; }
+.set-all.sel { border-color: #667eea; background: #e0eaff; }
+.set-all .sn { color: #667eea; }
 
-  .question-card { max-width: 800px; padding: 40px 32px; }
-  .question-word { font-size: 44px; }
-  .options-grid { max-width: 800px; gap: 16px; }
-  .opt-btn { font-size: 20px; min-height: 88px; padding: 22px 16px; }
+/* 模式卡 */
+.mode-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; margin-top: 16px; }
+.mode-card {
+  border-radius: 16px; padding: 20px 12px; text-align: center; cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.12); transition: all .2s; border: none;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.mode-card:hover { transform: translateY(-4px); }
+.mode-card:active { transform: scale(.96); }
+.mode-card .mi { font-size: 2.2em; }
+.mode-card .mn { font-size: 15px; font-weight: 700; }
+.mode-card .md { font-size: 11px; line-height: 1.4; opacity: .8; }
+.mc-match { background: linear-gradient(135deg, #ffeaa7, #fdcb6e); }
+.mc-quiz  { background: linear-gradient(135deg, #a8edea, #4db8a0); }
+.mc-flash { background: linear-gradient(135deg, #fd79a8, #e84393); color: white; }
+.mc-flash .md { opacity: .85; }
 
-  .weak-section, .result-btns { max-width: 800px; }
-  .result-score { font-size: 72px; }
-  .retry-weak-btn, .retry-btn, .home-ret-btn { font-size: 20px; padding: 20px 0; }
+/* ══ 游戏通用头部 ══════════════════════════════════ */
+.game-nav {
+  display: flex; align-items: center; width: 100%; max-width: 860px;
+  margin-bottom: 14px; gap: 10px;
+}
+.g-back { background: rgba(255,255,255,.25); border: none; color: white;
+  font-size: 18px; border-radius: 10px; padding: 8px 14px; cursor: pointer; }
+.g-back:active { transform: scale(.95); }
+.g-title { flex: 1; color: white; font-size: 16px; font-weight: 700; text-align: center; text-shadow: 0 1px 6px rgba(0,0,0,.2); }
+.g-info { color: white; font-size: 14px; font-weight: 700; min-width: 56px; text-align: right; }
+
+.prog-bar { width: 100%; max-width: 860px; height: 8px; background: rgba(255,255,255,.3);
+  border-radius: 4px; margin-bottom: 14px; overflow: hidden; }
+.prog-fill { height: 100%; background: white; border-radius: 4px; transition: width .4s; }
+
+/* ══ 配对翻牌 ══════════════════════════════════════ */
+#match { padding-top: 20px; }
+.match-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; width: 100%; max-width: 860px;
+}
+.mc {
+  aspect-ratio: 1/.75; border-radius: 12px; cursor: pointer;
+  perspective: 600px; position: relative;
+}
+.mc-inner {
+  width: 100%; height: 100%; transform-style: preserve-3d;
+  transition: transform .4s; position: relative;
+}
+.mc.flipped .mc-inner { transform: rotateY(180deg); }
+.mc.matched .mc-inner { transform: rotateY(180deg); }
+.mc-face {
+  position: absolute; inset: 0; border-radius: 12px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px; text-align: center; font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0,0,0,.12);
+}
+.mc-back {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  font-size: 24px; color: rgba(255,255,255,.4);
+}
+.mc-front-en {
+  background: white; font-size: 13px; color: #333; transform: rotateY(180deg);
+  border: 2px solid #e0d0ff;
+}
+.mc-front-zh {
+  background: linear-gradient(135deg, #ffeaa7, #fdcb6e);
+  font-size: 14px; color: #5d4e00; transform: rotateY(180deg);
+}
+.mc.matched .mc-face { border: 2.5px solid #00b894; }
+.mc.matched .mc-front-en { background: #e8f8f5; }
+.mc.matched .mc-front-zh { background: #e8f8f5; }
+.mc.wrong-flash { animation: wrongFlash .4s; }
+@keyframes wrongFlash { 0%,100%{} 40%{background: rgba(255,100,100,.3);} }
+.match-stats {
+  display: flex; gap: 16px; width: 100%; max-width: 860px;
+  justify-content: center; margin-bottom: 10px;
+}
+.stat-chip {
+  background: rgba(255,255,255,.25); color: white; border-radius: 20px;
+  padding: 6px 16px; font-size: 14px; font-weight: 700;
+}
+
+/* ══ 快问快答 ══════════════════════════════════════ */
+#quiz { padding-top: 20px; }
+.timer-bar { width: 100%; max-width: 860px; height: 10px;
+  background: rgba(255,255,255,.3); border-radius: 5px; margin-bottom: 14px; overflow: hidden; }
+.timer-fill { height: 100%; border-radius: 5px; transition: width .1s linear; }
+.timer-normal { background: #00b894; }
+.timer-warn   { background: #fdcb6e; }
+.timer-urgent { background: #e17055; }
+
+.combo-badge {
+  text-align: center; color: white; font-size: 13px; font-weight: 700;
+  margin-bottom: 8px; min-height: 22px;
+}
+.combo-badge.active { color: #ffd93d; text-shadow: 0 0 8px rgba(255,200,0,.6); }
+
+.q-card {
+  width: 100%; max-width: 860px; background: rgba(255,255,255,.95);
+  border-radius: 20px; padding: 30px 24px; text-align: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,.15); margin-bottom: 16px;
+}
+.q-dir { font-size: 11px; color: #aaa; letter-spacing: 1px; margin-bottom: 8px; }
+.q-word { font-size: 34px; font-weight: 800; color: #2d3436; line-height: 1.2; }
+
+.opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100%; max-width: 860px; }
+.opt {
+  background: rgba(255,255,255,.95); border: 2.5px solid transparent;
+  border-radius: 14px; padding: 16px 12px; font-size: 16px; font-weight: 600;
+  color: #333; cursor: pointer; line-height: 1.4; min-height: 64px;
+  box-shadow: 0 4px 14px rgba(0,0,0,.08); transition: all .15s;
+}
+.opt:active { transform: scale(.97); }
+.opt.correct { background: #e8f8f5; border-color: #00b894; color: #006150; }
+.opt.wrong   { background: #fff0ee; border-color: #e17055; color: #8b2000; }
+.opt:disabled { cursor: default; }
+
+/* ══ 闪卡 ══════════════════════════════════════════ */
+#flash { padding-top: 20px; }
+.fc-counts {
+  display: flex; gap: 16px; margin-bottom: 10px;
+  justify-content: center; width: 100%; max-width: 500px;
+}
+.fc-count { font-size: 14px; font-weight: 700; padding: 5px 18px;
+  border-radius: 20px; }
+.fc-count.known   { background: rgba(0,184,148,.25); color: #00b894; }
+.fc-count.unknown { background: rgba(225,112,85,.25); color: #e17055; }
+
+.fc-wrap { perspective: 900px; width: 100%; max-width: 500px; margin: 12px 0 20px; }
+.fc-card {
+  width: 100%; height: 220px; border-radius: 22px;
+  transform-style: preserve-3d; transition: transform .45s; cursor: pointer;
+  position: relative;
+}
+.fc-card.flipped { transform: rotateY(180deg); }
+.fc-face {
+  position: absolute; inset: 0; border-radius: 22px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 24px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.12);
+}
+.fc-front {
+  background: white; border: 2px solid #ede0ff;
+}
+.fc-back {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transform: rotateY(180deg);
+}
+.fc-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; opacity: .5; margin-bottom: 10px; }
+.fc-front .fc-label { color: #764ba2; }
+.fc-back  .fc-label { color: rgba(255,255,255,.7); }
+.fc-word { font-size: 30px; font-weight: 800; text-align: center; line-height: 1.2; }
+.fc-front .fc-word { color: #2d3436; }
+.fc-back  .fc-word { color: white; }
+.fc-hint { font-size: 13px; margin-top: 8px; opacity: .5; }
+.fc-front .fc-hint { color: #555; }
+.fc-back  .fc-hint { color: white; }
+
+.fc-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; width: 100%; max-width: 500px; }
+.fc-no  { background: linear-gradient(135deg, #ff6b6b, #e17055); color: white;
+  padding: 18px 0; font-size: 17px; border-radius: 14px; border: none;
+  cursor: pointer; font-weight: 700; box-shadow: 0 6px 18px rgba(225,112,85,.3); }
+.fc-yes { background: linear-gradient(135deg, #00b894, #00cec9); color: white;
+  padding: 18px 0; font-size: 17px; border-radius: 14px; border: none;
+  cursor: pointer; font-weight: 700; box-shadow: 0 6px 18px rgba(0,184,148,.3); }
+.fc-no:active, .fc-yes:active { transform: scale(.96); }
+.fc-tap-hint { font-size: 13px; color: rgba(255,255,255,.7); margin-bottom: 6px; }
+
+/* ══ 结果页 ══════════════════════════════════════== */
+#result { padding-top: 30px; }
+.res-panel { text-align: center; }
+.res-stars { font-size: 44px; letter-spacing: 6px; margin-bottom: 10px; }
+.res-score { font-size: 56px; font-weight: 800;
+  background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text; }
+.res-sub { font-size: 16px; color: #636e72; margin-top: 6px; margin-bottom: 20px; }
+
+.weak-box { text-align: left; border-top: 1px solid #f0e0ff; padding-top: 16px; margin-top: 4px; }
+.weak-title { font-size: 14px; font-weight: 700; color: #e17055; margin-bottom: 10px; }
+.weak-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.weak-chip { background: #fff0ee; border-radius: 20px; padding: 5px 14px;
+  font-size: 13px; color: #c0392b; font-weight: 600; }
+.weak-chip em { color: #999; font-style: normal; font-weight: 400; }
+
+.res-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.r-retry { background: linear-gradient(135deg, #e17055, #d63031); color: white;
+  padding: 15px; font-size: 16px; border-radius: 14px; border: none; cursor: pointer;
+  font-weight: 700; box-shadow: 0 6px 18px rgba(214,48,49,.25); }
+.r-again { background: linear-gradient(135deg, #667eea, #764ba2); color: white;
+  padding: 15px; font-size: 16px; border-radius: 14px; border: none; cursor: pointer;
+  font-weight: 700; box-shadow: 0 6px 18px rgba(102,126,234,.25); }
+.r-home  { background: rgba(255,255,255,.9); color: #636e72;
+  padding: 15px; font-size: 16px; border-radius: 14px; border: none; cursor: pointer;
+  font-weight: 600; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.r-retry:active, .r-again:active, .r-home:active { transform: scale(.97); }
+
+/* ══ 反馈动画 ══════════════════════════════════════ */
+.feedback-overlay {
+  position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 100;
+}
+.feedback-bubble {
+  background: rgba(0,0,0,.75); color: white; border-radius: 20px;
+  padding: 16px 32px; font-size: 22px; font-weight: 700;
+  transform: scale(0); transition: transform .2s;
+}
+.feedback-bubble.show { transform: scale(1); }
+
+@keyframes pop-in { from { transform: scale(.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+.pop { animation: pop-in .2s ease; }
+@keyframes matched-pop { 0%{} 50%{transform: scale(1.12);} 100%{} }
+.matched-anim { animation: matched-pop .35s ease; }
+
+/* ══ iPad ══════════════════════════════════════════ */
+@media only screen and (min-width: 768px) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .screen { padding: 28px 28px; }
+  .panel { padding: 32px; }
+  .brand h1 { font-size: 36px; }
+  .set-grid { grid-template-columns: repeat(7, 1fr); }
+  .set-all { grid-column: span 7; }
+  .mode-grid { gap: 20px; }
+  .mode-card { padding: 28px 16px; }
+  .mode-card .mi { font-size: 2.8em; }
+  .mode-card .mn { font-size: 17px; }
+  .mode-card .md { font-size: 12px; }
+  .match-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .mc-front-en { font-size: 15px; }
+  .mc-front-zh { font-size: 16px; }
+  .q-word { font-size: 42px; }
+  .opts { gap: 14px; }
+  .opt { font-size: 18px; padding: 20px 16px; min-height: 76px; }
+  .fc-wrap { max-width: 620px; }
+  .fc-card { height: 260px; }
+  .fc-word { font-size: 38px; }
+  .fc-btns { max-width: 620px; }
+  .fc-counts { max-width: 620px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ===== 首页 ===== -->
+<!-- ══ 首页 ══════════════════════════════════════════ -->
 <div id="home" class="screen active">
-  <div class="home-hero">
-    <a href="../index.html" style="display:inline-block;color:#2c7a30;font-size:14px;margin-bottom:10px;text-decoration:none;">← 返回魔法王国</a>
-    <h1>百词闯关</h1>
-    <p>选择套数 · 开始挑战</p>
+  <a class="back-link" href="../index.html">← 魔法王国</a>
+  <div class="brand">
+    <h1>✨ 百词闯关 ✨</h1>
+    <p>选套数 · 选模式 · 开始挑战！</p>
   </div>
 
-  <div class="set-grid" id="setGrid">
-    <div class="set-card" data-set="1"><div class="num">第一套</div><div class="sub">天气·季节·衣物·星期</div></div>
-    <div class="set-card" data-set="2"><div class="num">第二套</div><div class="sub">情感·动物·方位·时间</div></div>
-    <div class="set-card" data-set="3"><div class="num">第三套</div><div class="sub">地点·运动·身体</div></div>
-    <div class="set-card" data-set="4"><div class="num">第四套</div><div class="sub">水果·动物·短语</div></div>
-    <div class="set-card" data-set="5"><div class="num">第五套</div><div class="sub">餐具·食物·职业</div></div>
-    <div class="set-card" data-set="6"><div class="num">第六套</div><div class="sub">感官·形容词·事物</div></div>
-    <div class="set-card all-card" data-set="0"><div class="num">全部</div><div class="sub">六套混合</div></div>
-  </div>
+  <div class="panel">
+    <div class="set-label">选择词汇套数</div>
+    <div class="set-grid" id="setGrid">
+      <div class="set-card sel" data-set="1"><div class="sn">第一套</div><div class="st">天气季节</div></div>
+      <div class="set-card" data-set="2"><div class="sn">第二套</div><div class="st">情感动物</div></div>
+      <div class="set-card" data-set="3"><div class="sn">第三套</div><div class="st">地点运动</div></div>
+      <div class="set-card" data-set="4"><div class="sn">第四套</div><div class="st">水果短语</div></div>
+      <div class="set-card" data-set="5"><div class="sn">第五套</div><div class="st">餐具职业</div></div>
+      <div class="set-card" data-set="6"><div class="sn">第六套</div><div class="st">感官形容</div></div>
+      <div class="set-card set-all" data-set="0"><div class="sn">🃏 全部混合</div></div>
+    </div>
 
-  <div class="mode-row">
-    <button class="btn mode-btn selected" data-mode="quiz">✏️ 选择题</button>
-    <button class="btn mode-btn" data-mode="flash">🃏 闪卡</button>
+    <div class="mode-grid">
+      <button class="mode-card mc-match" onclick="launch('match')">
+        <span class="mi">🎴</span>
+        <span class="mn">配对翻牌</span>
+        <span class="md">翻开卡片，找到英中配对</span>
+      </button>
+      <button class="mode-card mc-quiz" onclick="launch('quiz')">
+        <span class="mi">⚡</span>
+        <span class="mn">限时问答</span>
+        <span class="md">8秒内选出正确答案</span>
+      </button>
+      <button class="mode-card mc-flash" onclick="launch('flash')">
+        <span class="mi">🃏</span>
+        <span class="mn">闪卡记忆</span>
+        <span class="md">翻牌认词，标记会与不会</span>
+      </button>
+    </div>
   </div>
-
-  <div class="dir-row" id="dirRow">
-    <button class="btn dir-btn selected" data-dir="en2zh">英 → 中</button>
-    <button class="btn dir-btn" data-dir="zh2en">中 → 英</button>
-  </div>
-
-  <button class="btn start-btn" id="startBtn">开始</button>
 </div>
 
-<!-- ===== 闪卡 ===== -->
-<div id="flashcard" class="screen">
-  <div class="game-header">
-    <button class="back-btn" onclick="goHome()">←</button>
-    <div class="progress-wrap"><div class="progress-bar" id="fcProgress"></div></div>
-    <div class="score-badge" id="fcScore">0/0</div>
+<!-- ══ 配对翻牌 ══════════════════════════════════════ -->
+<div id="match" class="screen">
+  <div class="game-nav">
+    <button class="g-back" onclick="goHome()">←</button>
+    <div class="g-title">🎴 配对翻牌</div>
+    <div class="g-info" id="matchInfo">0/8</div>
   </div>
-  <div class="fc-tap-hint">点击卡片翻面</div>
-  <div class="card-wrap">
-    <div class="card" id="mainCard" onclick="flipCard()">
-      <div class="card-face card-front">
-        <div class="card-label" id="fcFrontLabel">ENGLISH</div>
-        <div class="card-word" id="fcFrontWord"></div>
-        <div class="card-hint">点击查看答案</div>
+  <div class="prog-bar"><div class="prog-fill" id="matchProg" style="width:0"></div></div>
+  <div class="match-stats">
+    <div class="stat-chip" id="matchMoves">翻牌：0</div>
+    <div class="stat-chip" id="matchTime">⏱ 0s</div>
+  </div>
+  <div class="match-grid" id="matchGrid"></div>
+</div>
+
+<!-- ══ 限时问答 ══════════════════════════════════════ -->
+<div id="quiz" class="screen">
+  <div class="game-nav">
+    <button class="g-back" onclick="goHome()">←</button>
+    <div class="g-title">⚡ 限时问答</div>
+    <div class="g-info" id="quizInfo">0/0</div>
+  </div>
+  <div class="timer-bar"><div class="timer-fill timer-normal" id="timerFill" style="width:100%"></div></div>
+  <div class="combo-badge" id="comboBadge"></div>
+  <div class="q-card">
+    <div class="q-dir" id="qDir">英文 → 中文</div>
+    <div class="q-word" id="qWord"></div>
+  </div>
+  <div class="opts" id="optsGrid"></div>
+</div>
+
+<!-- ══ 闪卡记忆 ══════════════════════════════════════ -->
+<div id="flash" class="screen">
+  <div class="game-nav">
+    <button class="g-back" onclick="goHome()">←</button>
+    <div class="g-title">🃏 闪卡记忆</div>
+    <div class="g-info" id="flashInfo">0/0</div>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="flashProg" style="width:0"></div></div>
+  <div class="fc-counts">
+    <div class="fc-count known"  id="fcKnown">✓ 会了 0</div>
+    <div class="fc-count unknown" id="fcUnknown">✗ 不会 0</div>
+  </div>
+  <div class="fc-tap-hint">点击卡片翻面查看答案</div>
+  <div class="fc-wrap">
+    <div class="fc-card" id="fcCard" onclick="flipFc()">
+      <div class="fc-face fc-front">
+        <div class="fc-label" id="fcFrontLab">ENGLISH</div>
+        <div class="fc-word" id="fcFrontWord"></div>
+        <div class="fc-hint">点击翻面 →</div>
       </div>
-      <div class="card-face card-back">
-        <div class="card-label" id="fcBackLabel">中文</div>
-        <div class="card-word" id="fcBackWord"></div>
+      <div class="fc-face fc-back">
+        <div class="fc-label" id="fcBackLab">中文</div>
+        <div class="fc-word" id="fcBackWord"></div>
       </div>
     </div>
   </div>
-  <div class="fc-row">
-    <button class="btn fc-btn fc-no" onclick="fcAnswer(false)">✗ 不会</button>
-    <button class="btn fc-btn fc-yes" onclick="fcAnswer(true)">✓ 会了</button>
+  <div class="fc-btns">
+    <button class="fc-no"  onclick="fcAns(false)">✗ 不会</button>
+    <button class="fc-yes" onclick="fcAns(true)">✓ 会了</button>
   </div>
 </div>
 
-<!-- ===== 选择题 ===== -->
-<div id="quiz" class="screen">
-  <div class="game-header">
-    <button class="back-btn" onclick="goHome()">←</button>
-    <div class="progress-wrap"><div class="progress-bar" id="qProgress"></div></div>
-    <div class="score-badge" id="qScore">0/0</div>
-  </div>
-  <div class="question-card">
-    <div class="question-label" id="qLabel">英文 → 中文</div>
-    <div class="question-word" id="qWord"></div>
-  </div>
-  <div class="options-grid" id="optionsGrid"></div>
-</div>
-
-<!-- ===== 结果 ===== -->
+<!-- ══ 结果页 ══════════════════════════════════════ -->
 <div id="result" class="screen">
-  <div class="result-hero">
-    <div class="result-stars" id="resultStars"></div>
-    <div class="result-score" id="resultScore"></div>
-    <div class="result-total" id="resultTotal"></div>
+  <div class="panel res-panel">
+    <div class="res-stars" id="resStars"></div>
+    <div class="res-score" id="resScore"></div>
+    <div class="res-sub"   id="resSub"></div>
+    <div class="weak-box" id="weakBox" style="display:none">
+      <div class="weak-title">📌 需要加强的词</div>
+      <div class="weak-chips" id="weakChips"></div>
+    </div>
+    <div class="res-btns">
+      <button class="r-retry" id="rRetry" style="display:none" onclick="retryWeak()">🔁 重练错词</button>
+      <button class="r-again" onclick="retryAll()">再来一次</button>
+      <button class="r-home"  onclick="goHome()">返回首页</button>
+    </div>
   </div>
-  <div class="weak-section" id="weakSection" style="display:none">
-    <div class="weak-title">需要加强的词</div>
-    <div class="weak-list" id="weakList"></div>
-  </div>
-  <div class="result-btns">
-    <button class="btn retry-weak-btn" id="retryWeakBtn" style="display:none" onclick="retryWeak()">重练错词</button>
-    <button class="btn retry-btn" onclick="retryAll()">再来一次</button>
-    <button class="btn home-ret-btn" onclick="window.location.href='../index.html'">返回魔法王国</button>
-  </div>
+</div>
+
+<!-- 反馈浮层 -->
+<div class="feedback-overlay" id="fbOverlay">
+  <div class="feedback-bubble" id="fbBubble"></div>
 </div>
 
 <script>
-// ──────────────────────────────────────────
-// 词汇数据
-// ──────────────────────────────────────────
+/* ══════════════════════════════════════════════════
+   词汇数据
+══════════════════════════════════════════════════ */
 const SETS = [
-  { id: 1, title: "第一套", words: [
+  { id:1, title:"第一套", words:[
     {en:"rainy",zh:"下雨的"},{en:"snowy",zh:"下雪的"},{en:"windy",zh:"有风的"},
     {en:"sunny",zh:"晴朗的"},{en:"cloudy",zh:"多云的"},{en:"cold",zh:"冷的"},
     {en:"hot",zh:"热的"},{en:"warm",zh:"温暖的"},{en:"cool",zh:"凉爽的"},
@@ -301,7 +448,7 @@ const SETS = [
     {en:"schoolbag",zh:"书包"},{en:"ruler",zh:"尺子"},{en:"kite",zh:"风筝"},{en:"doll",zh:"玩偶"},
     {en:"twenty",zh:"二十"},{en:"thirty",zh:"三十"},{en:"forty",zh:"四十"}
   ]},
-  { id: 2, title: "第二套", words: [
+  { id:2, title:"第二套", words:[
     {en:"worried",zh:"担心的"},{en:"excited",zh:"兴奋的"},{en:"sad",zh:"悲伤的"},
     {en:"angry",zh:"生气的"},{en:"happy",zh:"高兴的"},{en:"hungry",zh:"饥饿的"},
     {en:"thirsty",zh:"口渴的"},{en:"favourite",zh:"最喜爱的"},
@@ -316,7 +463,7 @@ const SETS = [
     {en:"late",zh:"晚的"},{en:"in time",zh:"及时"},
     {en:"idea",zh:"主意"},{en:"tail",zh:"尾巴"},{en:"floor",zh:"地板"},{en:"ice",zh:"冰"}
   ]},
-  { id: 3, title: "第三套", words: [
+  { id:3, title:"第三套", words:[
     {en:"different",zh:"不同的"},{en:"interesting",zh:"有趣的"},{en:"hard",zh:"难的"},
     {en:"best",zh:"最好的"},{en:"ill",zh:"生病的"},{en:"healthy",zh:"健康的"},{en:"little",zh:"小的"},
     {en:"library",zh:"图书馆"},{en:"museum",zh:"博物馆"},{en:"park",zh:"公园"},{en:"pool",zh:"游泳池"},
@@ -329,7 +476,7 @@ const SETS = [
     {en:"remember",zh:"记住"},{en:"rest",zh:"休息"},{en:"try",zh:"尝试"},
     {en:"dance",zh:"跳舞"},{en:"put",zh:"放置"}
   ]},
-  { id: 4, title: "第四套", words: [
+  { id:4, title:"第四套", words:[
     {en:"banana",zh:"香蕉"},{en:"pear",zh:"梨"},{en:"grape",zh:"葡萄"},
     {en:"cherry",zh:"樱桃"},{en:"watermelon",zh:"西瓜"},{en:"strawberry",zh:"草莓"},
     {en:"monkey",zh:"猴子"},{en:"hamster",zh:"仓鼠"},{en:"squirrel",zh:"松鼠"},
@@ -340,7 +487,7 @@ const SETS = [
     {en:"on time",zh:"准时"},{en:"look for",zh:"寻找"},{en:"take a walk",zh:"散步"},
     {en:"excuse me",zh:"打扰一下"},{en:"hurry up",zh:"赶快"},{en:"sorry",zh:"抱歉"}
   ]},
-  { id: 5, title: "第五套", words: [
+  { id:5, title:"第五套", words:[
     {en:"chopsticks",zh:"筷子"},{en:"plate",zh:"盘子"},{en:"knife",zh:"刀"},
     {en:"fork",zh:"叉"},{en:"spoon",zh:"勺子"},{en:"bowl",zh:"碗"},
     {en:"sandwich",zh:"三明治"},{en:"tomato",zh:"西红柿"},{en:"potato",zh:"土豆"},
@@ -353,7 +500,7 @@ const SETS = [
     {en:"first",zh:"首先"},{en:"next",zh:"接下来"},{en:"then",zh:"然后"},
     {en:"last",zh:"最后"},{en:"finally",zh:"最终"},{en:"right",zh:"右边"},{en:"left",zh:"左边"}
   ]},
-  { id: 6, title: "第六套", words: [
+  { id:6, title:"第六套", words:[
     {en:"smell",zh:"闻/嗅"},{en:"listen",zh:"听"},{en:"hear",zh:"听到"},
     {en:"taste",zh:"品尝"},{en:"touch",zh:"触摸"},
     {en:"polite",zh:"有礼貌的"},{en:"friendly",zh:"友好的"},{en:"naughty",zh:"淘气的"},
@@ -367,221 +514,429 @@ const SETS = [
   ]}
 ];
 
-// 所有词合并（去重）
 const ALL_WORDS = (() => {
   const seen = new Set();
   return SETS.flatMap(s => s.words).filter(w => {
-    if (seen.has(w.en)) return false;
-    seen.add(w.en); return true;
+    if (seen.has(w.en)) return false; seen.add(w.en); return true;
   });
 })();
 
-// ──────────────────────────────────────────
-// 状态
-// ──────────────────────────────────────────
-let state = {
-  mode: 'quiz',       // 'quiz' | 'flash'
-  dir: 'en2zh',       // 'en2zh' | 'zh2en'
-  setId: 1,
-  deck: [],           // 本局词卡（shuffled）
-  idx: 0,
-  correct: 0,
-  wrong: [],          // 错误词
-  isWeak: false,      // 是否在练错词
-  flipped: false
+/* ══════════════════════════════════════════════════
+   状态
+══════════════════════════════════════════════════ */
+const S = {
+  setId: 1, mode: null,
+  deck: [], idx: 0, correct: 0, wrong: [],
+  isWeak: false,
+  // quiz
+  combo: 0, timerInterval: null, timeLeft: 0, answered: false,
+  // match
+  matchPairs: 8, matchFound: 0, matchMoves: 0, matchStart: 0, matchTimer: null,
+  matchFirst: null, matchLocked: false,
+  // flash
+  fcFlipped: false, fcKnown: 0, fcUnknown: 0
 };
 
-// ──────────────────────────────────────────
-// 首页交互
-// ──────────────────────────────────────────
-document.querySelectorAll('.set-card').forEach(c => {
-  c.addEventListener('click', () => {
-    document.querySelectorAll('.set-card').forEach(x => x.classList.remove('selected'));
-    c.classList.add('selected');
-    state.setId = +c.dataset.set;
-  });
-});
-document.querySelectorAll('.mode-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.mode-btn').forEach(x => x.classList.remove('selected'));
-    b.classList.add('selected');
-    state.mode = b.dataset.mode;
-  });
-});
-document.querySelectorAll('.dir-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('.dir-btn').forEach(x => x.classList.remove('selected'));
-    b.classList.add('selected');
-    state.dir = b.dataset.dir;
-  });
-});
-// 默认选中第一套
-document.querySelector('[data-set="1"]').classList.add('selected');
-
-document.getElementById('startBtn').addEventListener('click', startGame);
-
-// ──────────────────────────────────────────
-// 启动
-// ──────────────────────────────────────────
-function buildDeck(words) {
-  const a = [...words];
+/* ══ 工具 ══ */
+function shuffle(arr) {
+  const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.random() * (i+1) | 0;
     [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
-
-function startGame(isWeak = false) {
-  const words = isWeak ? state.wrong : (state.setId === 0 ? ALL_WORDS : SETS.find(s => s.id === state.setId).words);
-  state.deck = buildDeck(words);
-  state.idx = 0;
-  state.correct = 0;
-  if (!isWeak) state.wrong = [];
-  state.isWeak = isWeak;
-
-  if (state.mode === 'flash') startFlash();
-  else startQuiz();
-}
-
-function retryAll() { startGame(false); }
-function retryWeak() { startGame(true); }
-
-// ──────────────────────────────────────────
-// 闪卡模式
-// ──────────────────────────────────────────
-function startFlash() {
-  showScreen('flashcard');
-  renderFlash();
-}
-
-function renderFlash() {
-  const w = state.deck[state.idx];
-  state.flipped = false;
-  document.getElementById('mainCard').classList.remove('flipped');
-  const en2zh = state.dir === 'en2zh';
-  document.getElementById('fcFrontLabel').textContent = en2zh ? 'ENGLISH' : '中文';
-  document.getElementById('fcFrontWord').textContent = en2zh ? w.en : w.zh;
-  document.getElementById('fcBackLabel').textContent = en2zh ? '中文' : 'ENGLISH';
-  document.getElementById('fcBackWord').textContent = en2zh ? w.zh : w.en;
-  updateFcHeader();
-}
-
-function flipCard() {
-  state.flipped = !state.flipped;
-  document.getElementById('mainCard').classList.toggle('flipped', state.flipped);
-}
-
-function fcAnswer(correct) {
-  if (!state.flipped) { flipCard(); return; }
-  const w = state.deck[state.idx];
-  if (correct) state.correct++;
-  else if (!state.wrong.find(x => x.en === w.en)) state.wrong.push(w);
-  state.idx++;
-  if (state.idx >= state.deck.length) { showResult(); return; }
-  renderFlash();
-}
-
-function updateFcHeader() {
-  const total = state.deck.length;
-  document.getElementById('fcProgress').style.width = (state.idx / total * 100) + '%';
-  document.getElementById('fcScore').textContent = state.idx + '/' + total;
-}
-
-// ──────────────────────────────────────────
-// 选择题模式
-// ──────────────────────────────────────────
-function startQuiz() {
-  showScreen('quiz');
-  document.getElementById('qLabel').textContent = state.dir === 'en2zh' ? '英文 → 中文' : '中文 → 英文';
-  renderQuiz();
-}
-
-function renderQuiz() {
-  const w = state.deck[state.idx];
-  const total = state.deck.length;
-  const en2zh = state.dir === 'en2zh';
-
-  document.getElementById('qProgress').style.width = (state.idx / total * 100) + '%';
-  document.getElementById('qScore').textContent = state.correct + '/' + state.idx;
-  document.getElementById('qWord').textContent = en2zh ? w.en : w.zh;
-  document.getElementById('qWord').classList.add('pop');
-  setTimeout(() => document.getElementById('qWord').classList.remove('pop'), 200);
-
-  // 生成4个选项（1正确 + 3随机）
-  const pool = ALL_WORDS.filter(x => x.en !== w.en);
-  const distractors = buildDeck(pool).slice(0, 3);
-  const choices = buildDeck([w, ...distractors]);
-
-  const grid = document.getElementById('optionsGrid');
-  grid.innerHTML = '';
-  choices.forEach(c => {
-    const btn = document.createElement('button');
-    btn.className = 'btn opt-btn';
-    btn.textContent = en2zh ? c.zh : c.en;
-    btn.onclick = () => answerQuiz(btn, c, w);
-    grid.appendChild(btn);
-  });
-}
-
-function answerQuiz(btn, chosen, correct) {
-  document.querySelectorAll('.opt-btn').forEach(b => b.disabled = true);
-  const isCorrect = chosen.en === correct.en;
-  btn.classList.add(isCorrect ? 'correct' : 'wrong');
-  if (isCorrect) {
-    state.correct++;
-  } else {
-    if (!state.wrong.find(x => x.en === correct.en)) state.wrong.push(correct);
-    // 高亮正确答案
-    const en2zh = state.dir === 'en2zh';
-    document.querySelectorAll('.opt-btn').forEach(b => {
-      if (b.textContent === (en2zh ? correct.zh : correct.en)) b.classList.add('correct');
-    });
-  }
-  setTimeout(() => {
-    state.idx++;
-    if (state.idx >= state.deck.length) showResult();
-    else renderQuiz();
-  }, 900);
-}
-
-// ──────────────────────────────────────────
-// 结果页
-// ──────────────────────────────────────────
-function showResult() {
-  showScreen('result');
-  const total = state.deck.length;
-  const pct = total ? state.correct / total : 1;
-  const stars = pct >= .9 ? '⭐⭐⭐' : pct >= .7 ? '⭐⭐' : '⭐';
-  document.getElementById('resultStars').textContent = stars;
-  document.getElementById('resultScore').textContent = state.correct;
-  document.getElementById('resultTotal').textContent = '共 ' + total + ' 题';
-
-  const weakSec = document.getElementById('weakSection');
-  const weakBtn = document.getElementById('retryWeakBtn');
-  if (state.wrong.length > 0) {
-    weakSec.style.display = 'block';
-    weakBtn.style.display = 'block';
-    const list = document.getElementById('weakList');
-    list.innerHTML = state.wrong.map(w =>
-      `<div class="weak-chip">${w.en} <span>${w.zh}</span></div>`
-    ).join('');
-  } else {
-    weakSec.style.display = 'none';
-    weakBtn.style.display = 'none';
-  }
-}
-
-// ──────────────────────────────────────────
-// 工具
-// ──────────────────────────────────────────
+function pick(arr, n) { return shuffle(arr).slice(0, n); }
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
-
 function goHome() {
+  clearInterval(S.timerInterval); clearInterval(S.matchTimer);
   showScreen('home');
+}
+
+/* 音效 */
+function beep(freq, dur, vol = .25) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.connect(g); g.connect(ctx.destination);
+    osc.frequency.value = freq;
+    osc.type = 'sine';
+    g.gain.setValueAtTime(vol, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(.001, ctx.currentTime + dur);
+    osc.start(); osc.stop(ctx.currentTime + dur);
+  } catch(e) {}
+}
+function playCorrect() { beep(880, .15); setTimeout(() => beep(1100, .15), 120); }
+function playWrong()   { beep(220, .3); }
+function playComplete(){ beep(660,.12); setTimeout(()=>beep(880,.12),130); setTimeout(()=>beep(1100,.25),260); }
+
+/* 浮层反馈 */
+let fbTimer;
+function showFb(text) {
+  const b = document.getElementById('fbBubble');
+  b.textContent = text;
+  b.classList.add('show');
+  clearTimeout(fbTimer);
+  fbTimer = setTimeout(() => b.classList.remove('show'), 900);
+}
+
+/* ══ 首页 ══ */
+document.querySelectorAll('.set-card').forEach(c => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.set-card').forEach(x => x.classList.remove('sel'));
+    c.classList.add('sel');
+    S.setId = +c.dataset.set;
+  });
+});
+
+function getWords() {
+  const src = S.setId === 0 ? ALL_WORDS : (SETS.find(s => s.id === S.setId)?.words ?? ALL_WORDS);
+  return S.isWeak ? S.wrong : src;
+}
+
+function launch(mode) {
+  S.mode = mode; S.isWeak = false;
+  startMode();
+}
+function retryAll() { S.isWeak = false; startMode(); }
+function retryWeak() { S.isWeak = true; startMode(); }
+
+function startMode() {
+  const words = getWords();
+  S.wrong = S.isWeak ? [...S.wrong] : [];
+  S.correct = 0; S.idx = 0; S.combo = 0;
+  clearInterval(S.timerInterval); clearInterval(S.matchTimer);
+
+  if (S.mode === 'match') startMatch(words);
+  else if (S.mode === 'quiz') startQuiz(words);
+  else startFlash(words);
+}
+
+/* ══════════════════════════════════════════════════
+   配对翻牌
+══════════════════════════════════════════════════ */
+function startMatch(words) {
+  const n = Math.min(8, words.length);
+  const pairs = pick(words, n);
+  S.deck = pairs;
+  S.matchPairs = n; S.matchFound = 0; S.matchMoves = 0;
+  S.matchFirst = null; S.matchLocked = false;
+  S.matchStart = Date.now();
+  S.wrong = [];
+
+  // Build card data: [{ id, word, side:'en'|'zh' }]
+  const cards = shuffle([
+    ...pairs.map((w,i) => ({ id:i, word:w, side:'en' })),
+    ...pairs.map((w,i) => ({ id:i, word:w, side:'zh' }))
+  ]);
+
+  const grid = document.getElementById('matchGrid');
+  grid.innerHTML = '';
+  cards.forEach((c, ci) => {
+    const el = document.createElement('div');
+    el.className = 'mc';
+    el.dataset.cid = ci;
+    el.dataset.pid = c.id;
+    el.dataset.side = c.side;
+    el.innerHTML = `
+      <div class="mc-inner">
+        <div class="mc-face mc-back">✦</div>
+        <div class="mc-face mc-front-${c.side}">${c.side === 'en' ? c.word.en : c.word.zh}</div>
+      </div>`;
+    el.addEventListener('click', () => onMatchClick(el));
+    grid.appendChild(el);
+  });
+
+  updateMatchHeader();
+  // timer
+  S.matchTimer = setInterval(() => {
+    const sec = Math.floor((Date.now() - S.matchStart) / 1000);
+    document.getElementById('matchTime').textContent = `⏱ ${sec}s`;
+  }, 500);
+
+  showScreen('match');
+}
+
+function onMatchClick(el) {
+  if (S.matchLocked) return;
+  if (el.classList.contains('flipped') || el.classList.contains('matched')) return;
+
+  el.classList.add('flipped');
+  beep(660, .08, .15);
+
+  if (!S.matchFirst) {
+    S.matchFirst = el; return;
+  }
+
+  S.matchMoves++;
+  document.getElementById('matchMoves').textContent = `翻牌：${S.matchMoves}`;
+
+  const first = S.matchFirst;
+  S.matchFirst = null;
+  S.matchLocked = true;
+
+  if (first.dataset.pid === el.dataset.pid && first.dataset.side !== el.dataset.side) {
+    // 匹配！
+    setTimeout(() => {
+      first.classList.add('matched');
+      el.classList.add('matched');
+      first.classList.add('matched-anim');
+      el.classList.add('matched-anim');
+      S.matchLocked = false;
+      S.matchFound++;
+      playCorrect();
+      showFb(['✨ 配对成功！', '👏 太棒了！', '🌟 完美！'][Math.random()*3|0]);
+      updateMatchHeader();
+      if (S.matchFound >= S.matchPairs) finishMatch();
+    }, 300);
+  } else {
+    // 不匹配
+    setTimeout(() => {
+      first.classList.remove('flipped');
+      el.classList.remove('flipped');
+      first.querySelector('.mc-inner').style.transform = '';
+      el.querySelector('.mc-inner').style.transform = '';
+      S.matchLocked = false;
+      playWrong();
+      // 记录错词
+      const wid = +el.dataset.pid;
+      const word = S.deck[wid];
+      if (!S.wrong.find(w => w.en === word.en)) S.wrong.push(word);
+    }, 800);
+  }
+}
+
+function updateMatchHeader() {
+  document.getElementById('matchInfo').textContent = `${S.matchFound}/${S.matchPairs}`;
+  document.getElementById('matchProg').style.width = (S.matchFound / S.matchPairs * 100) + '%';
+}
+
+function finishMatch() {
+  clearInterval(S.matchTimer);
+  const sec = Math.floor((Date.now() - S.matchStart) / 1000);
+  playComplete();
+  const stars = S.matchMoves <= S.matchPairs ? '⭐⭐⭐' : S.matchMoves <= S.matchPairs * 1.8 ? '⭐⭐' : '⭐';
+  showResult(stars, `${S.matchMoves} 次翻牌`, `用时 ${sec} 秒，共 ${S.matchPairs} 对`);
+}
+
+/* ══════════════════════════════════════════════════
+   限时问答
+══════════════════════════════════════════════════ */
+const QUIZ_TIME = 8000;
+const QUIZ_TOTAL = 15;
+
+function startQuiz(words) {
+  S.deck = shuffle(words);
+  // extend deck if fewer than QUIZ_TOTAL
+  while (S.deck.length < QUIZ_TOTAL) S.deck = [...S.deck, ...shuffle(words)];
+  S.deck = S.deck.slice(0, QUIZ_TOTAL);
+  S.idx = 0; S.correct = 0; S.combo = 0;
+  S.wrong = [];
+  showScreen('quiz');
+  renderQuiz();
+}
+
+function renderQuiz() {
+  clearInterval(S.timerInterval);
+  const w = S.deck[S.idx];
+  const total = S.deck.length;
+  document.getElementById('quizInfo').textContent = `${S.idx}/${total}`;
+
+  // direction: alternate en→zh / zh→en every 5 questions
+  const en2zh = (S.idx % 10) < 5;
+  document.getElementById('qDir').textContent = en2zh ? '英文 → 中文' : '中文 → 英文';
+  document.getElementById('qWord').textContent = en2zh ? w.en : w.zh;
+  document.getElementById('qWord').classList.add('pop');
+  setTimeout(() => document.getElementById('qWord').classList.remove('pop'), 200);
+
+  // combo display
+  const cb = document.getElementById('comboBadge');
+  if (S.combo >= 3) {
+    cb.textContent = `🔥 连击 ×${S.combo}！+双倍积分`;
+    cb.className = 'combo-badge active';
+  } else { cb.textContent = ''; cb.className = 'combo-badge'; }
+
+  // options
+  const pool = ALL_WORDS.filter(x => x.en !== w.en);
+  const wrong3 = pick(pool, 3);
+  const choices = shuffle([w, ...wrong3]);
+
+  const grid = document.getElementById('optsGrid');
+  grid.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.textContent = en2zh ? c.zh : c.en;
+    btn.addEventListener('click', () => answerQuiz(btn, c, w, en2zh));
+    grid.appendChild(btn);
+  });
+
+  S.answered = false;
+  startTimer();
+}
+
+function startTimer() {
+  const fill = document.getElementById('timerFill');
+  S.timeLeft = QUIZ_TIME;
+  const step = 100;
+
+  S.timerInterval = setInterval(() => {
+    S.timeLeft -= step;
+    const pct = Math.max(0, S.timeLeft / QUIZ_TIME * 100);
+    fill.style.width = pct + '%';
+
+    if (pct > 40)      { fill.className = 'timer-fill timer-normal'; }
+    else if (pct > 20) { fill.className = 'timer-fill timer-warn'; }
+    else               { fill.className = 'timer-fill timer-urgent'; }
+
+    if (S.timeLeft <= 0) {
+      clearInterval(S.timerInterval);
+      if (!S.answered) timeOut();
+    }
+  }, step);
+}
+
+function timeOut() {
+  S.answered = true;
+  const w = S.deck[S.idx];
+  // highlight correct
+  document.querySelectorAll('.opt').forEach(b => {
+    if (b.textContent === w.en || b.textContent === w.zh) b.classList.add('correct');
+    b.disabled = true;
+  });
+  S.combo = 0;
+  if (!S.wrong.find(x => x.en === w.en)) S.wrong.push(w);
+  playWrong(); showFb('⏰ 时间到！');
+  setTimeout(nextQuiz, 1200);
+}
+
+function answerQuiz(btn, chosen, correct, en2zh) {
+  if (S.answered) return;
+  S.answered = true;
+  clearInterval(S.timerInterval);
+  document.querySelectorAll('.opt').forEach(b => b.disabled = true);
+
+  const ok = chosen.en === correct.en;
+  btn.classList.add(ok ? 'correct' : 'wrong');
+
+  if (ok) {
+    S.correct++;
+    S.combo++;
+    const pts = S.combo >= 3 ? 20 : 10;
+    playCorrect();
+    const msgs = ['✨ 正确！', '🌟 棒极了！', '👏 太厉害！', '🎯 完美！'];
+    showFb((S.combo >= 3 ? `🔥 连击！+${pts}` : msgs[Math.random()*msgs.length|0]));
+  } else {
+    S.combo = 0;
+    document.querySelectorAll('.opt').forEach(b => {
+      if (b.textContent === (en2zh ? correct.zh : correct.en)) b.classList.add('correct');
+    });
+    if (!S.wrong.find(x => x.en === correct.en)) S.wrong.push(correct);
+    playWrong(); showFb('❌ 加油！');
+  }
+
+  setTimeout(nextQuiz, 1000);
+}
+
+function nextQuiz() {
+  S.idx++;
+  if (S.idx >= S.deck.length) finishQuiz();
+  else renderQuiz();
+}
+
+function finishQuiz() {
+  const total = S.deck.length;
+  const pct = S.correct / total;
+  const stars = pct >= .9 ? '⭐⭐⭐' : pct >= .7 ? '⭐⭐' : '⭐';
+  playComplete();
+  showResult(stars, `${S.correct} / ${total}`, `正确率 ${Math.round(pct*100)}%`);
+}
+
+/* ══════════════════════════════════════════════════
+   闪卡记忆
+══════════════════════════════════════════════════ */
+function startFlash(words) {
+  S.deck = shuffle(words);
+  S.idx = 0; S.fcFlipped = false; S.fcKnown = 0; S.fcUnknown = 0;
+  S.wrong = [];
+  showScreen('flash');
+  renderFlash();
+}
+
+function renderFlash() {
+  const w = S.deck[S.idx];
+  S.fcFlipped = false;
+  document.getElementById('fcCard').classList.remove('flipped');
+  const en2zh = true; // always show EN first
+  document.getElementById('fcFrontLab').textContent  = 'ENGLISH';
+  document.getElementById('fcFrontWord').textContent = w.en;
+  document.getElementById('fcBackLab').textContent   = '中文';
+  document.getElementById('fcBackWord').textContent  = w.zh;
+  updateFlashHeader();
+}
+
+function flipFc() {
+  S.fcFlipped = !S.fcFlipped;
+  document.getElementById('fcCard').classList.toggle('flipped', S.fcFlipped);
+  if (S.fcFlipped) beep(660, .08, .15);
+}
+
+function fcAns(known) {
+  if (!S.fcFlipped) { flipFc(); return; }
+  const w = S.deck[S.idx];
+  if (known) {
+    S.fcKnown++; S.correct++;
+    playCorrect(); showFb('✓ 会了！');
+  } else {
+    S.fcUnknown++;
+    if (!S.wrong.find(x => x.en === w.en)) S.wrong.push(w);
+    playWrong(); showFb('📌 已记录');
+  }
+  S.idx++;
+  if (S.idx >= S.deck.length) finishFlash();
+  else renderFlash();
+}
+
+function updateFlashHeader() {
+  const total = S.deck.length;
+  document.getElementById('flashInfo').textContent = `${S.idx+1}/${total}`;
+  document.getElementById('flashProg').style.width = ((S.idx)/total*100) + '%';
+  document.getElementById('fcKnown').textContent   = `✓ 会了 ${S.fcKnown}`;
+  document.getElementById('fcUnknown').textContent = `✗ 不会 ${S.fcUnknown}`;
+}
+
+function finishFlash() {
+  const total = S.deck.length;
+  const pct = S.fcKnown / total;
+  const stars = pct >= .9 ? '⭐⭐⭐' : pct >= .7 ? '⭐⭐' : '⭐';
+  playComplete();
+  showResult(stars, `${S.fcKnown} / ${total}`, `认识 ${Math.round(pct*100)}%`);
+}
+
+/* ══════════════════════════════════════════════════
+   结果页
+══════════════════════════════════════════════════ */
+function showResult(stars, score, sub) {
+  document.getElementById('resStars').textContent = stars;
+  document.getElementById('resScore').textContent = score;
+  document.getElementById('resSub').textContent   = sub;
+
+  const wb = document.getElementById('weakBox');
+  const rr = document.getElementById('rRetry');
+  if (S.wrong.length > 0) {
+    wb.style.display = 'block';
+    rr.style.display = 'block';
+    document.getElementById('weakChips').innerHTML =
+      S.wrong.map(w => `<div class="weak-chip">${w.en} <em>${w.zh}</em></div>`).join('');
+  } else {
+    wb.style.display = 'none';
+    rr.style.display = 'none';
+  }
+  showScreen('result');
 }
 </script>
 </body>
