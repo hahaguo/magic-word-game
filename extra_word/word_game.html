@@ -102,6 +102,86 @@ body { font-family: "PingFang SC", "Microsoft YaHei", sans-serif; background: #f
 /* 动画 */
 @keyframes pop-in { from { transform: scale(.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 .pop { animation: pop-in .2s ease; }
+
+/* ── iPad 标准 (768-1024px) ── */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (-webkit-min-device-pixel-ratio: 1.5) {
+  .screen { padding: 32px 40px; }
+  .home-hero h1 { font-size: 36px; }
+  .home-hero p { font-size: 16px; }
+
+  .set-grid { grid-template-columns: repeat(4, 1fr); max-width: 640px; gap: 12px; }
+  .set-card { padding: 18px 10px; }
+  .set-card .num { font-size: 16px; }
+  .set-card .sub { font-size: 12px; }
+
+  .mode-row, .dir-row { max-width: 560px; gap: 14px; }
+  .mode-btn { padding: 20px 12px; font-size: 17px; }
+  .dir-btn { padding: 12px 10px; font-size: 15px; }
+  .start-btn { max-width: 560px; font-size: 20px; padding: 18px 0; }
+
+  .game-header { max-width: 680px; margin-bottom: 20px; }
+  .back-btn { font-size: 26px; }
+  .progress-wrap { height: 10px; }
+  .score-badge { font-size: 17px; min-width: 60px; }
+
+  .card-wrap { max-width: 580px; margin: 16px 0 28px; }
+  .card { height: 240px; }
+  .card-word { font-size: 36px; }
+  .card-label { font-size: 13px; }
+  .card-hint { font-size: 15px; }
+  .fc-row { max-width: 580px; gap: 16px; }
+  .fc-btn { padding: 20px 0; font-size: 18px; border-radius: 16px; }
+  .fc-tap-hint { font-size: 15px; }
+
+  .question-card { max-width: 680px; padding: 36px 28px; margin-bottom: 24px; }
+  .question-word { font-size: 38px; }
+  .question-label { font-size: 13px; }
+  .options-grid { max-width: 680px; gap: 14px; }
+  .opt-btn { font-size: 18px; min-height: 80px; padding: 20px 14px; border-radius: 16px; }
+
+  .weak-section, .result-btns { max-width: 680px; }
+  .result-score { font-size: 60px; }
+  .result-stars { font-size: 50px; }
+  .result-total { font-size: 18px; }
+  .weak-chip { font-size: 15px; padding: 7px 16px; }
+  .retry-weak-btn, .retry-btn, .home-ret-btn { font-size: 18px; padding: 18px 0; border-radius: 16px; }
+
+  .btn { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+}
+
+/* ── iPad Pro / 横屏大屏 (min-width: 1024px) ── */
+@media only screen and (min-width: 1024px) {
+  .screen { padding: 40px 60px; }
+  .home-hero h1 { font-size: 42px; }
+  .home-hero p { font-size: 17px; }
+
+  .set-grid { grid-template-columns: repeat(7, 1fr); max-width: 900px; gap: 12px; }
+  .set-card { padding: 16px 8px; }
+  .set-card .num { font-size: 14px; }
+  .set-card .sub { font-size: 11px; }
+  .set-card.all-card .num { font-size: 14px; }
+
+  .mode-row, .dir-row { max-width: 680px; gap: 16px; }
+  .mode-btn { padding: 22px 14px; font-size: 18px; }
+  .dir-btn { padding: 14px 12px; font-size: 16px; }
+  .start-btn { max-width: 680px; font-size: 22px; padding: 20px 0; }
+
+  .game-header { max-width: 800px; }
+  .card-wrap { max-width: 680px; }
+  .card { height: 260px; }
+  .card-word { font-size: 40px; }
+  .fc-row { max-width: 680px; }
+  .fc-btn { padding: 22px 0; font-size: 20px; }
+
+  .question-card { max-width: 800px; padding: 40px 32px; }
+  .question-word { font-size: 44px; }
+  .options-grid { max-width: 800px; gap: 16px; }
+  .opt-btn { font-size: 20px; min-height: 88px; padding: 22px 16px; }
+
+  .weak-section, .result-btns { max-width: 800px; }
+  .result-score { font-size: 72px; }
+  .retry-weak-btn, .retry-btn, .home-ret-btn { font-size: 20px; padding: 20px 0; }
+}
 </style>
 </head>
 <body>

@@ -139,8 +139,8 @@ body::before {
 
 .game-modes {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
     margin-top: 15px;
 }
 
@@ -756,12 +756,12 @@ body::before {
 
     /* 游戏模式按钮 */
     .game-modes {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
     }
 
     .mode-btn {
-        padding: 25px 15px;
+        padding: 20px 10px;
     }
 
     .mode-icon {
@@ -1037,6 +1037,15 @@ body::before {
         font-size: 3.2em;
     }
 
+    .game-modes {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+
+    .mode-btn {
+        padding: 22px 12px;
+    }
+
     .match-grid {
         grid-template-columns: repeat(5, 1fr);
         gap: 25px;
@@ -1084,6 +1093,15 @@ body::before {
 
     .user-greeting {
         margin-bottom: 12px;
+    }
+
+    .game-modes {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 16px;
+    }
+
+    .mode-btn {
+        padding: 20px 10px;
     }
 
     .match-grid {
