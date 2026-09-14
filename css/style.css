@@ -139,8 +139,8 @@ body::before {
 
 .game-modes {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
     margin-top: 15px;
 }
 
@@ -148,7 +148,7 @@ body::before {
     background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
     border: none;
     border-radius: 15px;
-    padding: 20px 10px;
+    padding: 22px 14px;
     cursor: pointer;
     transition: all 0.3s;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
@@ -189,6 +189,11 @@ body::before {
 /* 百词闯关按钮 */
 .mode-btn-exam {
     background: linear-gradient(135deg, #a8edea 0%, #4db8a0 100%);
+}
+
+/* 背诵计划按钮 */
+.mode-btn-plan {
+    background: linear-gradient(135deg, #d4a8ea 0%, #b06ed4 100%);
 }
 
 .mode-btn-review.has-review {
@@ -756,12 +761,12 @@ body::before {
 
     /* 游戏模式按钮 */
     .game-modes {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 14px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
     }
 
     .mode-btn {
-        padding: 20px 10px;
+        padding: 24px 14px;
     }
 
     .mode-icon {
@@ -1038,12 +1043,12 @@ body::before {
     }
 
     .game-modes {
-        grid-template-columns: repeat(5, 1fr);
-        gap: 16px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
     }
 
     .mode-btn {
-        padding: 22px 12px;
+        padding: 26px 14px;
     }
 
     .match-grid {
@@ -1096,12 +1101,12 @@ body::before {
     }
 
     .game-modes {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 16px;
     }
 
     .mode-btn {
-        padding: 20px 10px;
+        padding: 22px 12px;
     }
 
     .match-grid {
